@@ -19,6 +19,7 @@ import com.verdantartifice.thaumicwonders.common.items.consumables.ItemLetheWate
 import com.verdantartifice.thaumicwonders.common.items.consumables.ItemPanacea;
 import com.verdantartifice.thaumicwonders.common.items.consumables.ItemPrimalArrow;
 import com.verdantartifice.thaumicwonders.common.items.entities.ItemFlyingCarpet;
+import com.verdantartifice.thaumicwonders.common.items.foci.FocusEffectBlink;
 import com.verdantartifice.thaumicwonders.common.items.foci.FocusEffectTeleportHome;
 import com.verdantartifice.thaumicwonders.common.items.linkers.ItemPortalLinker;
 import com.verdantartifice.thaumicwonders.common.items.misc.ItemDisjunctionCloth;
@@ -86,6 +87,7 @@ public class InitItems {
 
     public static void initFocusEffects() {
         FocusEngine.registerElement(FocusEffectTeleportHome.class, new ResourceLocation(ThaumicWonders.MODID, "textures/foci/teleport_home.png"), 0x509efe);
+        FocusEngine.registerElement(FocusEffectBlink.class, new ResourceLocation(ThaumicWonders.MODID, "textures/foci/blink.png"), 0x740674);
     }
 
     private static void registerItem(IForgeRegistry<Item> forgeRegistry, Item item, boolean enabled) {

@@ -50,6 +50,8 @@ entity.void_portal.name=Void Portal
 fluid.fluid_quicksilver=Quicksilver
 
 # Focus Effects
+focus.thaumicwonders.blink.name=Blink
+focus.thaumicwonders.blink.text=Randomly teleports your target or teleports caster to impact location.
 focus.thaumicwonders.teleport_home.name=Teleport Home
 focus.thaumicwonders.teleport_home.text=Teleports players to their bed location.
 
@@ -253,6 +255,11 @@ thaumicwonders.research.alienist_stone.title=Eldritch Metal Amplification
 thaumicwonders.research.alienist_stone.text.stage.1=With the secrets of the Eldritch at my disposal, I'm confident that I can eke out more yield from the Catalyzation Chamber. The only question is how?<BR>Perhaps, a combination of refined ore clusters can have some use here...
 thaumicwonders.research.alienist_stone.text.stage.2=By infusing an Alchemist's Stone with rare earth and some native mineral clusters, I can increase the stone's power.<BR>The resulting catalyst stone produces what I call Eldritch Clusters, which, when smelted, yield three ingots instead of two.<PAGE>I hesitate to call the resulting process "purification", particularly given the significant chance of flux each operation, but the results cannot be denied.<BR>Perhaps there are other things that I can amplify with this stone, but for now, this process is sufficient for the metal processing.
 
+thaumicwonders.research.blink.title=Focus Effect: Blink
+thaumicwonders.research.blink.text.stage.1=While the portal system is a true miracle of invention, the inability of the anchors to generate portals without a nearby generator makes setting up networks a bit tedious.<BR>The Enderman I have seen in the world do not require such bulky mechanisms to achieve teleportation, so perhaps I can find a way to replicate their abilities.
+thaumicwonders.research.blink.text.stage.2=I have managed to create an effect similar to the powers of the Endermen.<BR>When bound to a medium, the spell teleports me to the location of the spell impact, allowing me to teleport short distances.<BR>If the spell comes in contact with a living creature, they are teleported randomly a short distance away, similar to what happens when Endermen are struck by projectiles.
+thaumicwonders.research.blink.text.addenda.1=An interesting nuance of the effect is its ability to transport me through relatively thin surfaces.<BR>If I aim at the bottom of a block above me or the top of a block directly below me, the spell will actually transport me to the other side of the obstruction, provided there is room.<BR>However, no matter how hard I press myself against the surface, the spell does not seem capable of transporting me horizontally through walls.
+
 thaumicwonders.research.bone_bow.title=Empowered Bow of Bone
 thaumicwonders.research.bone_bow.text.stage.1=A memory tickles at my mind, something long forgotten...  It was a powerful weapon, but I can't quite reach it.  Perhaps some research will jog my memory.
 thaumicwonders.research.bone_bow.text.stage.2=Ah yes, I remember now.  The Empowered Bow of Bone.<BR>When charged with vis, this bow pulls quite rapidly, with hardly any effort at all.  In addition, its arrows will fly farther and fire automatically as soon as they're at maximum power.  The effect is quite potent.<BR>The bow consumes one point of vis per shot.  When its charge is depleted, it functions like an ordinary bow.
@@ -411,7 +418,7 @@ thaumicwonders.research.structure_diviner.text.stage.2=Surprisingly, it wasn't t
 thaumicwonders.research.structure_diviner.text.addenda.1=It appears that what constitutes a 'Temple' can vary widely based on its location.<BR>While it can point to ancient ruins in deserts and jungles, it will also direct me towards igloos in cold regions and ominous huts in swamps.<BR>Being in close proximity to one of these biomes will increase the chance the diviner will direct me towards the specific Temple I am seeking.
 
 thaumicwonders.research.teleport_home.title=Focus Effect: Teleport Home
-thaumicwonders.research.teleport_home.text.stage.1=While the portal system is a true miracle of invention, the inability of the anchors to generate portals without a nearby generator makes setting up networks a bit tedious.<BR>The Enderman I have seen in the world do not require such bulky mechanisms to achieve teleportation, so perhaps I can find a way to replicate their abilities.
+thaumicwonders.research.teleport_home.text.stage.1=Replicating the teleportation of the Enderman was a feat, but it is not what I was hoping to achieve.<BR>The maximum teleportation range appears to be limited to the range of the spell medium I use and the teleport location becomes completely random if it contacts a living creature.<BR>I need to delve deeper.
 thaumicwonders.research.teleport_home.text.stage.2=While not exactly what I was aiming for, I have managed to create a focus effect capable of teleporting me long distances and even across dimensions.<BR>However, no matter what I try, this effect always seems to transport me to the last bed I slept in.<BR>I suppose I should take pride in achieving this much and continue using the portal network when targeted teleportation is a necessity.
 thaumicwonders.research.teleport_home.text.addenda.1=Somewhat amusingly, I have found that if this spell is fired through any type of bolt or projectile focus medium, it will strike other players and return them to their own beds.<BR>I will have to remember this if I wish to save one of my allies from dangerous situations... or if someone annoys me.
 
