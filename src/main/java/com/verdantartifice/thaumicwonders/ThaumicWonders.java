@@ -22,7 +22,9 @@ public class ThaumicWonders {
     public static final String MODID = Tags.MOD_ID;
     public static final String NAME = Tags.MOD_NAME;
     public static final String VERSION = Tags.VERSION;
-    public static final String DEPENDENCIES = "required-after:thaumcraft";
+    public static final String DEPENDENCIES = "required-after:thaumcraft" +
+            ";required-after:mixinbooter" +
+            ";required-after:thaumicapi";
 
     public static final CreativeTabs CREATIVE_TAB = new CreativeTabTW(CreativeTabs.getNextID(), ThaumicWonders.MODID);
 
@@ -60,7 +62,6 @@ public class ThaumicWonders {
     //  Check why the Void Beacon is causing rifts to detonate while they are still large
     //  Fishing golem seal
     //  Heximite explosion converts blocks into tainted variants (add CrT/GS integration for additional conversions)
-    //  Research Brews + Crucible addon - create brews that randomly grant research after being consumed.
     //  New Dimensional Ripper model
     //  Improved Madness Engine model
     //  Improved Inspiration Engine model

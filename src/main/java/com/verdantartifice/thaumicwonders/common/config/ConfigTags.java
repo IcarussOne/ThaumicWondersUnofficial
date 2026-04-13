@@ -14,7 +14,8 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class ConfigTags {
-    public static final Map<Potion, Integer> WARP_RING_REMOVALS = new HashMap<>();
+    public static final Map<Potion, Integer> WARP_RING_POTIONS = new HashMap<>();
+    public static final Map<ResourceLocation, Integer> WARP_RING_EVENTS = new HashMap<>();
 
     public static String getOreSearchString(ItemStack stack) {
         if (stack.isEmpty()) {
@@ -39,10 +40,11 @@ public class ConfigTags {
 
     public static void syncConfig() {
         syncWarpRingPotions();
+        syncWarpRingWarpEvents();
     }
 
     private static void syncWarpRingPotions() {
-        WARP_RING_REMOVALS.clear();
+        WARP_RING_POTIONS.clear();
         Pattern pattern = Pattern.compile("^(.+?)=(\\d+)$");
         for (String configStr : ConfigHandlerTW.warp_ring.removalRanks) {
             try {
@@ -51,12 +53,30 @@ public class ConfigTags {
                     ResourceLocation loc = new ResourceLocation(matcher.group(1));
                     Potion potion = ForgeRegistries.POTIONS.getValue(loc);
                     if (potion != null) {
-                        WARP_RING_REMOVALS.put(potion, MathHelper.clamp(Integer.parseInt(matcher.group(2)), 0, 5));
+                        WARP_RING_POTIONS.put(potion, MathHelper.clamp(Integer.parseInt(matcher.group(2)), 0, 5));
                     } else {
                         throw new IllegalArgumentException("No registered potion for warp ring configuration string: " + configStr);
                     }
                 } else {
                     throw new IllegalArgumentException("Invalid warp ring configuration string: " + configStr);
+                }
+            } catch (IllegalArgumentException e) {
+                ThaumicWonders.LOGGER.error(e);
+            }
+        }
+    }
+
+    private static void syncWarpRingWarpEvents() {
+        WARP_RING_EVENTS.clear();
+        Pattern pattern = Pattern.compile("^(.+?)=(\\d+)$");
+        for(String str : ConfigHandlerTW.warp_ring.warpEventRanks) {
+            try {
+                Matcher matcher = pattern.matcher(str);
+                if (matcher.find()) {
+                    ResourceLocation loc = new ResourceLocation(matcher.group(1));
+                    WARP_RING_EVENTS.put(loc, MathHelper.clamp(Integer.parseInt(matcher.group(2)), 0, 5));
+                } else {
+                    throw new IllegalArgumentException("Invalid warp ring configuration string: " + str);
                 }
             } catch (IllegalArgumentException e) {
                 ThaumicWonders.LOGGER.error(e);

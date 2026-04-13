@@ -21,6 +21,7 @@ chat.thaumicwonders:void_portal.no_linker=The Portal Linker is missing or contai
 chat.thaumicwonders:void_portal.no_self=The portal anchor cannot be linked to itself.
 chat.thaumicwonders:void_portal.no_world=This portal's linked dimension does not exist.
 chat.thaumicwonders:warp_ring.warp=§5§oYou remove the ring from your finger, but the unpleasant feeling remains...
+chat.thaumicwonders:warp_ring.warp_event=The ring tightens as it soothes a pressure behind your eyes.
 
 # Config
 key.categories.thaumicwonders=Thaumic Wonders

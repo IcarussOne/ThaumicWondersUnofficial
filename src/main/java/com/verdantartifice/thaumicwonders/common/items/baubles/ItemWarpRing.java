@@ -3,6 +3,7 @@ package com.verdantartifice.thaumicwonders.common.items.baubles;
 import baubles.api.BaubleType;
 import baubles.api.BaublesApi;
 import baubles.api.IBauble;
+import com.invadermonky.thaumicapi.api.warpevent.IWarpEvent;
 import com.verdantartifice.thaumicwonders.ThaumicWonders;
 import com.verdantartifice.thaumicwonders.common.config.ConfigTags;
 import com.verdantartifice.thaumicwonders.common.items.base.ItemTW;
@@ -34,7 +35,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ItemWarpRing extends ItemTW implements IWarpingGear, IVisDiscountGear, IBauble {
-    public static int[] rankThresholds = {0, 4, 10, 16, 24, 32};
+    public static int[] rankThresholds = {0, 4, 8, 16, 24, 32};
 
     public ItemWarpRing() {
         super("warp_ring");
@@ -87,12 +88,13 @@ public class ItemWarpRing extends ItemTW implements IWarpingGear, IVisDiscountGe
     public void onWornTick(ItemStack stack, EntityLivingBase entityLiving) {
         if (entityLiving instanceof EntityPlayer) {
             EntityPlayer player = (EntityPlayer) entityLiving;
-            List<PotionEffect> effects = new ArrayList<>(player.getActivePotionEffects());
-            for (PotionEffect effect : effects) {
-                if (ConfigTags.WARP_RING_REMOVALS.containsKey(effect.getPotion())) {
-                    if (ConfigTags.WARP_RING_REMOVALS.get(effect.getPotion()) <= this.getWarp(stack)) {
+            int slot = BaublesApi.isBaubleEquipped(player, this);
+            if(slot > -1) {
+                List<PotionEffect> effects = new ArrayList<>(player.getActivePotionEffects());
+                for (PotionEffect effect : effects) {
+                    if (this.canRemovePotionEffect(stack, effect)) {
                         entityLiving.removePotionEffect(effect.getPotion());
-                        this.incrementBuffer(stack);
+                        this.incrementAndUpdateRing(player, stack, slot);
                     }
                 }
             }
@@ -114,20 +116,29 @@ public class ItemWarpRing extends ItemTW implements IWarpingGear, IVisDiscountGe
     }
 
     @Override
-    public boolean canEquip(ItemStack itemstack, EntityLivingBase player) {
-        return player instanceof EntityPlayer && BaublesApi.isBaubleEquipped((EntityPlayer) player, this) == -1;
-    }
-
-    @Override
     public boolean willAutoSync(ItemStack itemstack, EntityLivingBase player) {
         return true;
     }
 
-    public int getBuffer(ItemStack stack) {
+    public boolean canRemovePotionEffect(ItemStack ringStack, PotionEffect effect) {
+        return ConfigTags.WARP_RING_POTIONS.containsKey(effect.getPotion()) && ConfigTags.WARP_RING_POTIONS.get(effect.getPotion()) <= this.getWarp(ringStack);
+    }
+
+    public boolean canPreventWarpEvent(ItemStack ringStack, IWarpEvent warpEvent) {
+        return ConfigTags.WARP_RING_EVENTS.containsKey(warpEvent.getEventName()) && ConfigTags.WARP_RING_EVENTS.get(warpEvent.getEventName()) <= this.getWarp(ringStack);
+    }
+
+    public void incrementAndUpdateRing(EntityPlayer player, ItemStack ringStack, int ringSlot) {
+        ringStack = ringStack.copy();
+        this.incrementBuffer(ringStack);
+        BaublesApi.getBaublesHandler(player).setStackInSlot(ringSlot, ringStack);
+    }
+
+    protected int getBuffer(ItemStack stack) {
         return getTag(stack).getInteger("buffer");
     }
 
-    public void setBuffer(ItemStack stack, int bufferValue) {
+    protected void setBuffer(ItemStack stack, int bufferValue) {
         int warp = 0;
         for (int i = 1; i < rankThresholds.length; i++) {
             if (bufferValue >= rankThresholds[i]) {
@@ -140,22 +151,23 @@ public class ItemWarpRing extends ItemTW implements IWarpingGear, IVisDiscountGe
         this.setWarp(stack, warp);
     }
 
-    public void incrementBuffer(ItemStack stack) {
+    protected void incrementBuffer(ItemStack stack) {
         int warp = this.getWarp(stack);
         if (warp < 5) {
             int buffer = this.getBuffer(stack) + 1;
             if (buffer >= rankThresholds[warp]) {
                 this.setWarp(stack, warp + 1);
+                buffer = 0;
             }
             this.setBuffer(stack, buffer);
         }
     }
 
-    public int getWarp(ItemStack stack) {
+    protected int getWarp(ItemStack stack) {
         return this.getTag(stack).getShort("warp");
     }
 
-    public void setWarp(ItemStack stack, int warp) {
+    protected void setWarp(ItemStack stack, int warp) {
         this.getTag(stack).setShort("warp", (short) Math.min(warp, 5));
     }
 
