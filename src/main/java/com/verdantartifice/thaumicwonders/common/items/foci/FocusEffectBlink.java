@@ -102,8 +102,8 @@ public class FocusEffectBlink extends FocusEffect {
         }
 
         boolean flag = entity.attemptTeleport(event.getTargetX(), event.getTargetY(), event.getTargetZ());
-        if (flag)
-        {
+        if (flag) {
+            entity.fallDistance = 0;
             entity.world.playSound(null, entity.prevPosX, entity.prevPosY, entity.prevPosZ, SoundEvents.ENTITY_ENDERMEN_TELEPORT, entity.getSoundCategory(), 1.0F, 1.0F);
             entity.playSound(SoundEvents.ENTITY_ENDERMEN_TELEPORT, 1.0F, 1.0F);
         }
