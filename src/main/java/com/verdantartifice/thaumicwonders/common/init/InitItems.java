@@ -14,9 +14,7 @@ import com.verdantartifice.thaumicwonders.common.items.base.IVariantItem;
 import com.verdantartifice.thaumicwonders.common.items.base.ItemTW;
 import com.verdantartifice.thaumicwonders.common.items.baubles.ItemCleansingCharm;
 import com.verdantartifice.thaumicwonders.common.items.baubles.ItemWarpRing;
-import com.verdantartifice.thaumicwonders.common.items.catalysts.ItemAlchemistStone;
-import com.verdantartifice.thaumicwonders.common.items.catalysts.ItemAlienistStone;
-import com.verdantartifice.thaumicwonders.common.items.catalysts.ItemTransmuterStone;
+import com.verdantartifice.thaumicwonders.common.items.catalysts.ItemCatalystStone;
 import com.verdantartifice.thaumicwonders.common.items.consumables.ItemLetheWater;
 import com.verdantartifice.thaumicwonders.common.items.consumables.ItemPanacea;
 import com.verdantartifice.thaumicwonders.common.items.consumables.ItemPrimalArrow;
@@ -72,9 +70,9 @@ public class InitItems {
         registerItem(forgeRegistry, new ItemLetheWater());
         registerItem(forgeRegistry, new ItemSharingTome(), ConfigHandlerTW.sharing_tome.enableTome);
         registerItem(forgeRegistry, new ItemTW("primordial_grain"));
-        registerItem(forgeRegistry, new ItemAlchemistStone());
-        registerItem(forgeRegistry, new ItemTransmuterStone());
-        registerItem(forgeRegistry, new ItemAlienistStone());
+        registerItem(forgeRegistry, new ItemCatalystStone("alchemist_stone", ConfigHandlerTW.catalyst_stones.alchemist_stone.durability, ConfigHandlerTW.catalyst_stones.alchemist_stone.enchantable, ConfigHandlerTW.catalyst_stones.alchemist_stone.repairable));
+        registerItem(forgeRegistry, new ItemCatalystStone("transmuter_stone", ConfigHandlerTW.catalyst_stones.transmuter_stone.durability, ConfigHandlerTW.catalyst_stones.transmuter_stone.enchantable, ConfigHandlerTW.catalyst_stones.transmuter_stone.repairable));
+        registerItem(forgeRegistry, new ItemCatalystStone("alienist_stone", ConfigHandlerTW.catalyst_stones.alienist_stone.durability, ConfigHandlerTW.catalyst_stones.alienist_stone.enchantable, ConfigHandlerTW.catalyst_stones.alienist_stone.repairable));
         registerItem(forgeRegistry, new ItemTW("eldritch_cluster", "iron", "gold", "copper", "tin", "silver", "lead", "cinnabar", "quartz", "void"));
     }
 

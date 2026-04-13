@@ -60,6 +60,7 @@ public class ConfigHandlerTW {
             @Config.Comment("The number of uses before the catalyst stone is consumed")
             public int durability = 64;
 
+            @Config.RequiresMcRestart
             @Config.Name("Enable Stone Enchants")
             @Config.Comment("Allows the Catalyst Stone to be enchanted with Unbreaking and Mending")
             public boolean enchantable = true;
