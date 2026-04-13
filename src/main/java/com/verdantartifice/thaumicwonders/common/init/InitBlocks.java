@@ -61,6 +61,9 @@ public class InitBlocks {
         registerBlock(forgeRegistry, new BlockTWPlaceholder("placeholder_arcane_stone"));
         registerBlock(forgeRegistry, new BlockTWPlaceholder("placeholder_obsidian"));
 
+        //TODO: Move this
+        registerBlock(forgeRegistry, new BlockInfusionClaw());
+
         FluidRegistry.registerFluid(FluidQuicksilver.INSTANCE);
         FluidRegistry.addBucketForFluid(FluidQuicksilver.INSTANCE);
         forgeRegistry.register(new BlockFluidQuicksilver());
@@ -95,6 +98,7 @@ public class InitBlocks {
     }
 
     public static void initTileEntities() {
+        //TODO: Organize these
         GameRegistry.registerTileEntity(TileEverburningUrn.class, new ResourceLocation(ThaumicWonders.MODID, "TileEverburningUrn"));
         GameRegistry.registerTileEntity(TileDimensionalRipper.class, new ResourceLocation(ThaumicWonders.MODID, "TileDimensionalRipper"));
         GameRegistry.registerTileEntity(TileCreativeEssentiaJar.class, new ResourceLocation(ThaumicWonders.MODID, "TileCreativeEssentiaJar"));
@@ -113,5 +117,6 @@ public class InitBlocks {
         GameRegistry.registerTileEntity(TileAlkahestVat.class, new ResourceLocation(ThaumicWonders.MODID, "TileAlkahestVat"));
         GameRegistry.registerTileEntity(TileCoalescenceMatrix.class, new ResourceLocation(ThaumicWonders.MODID, "TileCoalescenceMatrix"));
         GameRegistry.registerTileEntity(TileVisCapacitor.class, new ResourceLocation(ThaumicWonders.MODID, "TileVisCapacitor"));
+        GameRegistry.registerTileEntity(TileInfusionClaw.class, new ResourceLocation(ThaumicWonders.MODID,"TileInfusionClaw"));
     }
 }

@@ -16,6 +16,7 @@ import com.verdantartifice.thaumicwonders.common.registry.InfusionEnchantmentsTW
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.init.PotionTypes;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.IRecipe;
 import net.minecraft.item.crafting.Ingredient;
@@ -40,6 +41,7 @@ import thaumcraft.api.crafting.*;
 import thaumcraft.api.golems.GolemHelper;
 import thaumcraft.api.items.ItemsTC;
 import thaumcraft.common.blocks.basic.BlockPillar;
+import thaumcraft.common.golems.seals.SealUse;
 import thaumcraft.common.items.consumables.ItemPhial;
 import thaumcraft.common.lib.crafting.DustTriggerMultiblock;
 import thaumcraft.common.lib.crafting.InfusionEnchantmentRecipe;
@@ -559,6 +561,19 @@ public class InitRecipes {
     }
 
     private static void initInfusionRecipes() {
+        ThaumcraftApi.addInfusionCraftingRecipe(new ResourceLocation(ThaumicWonders.MODID, "alienist_stone"), new InfusionRecipe(
+                "TWOND_ALIENIST_STONE",
+                new ItemStack(ItemsTW.ALIENIST_STONE),
+                5,
+                new AspectList().add(Aspect.METAL, 60).add(Aspect.ELDRITCH, 40).add(Aspect.ALCHEMY, 25),
+                new ItemStack(ItemsTW.ALCHEMIST_STONE),
+                new ItemStack(ItemsTC.nuggets, 1, 10),
+                new ItemStack(ItemsTC.clusters, 1, 0),
+                new ItemStack(ItemsTC.clusters, 1, 1),
+                new ItemStack(ItemsTC.clusters, 1, 6),
+                "gemAmber"
+        ));
+
         ThaumcraftApi.addInfusionCraftingRecipe(new ResourceLocation(ThaumicWonders.MODID, "bone_bow"), new InfusionRecipe(
                 "TWOND_BONE_BOW",
                 new ItemStack(ItemsTW.BONE_BOW),
@@ -570,6 +585,43 @@ public class InitRecipes {
                 new ItemStack(ItemsTC.visResonator),
                 new ItemStack(Blocks.BONE_BLOCK)
         ));
+
+        ThaumcraftApi.addInfusionCraftingRecipe(new ResourceLocation(ThaumicWonders.MODID, "cinderpearl_seed"), new InfusionRecipe(
+                "TWOND_MYSTIC_GARDENING",
+                new ItemStack(ItemsTW.CINDERPEARL_SEED),
+                2,
+                new AspectList().add(Aspect.PLANT, 10).add(Aspect.LIFE, 10).add(Aspect.FIRE, 5),
+                new ItemStack(Items.WHEAT_SEEDS),
+                new ItemStack(BlocksTC.cinderpearl),
+                new ItemStack(ItemsTC.salisMundus)
+        ));
+
+        ThaumcraftApi.addInfusionCraftingRecipe(new ResourceLocation(ThaumicWonders.MODID, "cleansing_charm"), new InfusionRecipe(
+                "TWOND_CLEANSING_CHARM",
+                new ItemStack(ItemsTW.CLEANSING_CHARM),
+                4,
+                new AspectList().add(Aspect.MIND, 75).add(Aspect.ORDER, 75).add(Aspect.ELDRITCH, 50).add(Aspect.LIFE, 50),
+                new ItemStack(Items.ENDER_PEARL),
+                Ingredient.fromItem(ItemsTC.primordialPearl),
+                new OreIngredient("ingotGold"),
+                new OreIngredient("ingotGold"),
+                new OreIngredient("ingotGold")
+        ));
+
+        ThaumcraftApi.addInfusionCraftingRecipe(new ResourceLocation(ThaumicWonders.MODID, "coalescence_matrix"), new InfusionRecipe(
+                "TWOND_COALESCENCE_MATRIX",
+                new ItemStack(BlocksTW.COALESCENCE_MATRIX_PRECURSOR),
+                10,
+                new AspectList().add(Aspect.FLUX, 200).add(Aspect.MAN, 100).add(Aspect.MAGIC, 200).add(Aspect.ENERGY, 100),
+                new OreIngredient("blockGold"),
+                Ingredient.fromItem(ItemsTC.primordialPearl),
+                new ItemStack(BlocksTC.inlay),
+                new ItemStack(BlocksTC.inlay),
+                new ItemStack(ItemsTC.voidSeed),
+                new ItemStack(BlocksTC.inlay),
+                new ItemStack(BlocksTC.inlay)
+        ));
+
         ThaumcraftApi.addInfusionCraftingRecipe(new ResourceLocation(ThaumicWonders.MODID, "everburning_urn"), new InfusionRecipe(
                 "TWOND_EVERBURNING_URN",
                 new ItemStack(BlocksTW.EVERBURNING_URN),
@@ -583,21 +635,16 @@ public class InitRecipes {
                 new OreIngredient("obsidian")
         ));
 
-        ItemStack destroyer = new ItemStack(ItemsTW.PRIMAL_DESTROYER);
-        EnumInfusionEnchantment.addInfusionEnchantment(destroyer, EnumInfusionEnchantment.ESSENCE, 3);
-        EnumInfusionEnchantment.addInfusionEnchantment(destroyer, InfusionEnchantmentsTW.VOIDFLAME, 2);
-        ThaumcraftApi.addInfusionCraftingRecipe(new ResourceLocation(ThaumicWonders.MODID, "primal_destroyer"), new InfusionRecipe(
-                "TWOND_PRIMAL_DESTROYER@2",
-                destroyer,
-                8,
-                new AspectList().add(Aspect.FIRE, 100).add(Aspect.ENTROPY, 50).add(Aspect.VOID, 50).add(Aspect.AVERSION, 100).add(Aspect.ELDRITCH, 75).add(Aspect.DARKNESS, 75).add(Aspect.DEATH, 100),
-                Ingredient.fromItem(ItemsTC.voidSword),
+        ThaumcraftApi.addInfusionCraftingRecipe(new ResourceLocation(ThaumicWonders.MODID, "flux_capacitor"), new InfusionRecipe(
+                "TWOND_FLUX_CAPACITOR",
+                new ItemStack(BlocksTW.FLUX_CAPACITOR),
+                6,
+                new AspectList().add(Aspect.FLUX, 50).add(Aspect.AURA, 50).add(Aspect.VOID, 50),
+                new ItemStack(BlocksTC.visBattery),
                 Ingredient.fromItem(ItemsTC.primordialPearl),
-                new ItemStack(Items.NETHER_STAR),
-                "plateVoid",
-                "plateVoid",
-                ThaumcraftApiHelper.makeCrystal(Aspect.FIRE),
-                ThaumcraftApiHelper.makeCrystal(Aspect.FIRE)
+                new ItemStack(BlocksTC.crystalTaint),
+                new ItemStack(ItemsTC.visResonator),
+                new ItemStack(BlocksTC.condenserlattice)
         ));
 
         ThaumcraftApi.addInfusionCraftingRecipe(new ResourceLocation(ThaumicWonders.MODID, "flying_carpet"), new InfusionRecipe(
@@ -613,24 +660,22 @@ public class InitRecipes {
                 ThaumcraftApiHelper.makeCrystal(Aspect.AIR)
         ));
 
-        ThaumcraftApi.addInfusionCraftingRecipe(new ResourceLocation(ThaumicWonders.MODID, "timewinder"), new InfusionRecipe(
-                "TWOND_TIMEWINDER",
-                new ItemStack(ItemsTW.TIMEWINDER),
-                7,
-                new AspectList().add(Aspect.ELDRITCH, 100).add(Aspect.DARKNESS, 100).add(Aspect.LIGHT, 100),
-                new ItemStack(Items.CLOCK),
-                new OreIngredient("gemDiamond"),
-                new ItemStack(Items.ENDER_PEARL),
-                new ItemStack(ItemsTC.quicksilver),
-                new ItemStack(ItemsTC.celestialNotes, 1, 5),
-                new ItemStack(ItemsTC.celestialNotes, 1, 6),
-                new ItemStack(ItemsTC.celestialNotes, 1, 7),
-                new ItemStack(ItemsTC.celestialNotes, 1, 8),
-                new ItemStack(ItemsTC.celestialNotes, 1, 9),
-                new ItemStack(ItemsTC.celestialNotes, 1, 10),
-                new ItemStack(ItemsTC.celestialNotes, 1, 11),
-                new ItemStack(ItemsTC.celestialNotes, 1, 12),
-                new ItemStack(ItemsTC.celestialNotes, 1, 0)
+        ThaumcraftApi.addInfusionCraftingRecipe(new ResourceLocation(ThaumicWonders.MODID, "infusion_claw"), new InfusionRecipe(
+                "TWOND_INFUSION_CLAW",
+                new ItemStack(BlocksTW.INFUSION_CLAW),
+                8,
+                new AspectList().add(Aspect.MAGIC, 75).add(Aspect.MECHANISM, 75).add(Aspect.ORDER, 50).add(Aspect.CRAFT, 50).add(Aspect.TOOL, 25),
+                Ingredient.fromItem(ItemsTC.casterBasic),
+                //Golem Seal: Use
+                //Arcane Stone x4
+                Ingredient.fromStacks(new ItemStack(BlocksTC.stoneArcane)),
+                new OreIngredient("plateVoid"),
+                Ingredient.fromStacks(new ItemStack(BlocksTC.stoneArcane)),
+                Ingredient.fromStacks(GolemHelper.getSealStack("thaumcraft:use")),
+                Ingredient.fromStacks(new ItemStack(BlocksTC.stoneArcane)),
+                new OreIngredient("plateVoid"),
+                Ingredient.fromStacks(new ItemStack(BlocksTC.stoneArcane)),
+                Ingredient.fromStacks(new ItemStack(ItemsTC.mind, 1, 1))
         ));
 
         ThaumcraftApi.addInfusionCraftingRecipe(new ResourceLocation(ThaumicWonders.MODID, "madness_engine"), new InfusionRecipe(
@@ -647,40 +692,18 @@ public class InitRecipes {
                 new ItemStack(Items.ENDER_PEARL)
         ));
 
-        ThaumcraftApi.addInfusionCraftingRecipe(new ResourceLocation(ThaumicWonders.MODID, "portal_generator"), new InfusionRecipe(
-                "TWOND_VOID_PORTAL",
-                new ItemStack(BlocksTW.PORTAL_GENERATOR),
+        ThaumcraftApi.addInfusionCraftingRecipe(new ResourceLocation(ThaumicWonders.MODID, "meaty_orb"), new InfusionRecipe(
+                "TWOND_MEATY_ORB",
+                new ItemStack(BlocksTW.MEATY_ORB),
                 8,
-                new AspectList().add(Aspect.ELDRITCH, 150).add(Aspect.MOTION, 150).add(Aspect.EXCHANGE, 100),
-                new ItemStack(BlocksTW.PORTAL_ANCHOR),
+                new AspectList().add(Aspect.WATER, 250).add(Aspect.LIFE, 250).add(Aspect.ELDRITCH, 250),
+                new ItemStack(BlocksTW.METEORB),
                 Ingredient.fromItem(ItemsTC.primordialPearl),
-                new ItemStack(BlocksTC.mirror),
-                new ItemStack(Items.ENDER_PEARL)
-        ));
-
-        ThaumcraftApi.addInfusionCraftingRecipe(new ResourceLocation(ThaumicWonders.MODID, "flux_capacitor"), new InfusionRecipe(
-                "TWOND_FLUX_CAPACITOR",
-                new ItemStack(BlocksTW.FLUX_CAPACITOR),
-                6,
-                new AspectList().add(Aspect.FLUX, 50).add(Aspect.AURA, 50).add(Aspect.VOID, 50),
-                new ItemStack(BlocksTC.visBattery),
-                Ingredient.fromItem(ItemsTC.primordialPearl),
-                new ItemStack(BlocksTC.crystalTaint),
-                new ItemStack(ItemsTC.visResonator),
-                new ItemStack(BlocksTC.condenserlattice)
-        ));
-
-        ThaumcraftApi.addInfusionCraftingRecipe(new ResourceLocation(ThaumicWonders.MODID, "alienist_stone"), new InfusionRecipe(
-                "TWOND_ALIENIST_STONE",
-                new ItemStack(ItemsTW.ALIENIST_STONE),
-                5,
-                new AspectList().add(Aspect.METAL, 60).add(Aspect.ELDRITCH, 40).add(Aspect.ALCHEMY, 25),
-                new ItemStack(ItemsTW.ALCHEMIST_STONE),
-                new ItemStack(ItemsTC.nuggets, 1, 10),
-                new ItemStack(ItemsTC.clusters, 1, 0),
-                new ItemStack(ItemsTC.clusters, 1, 1),
-                new ItemStack(ItemsTC.clusters, 1, 6),
-                "gemAmber"
+                new ItemStack(Items.BEEF),
+                new ItemStack(Items.PORKCHOP),
+                new ItemStack(Items.CHICKEN),
+                new ItemStack(Items.MUTTON),
+                new ItemStack(Items.RABBIT)
         ));
 
         ThaumcraftApi.addInfusionCraftingRecipe(new ResourceLocation(ThaumicWonders.MODID, "meteorb"), new InfusionRecipe(
@@ -703,6 +726,18 @@ public class InitRecipes {
                 new ItemStack(Blocks.STONE_BUTTON)
         ));
 
+        ThaumcraftApi.addInfusionCraftingRecipe(new ResourceLocation(ThaumicWonders.MODID, "night_vision_goggles"), new InfusionRecipe(
+                "TWOND_NV_GOGGLES",
+                new ItemStack(ItemsTW.NIGHT_VISION_GOGGLES),
+                2,
+                new AspectList().add(Aspect.SENSES, 50).add(Aspect.LIGHT, 50).add(Aspect.MAGIC, 25).add(Aspect.ENERGY, 25),
+                new ItemStack(ItemsTC.goggles),
+                new ItemStack(Items.GOLDEN_CARROT),
+                "nitor",
+                ThaumcraftApiHelper.makeCrystal(Aspect.SENSES),
+                ThaumcraftApiHelper.makeCrystal(Aspect.SENSES)
+        ));
+
         ThaumcraftApi.addInfusionCraftingRecipe(new ResourceLocation(ThaumicWonders.MODID, "ore_diviner"), new InfusionRecipe(
                 "TWOND_ORE_DIVINER",
                 new ItemStack(BlocksTW.ORE_DIVINER),
@@ -719,173 +754,32 @@ public class InitRecipes {
                 "oreCinnabar"
         ));
 
-        ThaumcraftApi.addInfusionCraftingRecipe(new ResourceLocation(ThaumicWonders.MODID, "void_fortress_helm"), new InfusionRecipe(
-                "TWOND_VOID_FORTRESS_ARMOR",
-                new ItemStack(ItemsTW.VOID_FORTRESS_HELM),
+        ThaumcraftApi.addInfusionCraftingRecipe(new ResourceLocation(ThaumicWonders.MODID, "portal_generator"), new InfusionRecipe(
+                "TWOND_VOID_PORTAL",
+                new ItemStack(BlocksTW.PORTAL_GENERATOR),
                 8,
-                new AspectList().add(Aspect.PROTECT, 45).add(Aspect.METAL, 45).add(Aspect.ELDRITCH, 50).add(Aspect.ENERGY, 25).add(Aspect.VOID, 25).add(Aspect.MAGIC, 25).add(Aspect.SENSES, 25).add(Aspect.UNDEAD, 40).add(Aspect.LIFE, 40),
-                new ItemStack(ItemsTC.voidHelm),
+                new AspectList().add(Aspect.ELDRITCH, 150).add(Aspect.MOTION, 150).add(Aspect.EXCHANGE, 100),
+                new ItemStack(BlocksTW.PORTAL_ANCHOR),
                 Ingredient.fromItem(ItemsTC.primordialPearl),
-                "plateVoid",
-                new ItemStack(ItemsTC.crimsonPlateHelm, 1, OreDictionary.WILDCARD_VALUE),
-                new ItemStack(ItemsTC.goggles, 1, OreDictionary.WILDCARD_VALUE),
-                new ItemStack(Items.GHAST_TEAR),
-                new ItemStack(ItemsTC.salisMundus),
-                "leather"
+                new ItemStack(BlocksTC.mirror),
+                new ItemStack(Items.ENDER_PEARL)
         ));
 
-        ThaumcraftApi.addInfusionCraftingRecipe(new ResourceLocation(ThaumicWonders.MODID, "void_fortress_chest"), new InfusionRecipe(
-                "TWOND_VOID_FORTRESS_ARMOR",
-                new ItemStack(ItemsTW.VOID_FORTRESS_CHEST),
+        ItemStack destroyer = new ItemStack(ItemsTW.PRIMAL_DESTROYER);
+        EnumInfusionEnchantment.addInfusionEnchantment(destroyer, EnumInfusionEnchantment.ESSENCE, 3);
+        EnumInfusionEnchantment.addInfusionEnchantment(destroyer, InfusionEnchantmentsTW.VOIDFLAME, 2);
+        ThaumcraftApi.addInfusionCraftingRecipe(new ResourceLocation(ThaumicWonders.MODID, "primal_destroyer"), new InfusionRecipe(
+                "TWOND_PRIMAL_DESTROYER@2",
+                destroyer,
                 8,
-                new AspectList().add(Aspect.PROTECT, 55).add(Aspect.METAL, 55).add(Aspect.ELDRITCH, 50).add(Aspect.ENERGY, 25).add(Aspect.VOID, 35).add(Aspect.MAGIC, 25),
-                new ItemStack(ItemsTC.voidChest),
+                new AspectList().add(Aspect.FIRE, 100).add(Aspect.ENTROPY, 50).add(Aspect.VOID, 50).add(Aspect.AVERSION, 100).add(Aspect.ELDRITCH, 75).add(Aspect.DARKNESS, 75).add(Aspect.DEATH, 100),
+                Ingredient.fromItem(ItemsTC.voidSword),
                 Ingredient.fromItem(ItemsTC.primordialPearl),
+                new ItemStack(Items.NETHER_STAR),
                 "plateVoid",
                 "plateVoid",
-                "plateVoid",
-                new ItemStack(ItemsTC.crimsonPlateChest, 1, OreDictionary.WILDCARD_VALUE),
-                new ItemStack(ItemsTC.salisMundus),
-                "leather"
-        ));
-
-        ThaumcraftApi.addInfusionCraftingRecipe(new ResourceLocation(ThaumicWonders.MODID, "void_fortress_legs"), new InfusionRecipe(
-                "TWOND_VOID_FORTRESS_ARMOR",
-                new ItemStack(ItemsTW.VOID_FORTRESS_LEGS),
-                8,
-                new AspectList().add(Aspect.PROTECT, 50).add(Aspect.METAL, 50).add(Aspect.ELDRITCH, 50).add(Aspect.ENERGY, 25).add(Aspect.VOID, 30).add(Aspect.MAGIC, 25),
-                new ItemStack(ItemsTC.voidLegs),
-                Ingredient.fromItem(ItemsTC.primordialPearl),
-                "plateVoid",
-                "plateVoid",
-                new ItemStack(ItemsTC.crimsonPlateLegs, 1, OreDictionary.WILDCARD_VALUE),
-                new ItemStack(ItemsTC.salisMundus),
-                "leather"
-        ));
-
-        ThaumcraftApi.addInfusionCraftingRecipe(new ResourceLocation(ThaumicWonders.MODID, "meaty_orb"), new InfusionRecipe(
-                "TWOND_MEATY_ORB",
-                new ItemStack(BlocksTW.MEATY_ORB),
-                8,
-                new AspectList().add(Aspect.WATER, 250).add(Aspect.LIFE, 250).add(Aspect.ELDRITCH, 250),
-                new ItemStack(BlocksTW.METEORB),
-                Ingredient.fromItem(ItemsTC.primordialPearl),
-                new ItemStack(Items.BEEF),
-                new ItemStack(Items.PORKCHOP),
-                new ItemStack(Items.CHICKEN),
-                new ItemStack(Items.MUTTON),
-                new ItemStack(Items.RABBIT)
-        ));
-
-        ThaumcraftApi.addInfusionCraftingRecipe(new ResourceLocation(ThaumicWonders.MODID, "structure_diviner"), new InfusionRecipe(
-                "TWOND_STRUCTURE_DIVINER",
-                new ItemStack(ItemsTW.STRUCTURE_DIVINER),
-                4,
-                new AspectList().add(Aspect.SENSES, 100).add(Aspect.MECHANISM, 50).add(Aspect.MAGIC, 50).add(Aspect.EARTH, 50),
-                new ItemStack(Items.COMPASS),
-                new ItemStack(Items.ENDER_EYE),
-                new OreIngredient("gemEmerald"),
-                new ItemStack(Items.ENDER_EYE),
-                new ItemStack(Blocks.NETHER_BRICK),
-                new ItemStack(Items.ENDER_EYE),
-                new ItemStack(ItemsTC.nuggets, 1, 10)
-        ));
-
-        ThaumcraftApi.addInfusionCraftingRecipe(new ResourceLocation(ThaumicWonders.MODID, "night_vision_goggles"), new InfusionRecipe(
-                "TWOND_NV_GOGGLES",
-                new ItemStack(ItemsTW.NIGHT_VISION_GOGGLES),
-                2,
-                new AspectList().add(Aspect.SENSES, 50).add(Aspect.LIGHT, 50).add(Aspect.MAGIC, 25).add(Aspect.ENERGY, 25),
-                new ItemStack(ItemsTC.goggles),
-                new ItemStack(Items.GOLDEN_CARROT),
-                "nitor",
-                ThaumcraftApiHelper.makeCrystal(Aspect.SENSES),
-                ThaumcraftApiHelper.makeCrystal(Aspect.SENSES)
-        ));
-
-        ThaumcraftApi.addInfusionCraftingRecipe(new ResourceLocation(ThaumicWonders.MODID, "void_beacon"), new InfusionRecipe(
-                "TWOND_VOID_BEACON",
-                new ItemStack(BlocksTW.VOID_BEACON),
-                10,
-                new AspectList().add(Aspect.ELDRITCH, 100).add(Aspect.VOID, 100).add(Aspect.MAGIC, 100).add(Aspect.FLUX, 100)
-                        .add(Aspect.AIR, 50).add(Aspect.EARTH, 50).add(Aspect.FIRE, 50).add(Aspect.WATER, 50).add(Aspect.ORDER, 50).add(Aspect.ENTROPY, 50),
-                new ItemStack(Blocks.BEACON),
-                Ingredient.fromItem(ItemsTC.primordialPearl),
-                "plateVoid",
-                Ingredient.fromItem(ItemsTC.primordialPearl),
-                "plateVoid",
-                Ingredient.fromItem(ItemsTC.primordialPearl),
-                "plateVoid",
-                Ingredient.fromItem(ItemsTC.primordialPearl),
-                "plateVoid"
-        ));
-
-        ThaumcraftApi.addInfusionCraftingRecipe(new ResourceLocation(ThaumicWonders.MODID, "cleansing_charm"), new InfusionRecipe(
-                "TWOND_CLEANSING_CHARM",
-                new ItemStack(ItemsTW.CLEANSING_CHARM),
-                4,
-                new AspectList().add(Aspect.MIND, 75).add(Aspect.ORDER, 75).add(Aspect.ELDRITCH, 50).add(Aspect.LIFE, 50),
-                new ItemStack(Items.ENDER_PEARL),
-                Ingredient.fromItem(ItemsTC.primordialPearl),
-                new OreIngredient("ingotGold"),
-                new OreIngredient("ingotGold"),
-                new OreIngredient("ingotGold")
-        ));
-
-        ThaumcraftApi.addInfusionCraftingRecipe(new ResourceLocation(ThaumicWonders.MODID, "shimmerleaf_seed"), new InfusionRecipe(
-                "TWOND_MYSTIC_GARDENING",
-                new ItemStack(ItemsTW.SHIMMERLEAF_SEED),
-                2,
-                new AspectList().add(Aspect.PLANT, 10).add(Aspect.LIFE, 10).add(Aspect.AURA, 5),
-                new ItemStack(Items.WHEAT_SEEDS),
-                new ItemStack(BlocksTC.shimmerleaf),
-                new ItemStack(ItemsTC.salisMundus)
-        ));
-
-        ThaumcraftApi.addInfusionCraftingRecipe(new ResourceLocation(ThaumicWonders.MODID, "cinderpearl_seed"), new InfusionRecipe(
-                "TWOND_MYSTIC_GARDENING",
-                new ItemStack(ItemsTW.CINDERPEARL_SEED),
-                2,
-                new AspectList().add(Aspect.PLANT, 10).add(Aspect.LIFE, 10).add(Aspect.FIRE, 5),
-                new ItemStack(Items.WHEAT_SEEDS),
-                new ItemStack(BlocksTC.cinderpearl),
-                new ItemStack(ItemsTC.salisMundus)
-        ));
-
-        ThaumcraftApi.addInfusionCraftingRecipe(new ResourceLocation(ThaumicWonders.MODID, "vishroom_spore"), new InfusionRecipe(
-                "TWOND_MYSTIC_GARDENING",
-                new ItemStack(ItemsTW.VISHROOM_SPORE),
-                2,
-                new AspectList().add(Aspect.PLANT, 10).add(Aspect.LIFE, 10).add(Aspect.MAGIC, 5),
-                new ItemStack(Items.WHEAT_SEEDS),
-                new ItemStack(BlocksTC.vishroom),
-                new ItemStack(ItemsTC.salisMundus)
-        ));
-
-        ThaumcraftApi.addInfusionCraftingRecipe(new ResourceLocation(ThaumicWonders.MODID, "coalescence_matrix"), new InfusionRecipe(
-                "TWOND_COALESCENCE_MATRIX",
-                new ItemStack(BlocksTW.COALESCENCE_MATRIX_PRECURSOR),
-                10,
-                new AspectList().add(Aspect.FLUX, 200).add(Aspect.MAN, 100).add(Aspect.MAGIC, 200).add(Aspect.ENERGY, 100),
-                new OreIngredient("blockGold"),
-                Ingredient.fromItem(ItemsTC.primordialPearl),
-                new ItemStack(BlocksTC.inlay),
-                new ItemStack(BlocksTC.inlay),
-                new ItemStack(ItemsTC.voidSeed),
-                new ItemStack(BlocksTC.inlay),
-                new ItemStack(BlocksTC.inlay)
-        ));
-
-        ThaumcraftApi.addInfusionCraftingRecipe(new ResourceLocation(ThaumicWonders.MODID, "vis_capacitor"), new InfusionRecipe(
-                "TWOND_VIS_CAPACITOR",
-                new ItemStack(BlocksTW.VIS_CAPACITOR),
-                6,
-                new AspectList().add(Aspect.VOID, 50).add(Aspect.AURA, 50).add(Aspect.MAGIC, 50),
-                new ItemStack(BlocksTC.visBattery),
-                new ItemStack(ItemsTC.primordialPearl),
-                "plateThaumium",
-                new ItemStack(ItemsTC.visResonator),
-                "plateThaumium"
+                ThaumcraftApiHelper.makeCrystal(Aspect.FIRE),
+                ThaumcraftApiHelper.makeCrystal(Aspect.FIRE)
         ));
 
         ThaumcraftApi.addInfusionCraftingRecipe(new ResourceLocation(ThaumicWonders.MODID, "primordial_pearl_growth"), new InfusionRecipe(
@@ -926,6 +820,133 @@ public class InitRecipes {
                 new ItemStack(Items.WRITABLE_BOOK),
                 new OreIngredient("paper"),
                 new ItemStack(ItemsTC.mind, 1, 1)
+        ));
+
+        ThaumcraftApi.addInfusionCraftingRecipe(new ResourceLocation(ThaumicWonders.MODID, "shimmerleaf_seed"), new InfusionRecipe(
+                "TWOND_MYSTIC_GARDENING",
+                new ItemStack(ItemsTW.SHIMMERLEAF_SEED),
+                2,
+                new AspectList().add(Aspect.PLANT, 10).add(Aspect.LIFE, 10).add(Aspect.AURA, 5),
+                new ItemStack(Items.WHEAT_SEEDS),
+                new ItemStack(BlocksTC.shimmerleaf),
+                new ItemStack(ItemsTC.salisMundus)
+        ));
+
+        ThaumcraftApi.addInfusionCraftingRecipe(new ResourceLocation(ThaumicWonders.MODID, "structure_diviner"), new InfusionRecipe(
+                "TWOND_STRUCTURE_DIVINER",
+                new ItemStack(ItemsTW.STRUCTURE_DIVINER),
+                4,
+                new AspectList().add(Aspect.SENSES, 100).add(Aspect.MECHANISM, 50).add(Aspect.MAGIC, 50).add(Aspect.EARTH, 50),
+                new ItemStack(Items.COMPASS),
+                new ItemStack(Items.ENDER_EYE),
+                new OreIngredient("gemEmerald"),
+                new ItemStack(Items.ENDER_EYE),
+                new ItemStack(Blocks.NETHER_BRICK),
+                new ItemStack(Items.ENDER_EYE),
+                new ItemStack(ItemsTC.nuggets, 1, 10)
+        ));
+
+        ThaumcraftApi.addInfusionCraftingRecipe(new ResourceLocation(ThaumicWonders.MODID, "timewinder"), new InfusionRecipe(
+                "TWOND_TIMEWINDER",
+                new ItemStack(ItemsTW.TIMEWINDER),
+                7,
+                new AspectList().add(Aspect.ELDRITCH, 100).add(Aspect.DARKNESS, 100).add(Aspect.LIGHT, 100),
+                new ItemStack(Items.CLOCK),
+                new OreIngredient("gemDiamond"),
+                new ItemStack(Items.ENDER_PEARL),
+                new ItemStack(ItemsTC.quicksilver),
+                new ItemStack(ItemsTC.celestialNotes, 1, 5),
+                new ItemStack(ItemsTC.celestialNotes, 1, 6),
+                new ItemStack(ItemsTC.celestialNotes, 1, 7),
+                new ItemStack(ItemsTC.celestialNotes, 1, 8),
+                new ItemStack(ItemsTC.celestialNotes, 1, 9),
+                new ItemStack(ItemsTC.celestialNotes, 1, 10),
+                new ItemStack(ItemsTC.celestialNotes, 1, 11),
+                new ItemStack(ItemsTC.celestialNotes, 1, 12),
+                new ItemStack(ItemsTC.celestialNotes, 1, 0)
+        ));
+
+        ThaumcraftApi.addInfusionCraftingRecipe(new ResourceLocation(ThaumicWonders.MODID, "vis_capacitor"), new InfusionRecipe(
+                "TWOND_VIS_CAPACITOR",
+                new ItemStack(BlocksTW.VIS_CAPACITOR),
+                6,
+                new AspectList().add(Aspect.VOID, 50).add(Aspect.AURA, 50).add(Aspect.MAGIC, 50),
+                new ItemStack(BlocksTC.visBattery),
+                new ItemStack(ItemsTC.primordialPearl),
+                "plateThaumium",
+                new ItemStack(ItemsTC.visResonator),
+                "plateThaumium"
+        ));
+
+        ThaumcraftApi.addInfusionCraftingRecipe(new ResourceLocation(ThaumicWonders.MODID, "vishroom_spore"), new InfusionRecipe(
+                "TWOND_MYSTIC_GARDENING",
+                new ItemStack(ItemsTW.VISHROOM_SPORE),
+                2,
+                new AspectList().add(Aspect.PLANT, 10).add(Aspect.LIFE, 10).add(Aspect.MAGIC, 5),
+                new ItemStack(Items.WHEAT_SEEDS),
+                new ItemStack(BlocksTC.vishroom),
+                new ItemStack(ItemsTC.salisMundus)
+        ));
+
+        ThaumcraftApi.addInfusionCraftingRecipe(new ResourceLocation(ThaumicWonders.MODID, "void_beacon"), new InfusionRecipe(
+                "TWOND_VOID_BEACON",
+                new ItemStack(BlocksTW.VOID_BEACON),
+                10,
+                new AspectList().add(Aspect.ELDRITCH, 100).add(Aspect.VOID, 100).add(Aspect.MAGIC, 100).add(Aspect.FLUX, 100)
+                        .add(Aspect.AIR, 50).add(Aspect.EARTH, 50).add(Aspect.FIRE, 50).add(Aspect.WATER, 50).add(Aspect.ORDER, 50).add(Aspect.ENTROPY, 50),
+                new ItemStack(Blocks.BEACON),
+                Ingredient.fromItem(ItemsTC.primordialPearl),
+                "plateVoid",
+                Ingredient.fromItem(ItemsTC.primordialPearl),
+                "plateVoid",
+                Ingredient.fromItem(ItemsTC.primordialPearl),
+                "plateVoid",
+                Ingredient.fromItem(ItemsTC.primordialPearl),
+                "plateVoid"
+        ));
+
+        ThaumcraftApi.addInfusionCraftingRecipe(new ResourceLocation(ThaumicWonders.MODID, "void_fortress_chest"), new InfusionRecipe(
+                "TWOND_VOID_FORTRESS_ARMOR",
+                new ItemStack(ItemsTW.VOID_FORTRESS_CHEST),
+                8,
+                new AspectList().add(Aspect.PROTECT, 55).add(Aspect.METAL, 55).add(Aspect.ELDRITCH, 50).add(Aspect.ENERGY, 25).add(Aspect.VOID, 35).add(Aspect.MAGIC, 25),
+                new ItemStack(ItemsTC.voidChest),
+                Ingredient.fromItem(ItemsTC.primordialPearl),
+                "plateVoid",
+                "plateVoid",
+                "plateVoid",
+                new ItemStack(ItemsTC.crimsonPlateChest, 1, OreDictionary.WILDCARD_VALUE),
+                new ItemStack(ItemsTC.salisMundus),
+                "leather"
+        ));
+
+        ThaumcraftApi.addInfusionCraftingRecipe(new ResourceLocation(ThaumicWonders.MODID, "void_fortress_helm"), new InfusionRecipe(
+                "TWOND_VOID_FORTRESS_ARMOR",
+                new ItemStack(ItemsTW.VOID_FORTRESS_HELM),
+                8,
+                new AspectList().add(Aspect.PROTECT, 45).add(Aspect.METAL, 45).add(Aspect.ELDRITCH, 50).add(Aspect.ENERGY, 25).add(Aspect.VOID, 25).add(Aspect.MAGIC, 25).add(Aspect.SENSES, 25).add(Aspect.UNDEAD, 40).add(Aspect.LIFE, 40),
+                new ItemStack(ItemsTC.voidHelm),
+                Ingredient.fromItem(ItemsTC.primordialPearl),
+                "plateVoid",
+                new ItemStack(ItemsTC.crimsonPlateHelm, 1, OreDictionary.WILDCARD_VALUE),
+                new ItemStack(ItemsTC.goggles, 1, OreDictionary.WILDCARD_VALUE),
+                new ItemStack(Items.GHAST_TEAR),
+                new ItemStack(ItemsTC.salisMundus),
+                "leather"
+        ));
+
+        ThaumcraftApi.addInfusionCraftingRecipe(new ResourceLocation(ThaumicWonders.MODID, "void_fortress_legs"), new InfusionRecipe(
+                "TWOND_VOID_FORTRESS_ARMOR",
+                new ItemStack(ItemsTW.VOID_FORTRESS_LEGS),
+                8,
+                new AspectList().add(Aspect.PROTECT, 50).add(Aspect.METAL, 50).add(Aspect.ELDRITCH, 50).add(Aspect.ENERGY, 25).add(Aspect.VOID, 30).add(Aspect.MAGIC, 25),
+                new ItemStack(ItemsTC.voidLegs),
+                Ingredient.fromItem(ItemsTC.primordialPearl),
+                "plateVoid",
+                "plateVoid",
+                new ItemStack(ItemsTC.crimsonPlateLegs, 1, OreDictionary.WILDCARD_VALUE),
+                new ItemStack(ItemsTC.salisMundus),
+                "leather"
         ));
 
         if (ConfigHandlerTW.sharing_tome.enableTome) {

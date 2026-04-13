@@ -19,6 +19,7 @@ public class BlocksTW {
     public static final Block FLUX_CAPACITOR = null;
     public static final Block FLUX_DISTILLER = null;
     public static final Block HEXAMITE = null;
+    public static final Block INFUSION_CLAW = null;
     public static final Block INSPIRATION_ENGINE = null;
     public static final Block MADNESS_ENGINE = null;
     public static final Block MEATY_ORB = null;

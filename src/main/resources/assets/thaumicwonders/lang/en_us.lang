@@ -7,6 +7,7 @@ attribute.name.thaumicwonders:void_damage=Void Damage
 attribute.name.thaumicwonders:healing_reduction=Reduced Healing Received
 
 # Chat
+chat.thaumicwonders:bind_player=This device is now bound to %s.
 chat.thaumicwonders:portal_linker.bound=Bound to %s position x%d, y%d, z%d
 chat.thaumicwonders:sharing_tome.burn=You feel your knowledge expanding as the tome crumbles to ash.
 chat.thaumicwonders:sharing_tome.erase=The writing in the book melts away to nothing.
@@ -63,6 +64,7 @@ tile.thaumicwonders:everburning_urn.name=Everburning Urn
 tile.thaumicwonders:flux_capacitor.name=Flux Capacitor
 tile.thaumicwonders:flux_distiller.name=Flux Distiller
 tile.thaumicwonders:hexamite.name=Hexamite
+tile.thaumicwonders:infusion_claw.name=Infusion Claw
 tile.thaumicwonders:inspiration_engine.name=Inspiration Engine
 tile.thaumicwonders:madness_engine.name=Madness Engine
 tile.thaumicwonders:meaty_orb.name=Meaty Orb
@@ -314,6 +316,11 @@ thaumicwonders.research.flying_carpet.text.stage.2=While I wasn't able to make m
 thaumicwonders.research.hexamite.title=Hexamite
 thaumicwonders.research.hexamite.text.stage.1=Despite my best intents to work alongside other thaumaturges, some of them prefer to engage in conflict. Non-thaumaturges with mundane technology have problems with this type of situation too.<BR>However, as the thaumonomicon itself and my own experience sees, times like this can go on forever, sufficiently advanced thaumaturges will get locked into a fight and waste time, time that should be used for studying the secrets of reality. Furthermore it leads to unfortunate losses in resources that I also need.<BR>I have decided to correct this affront by using one of the ways that are most familiar to those who use more mundane technology.<BR>Explosive ordinance.<BR>Normal TNT will give no desired outcomes and using normal mundane technology is not in my style, thus this situation requires something... special...
 thaumicwonders.research.hexamite.text.stage.2=This will do. I've taken the basic formula of TNT, kept a small amount of gunpowder for a primer, and packed the rest with unstable alumentum. For good measure, I've laced in some Vitium shards for shrapnel and added a tiny bit of "RDX" or hexogen.<BR>The resulting device should not only be 50% more powerful than TNT and incendiary, but the blast will also shred and destabilize the local aura, depleting it completely. All without the use of flux that has a threat of creating rifts and spreading Taint. Living beings caught in the blast, assuming they survive, will find their magical abilities hampered temporarily.<BR>While I am sure my colleagues will find this item more useful and maybe even find more ways to utilize it, for me it is simply a double-edged sword; I will also suffer the effects of the lack of Vis, thus I must carry more conventional weapons and have means of storing Vis. It may not solve the issue for good, but it will at least grant more options in dealing with other hostile users of thaumaturgy.
+
+thaumicwonders.research.infusion_claw.title=Infusion Automation
+thaumicwonders.research.infusion_claw.text.stage.1=My advanced studies have rapidly depleted my surplus of materials and mechanisms. I find myself having to spend significant amounts of time producing large batches infused items, time that I would much rather spend on my research.<BR>My recent studies in Golemancy have gotten me to the cusp of a solution, but I still need to somehow overcome the need for sentient interaction when activating the infusion matrix.
+thaumicwonders.research.infusion_claw.text.stage.2=I have devised a new device that will allow me to fully automate my infusion altar.<BR>The Infusion Claw, as I have dubbed this device, is placed directly above the infusion matrix. When a valid recipe is detected, the claw will begin building energy, after which it will activate the altar, initializing the craft.<BR>Applying a redstone signal to the infusion claw will disable all automation.<BR>
+thaumicwonders.research.infusion_claw.text.addenda.1=It appears that recipes activated with the infusion claw are significantly more unstable than when activated manually. Provided I take extra care to stabilize my altar, and allow it time to rest between infusions, I don't believe this will be a significant issue.
 
 thaumicwonders.research.inspiration_engine.title=Inspiration Engine
 thaumicwonders.research.inspiration_engine.text.stage.1=Crafting thaumaturgical theories is a long and often laborious process that consumes resources. I know that certain items can aid me with my research, but they feel so... limited in scope. Perhaps I can create a superior research aid with my magic.
