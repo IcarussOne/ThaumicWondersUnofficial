@@ -1,5 +1,6 @@
 package com.verdantartifice.thaumicwonders.common.items.armor;
 
+import com.google.common.collect.Multimap;
 import com.verdantartifice.thaumicwonders.ThaumicWonders;
 import com.verdantartifice.thaumicwonders.common.config.ConfigHandlerTW;
 import com.verdantartifice.thaumicwonders.common.items.ItemsTW;
@@ -9,6 +10,7 @@ import net.minecraft.block.BlockSoulSand;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.ai.attributes.AttributeModifier;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.inventory.EntityEquipmentSlot;
@@ -17,7 +19,6 @@ import net.minecraft.item.ItemArmor;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.Ingredient;
 import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.NonNullList;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
@@ -28,13 +29,15 @@ import org.jetbrains.annotations.Nullable;
 import thaumcraft.api.items.IRechargable;
 import thaumcraft.api.items.IWarpingGear;
 import thaumcraft.api.items.RechargeHelper;
-import thaumcraft.api.potions.PotionFluxTaint;
 
+import java.util.UUID;
 import java.util.function.BiFunction;
 import java.util.function.Predicate;
 
 
 public class ItemBootsVoidWalker extends ItemArmor implements IWarpingGear, IRechargable {
+    public static final UUID MOVEMENT_SPEED_MODIFIER_UUID = UUID.fromString("f7307c15-7508-4a7c-a867-19162f3bdbb9");
+
     protected static final BiFunction<EntityPlayer, MovementType, Float> MOVEMENT_FUNC = (player, type) -> {
         float boost = 0;
         switch (type) {
@@ -107,6 +110,11 @@ public class ItemBootsVoidWalker extends ItemArmor implements IWarpingGear, IRec
         return EnumRarity.EPIC;
     }
 
+    @Override
+    public Multimap<String, AttributeModifier> getItemAttributeModifiers(EntityEquipmentSlot equipmentSlot) {
+        return super.getItemAttributeModifiers(equipmentSlot);
+    }
+
     public void handleMovement(World world, EntityPlayer player, ItemStack stack) {
         if (player.world.isRemote) {
             boolean apply = !player.capabilities.isFlying && !player.isElytraFlying() && this.getEnergy(stack) > 0;
@@ -130,6 +138,7 @@ public class ItemBootsVoidWalker extends ItemArmor implements IWarpingGear, IRec
         return false;
     }
 
+    //TODO: Swap this to onLivingFall distance reduction to avoid the messy damage handling.
     public float getAdjustedFallDamage(ItemStack bootStack, float damage) {
         if (bootStack.getItem() == ItemsTW.VOID_WALKER_BOOTS && RechargeHelper.getCharge(bootStack) > 0) {
             damage = Math.max(0, damage / 2.0f - 1.0f);

@@ -26,9 +26,7 @@ public class BlockTileTW<T extends TileEntity> extends BlockTW implements ITileE
         }
         try {
             return this.tileClass.newInstance();
-        } catch (InstantiationException e) {
-            ThaumicWonders.LOGGER.catching(e);
-        } catch (IllegalAccessException e) {
+        } catch (InstantiationException | IllegalAccessException e) {
             ThaumicWonders.LOGGER.catching(e);
         }
         return null;

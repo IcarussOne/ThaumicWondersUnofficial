@@ -56,12 +56,9 @@ public class ThaumicWonders {
 
 
     //TODO: Future Release
-    //  Thauma Llama
     //  Check how much rift power the void beacon is draining
     //  Check why the Void Beacon is causing rifts to detonate while they are still large
     //  Fishing golem seal
-    //  Eldritch cluster harvest infusion enchantment (or just a single pickaxe that does it
-    //  Register for eldritch cluster harvesting
     //  Heximite explosion converts blocks into tainted variants (add CrT/GS integration for additional conversions)
     //  Research Brews + Crucible addon - create brews that randomly grant research after being consumed.
     //  New Dimensional Ripper model
