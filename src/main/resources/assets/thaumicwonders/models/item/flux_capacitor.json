@@ -4,9 +4,9 @@
         "all": "thaumicwonders:blocks/flux_capacitor_0"
     },
     "overrides": [
-        {"predicate": { "thaumicwonders:flux": 1 }, "model": "thaumicwonders:item/overrides/flux_capacitor/flux_capacitor_1"},
-        {"predicate": { "thaumicwonders:flux": 2 }, "model": "thaumicwonders:item/overrides/flux_capacitor/flux_capacitor_2"},
-        {"predicate": { "thaumicwonders:flux": 3 }, "model": "thaumicwonders:item/overrides/flux_capacitor/flux_capacitor_3"},
-        {"predicate": { "thaumicwonders:flux": 4 }, "model": "thaumicwonders:item/overrides/flux_capacitor/flux_capacitor_4"}
+        {"predicate": { "thaumicwonders:charge": 1 }, "model": "thaumicwonders:item/overrides/flux_capacitor/flux_capacitor_1"},
+        {"predicate": { "thaumicwonders:charge": 2 }, "model": "thaumicwonders:item/overrides/flux_capacitor/flux_capacitor_2"},
+        {"predicate": { "thaumicwonders:charge": 3 }, "model": "thaumicwonders:item/overrides/flux_capacitor/flux_capacitor_3"},
+        {"predicate": { "thaumicwonders:charge": 4 }, "model": "thaumicwonders:item/overrides/flux_capacitor/flux_capacitor_4"}
     ]
 }
