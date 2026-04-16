@@ -1,14 +1,12 @@
 package com.verdantartifice.thaumicwonders.proxy;
 
-import com.verdantartifice.thaumicwonders.client.renderers.tile.TesrDimensionalRipper;
-import com.verdantartifice.thaumicwonders.client.renderers.tile.TesrInfusionClaw;
-import com.verdantartifice.thaumicwonders.client.renderers.tile.TesrPrimordialSiphon;
-import com.verdantartifice.thaumicwonders.client.renderers.tile.TesrVoidBeacon;
+import com.verdantartifice.thaumicwonders.client.renderers.tile.*;
 import com.verdantartifice.thaumicwonders.common.blocks.BlocksTW;
 import com.verdantartifice.thaumicwonders.common.tiles.devices.TileDimensionalRipper;
 import com.verdantartifice.thaumicwonders.common.tiles.devices.TileInfusionClaw;
 import com.verdantartifice.thaumicwonders.common.tiles.devices.TilePrimordialSiphon;
 import com.verdantartifice.thaumicwonders.common.tiles.devices.TileVoidBeacon;
+import com.verdantartifice.thaumicwonders.common.tiles.misc.TileArcanePillar;
 import net.minecraft.block.Block;
 import net.minecraft.client.renderer.tileentity.TileEntityItemStackRenderer;
 import net.minecraft.client.renderer.tileentity.TileEntityRendererDispatcher;
@@ -22,6 +20,7 @@ import net.minecraftforge.fml.client.registry.ClientRegistry;
 public class ProxyTESR {
     @SuppressWarnings("ConstantConditions")
     public void setupTESR() {
+        ClientRegistry.bindTileEntitySpecialRenderer(TileArcanePillar.class, new TesrArcanePillar());
         ClientRegistry.bindTileEntitySpecialRenderer(TileDimensionalRipper.class, new TesrDimensionalRipper());
         ClientRegistry.bindTileEntitySpecialRenderer(TileInfusionClaw.class, new TesrInfusionClaw());
         ClientRegistry.bindTileEntitySpecialRenderer(TilePrimordialSiphon.class, new TesrPrimordialSiphon());

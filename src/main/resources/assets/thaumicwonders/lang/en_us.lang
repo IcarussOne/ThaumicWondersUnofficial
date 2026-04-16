@@ -58,6 +58,7 @@ focus.thaumicwonders.teleport_home.text=Teleports players to their bed location.
 
 # Device Tiles
 tile.thaumicwonders:alkahest_vat.name=Alkahest Vat
+tile.thaumicwonders:arcane_pillar.name=Arcane Pillar
 tile.thaumicwonders:catalyzation_chamber.name=Catalyzation Chamber
 tile.thaumicwonders:coalescence_matrix.name=Coalescence Matrix
 tile.thaumicwonders:coalescence_matrix_precursor.name=Coalescence Matrix

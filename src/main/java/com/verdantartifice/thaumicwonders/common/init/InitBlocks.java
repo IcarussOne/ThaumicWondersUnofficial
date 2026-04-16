@@ -7,6 +7,7 @@ import com.verdantartifice.thaumicwonders.common.blocks.essentia.BlockCreativeEs
 import com.verdantartifice.thaumicwonders.common.blocks.essentia.BlockOblivionEssentiaJar;
 import com.verdantartifice.thaumicwonders.common.blocks.fluids.BlockFluidQuicksilver;
 import com.verdantartifice.thaumicwonders.common.blocks.misc.BlockHexamite;
+import com.verdantartifice.thaumicwonders.common.blocks.misc.BlockArcanePillar;
 import com.verdantartifice.thaumicwonders.common.blocks.misc.BlockTWPlaceholder;
 import com.verdantartifice.thaumicwonders.common.blocks.plants.BlockCinderpearlCrop;
 import com.verdantartifice.thaumicwonders.common.blocks.plants.BlockShimmerleafCrop;
@@ -15,6 +16,7 @@ import com.verdantartifice.thaumicwonders.common.fluids.FluidQuicksilver;
 import com.verdantartifice.thaumicwonders.common.tiles.devices.*;
 import com.verdantartifice.thaumicwonders.common.tiles.essentia.TileCreativeEssentiaJar;
 import com.verdantartifice.thaumicwonders.common.tiles.essentia.TileOblivionEssentiaJar;
+import com.verdantartifice.thaumicwonders.common.tiles.misc.TileArcanePillar;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.item.Item;
@@ -36,6 +38,7 @@ public class InitBlocks {
         registerBlock(forgeRegistry, new BlockEverburningUrn());
         registerBlock(forgeRegistry, new BlockDimensionalRipper());
         registerBlock(forgeRegistry, new BlockPrimordialSiphon());
+        registerBlock(forgeRegistry, new BlockInfusionClaw());
         registerBlock(forgeRegistry, new BlockOblivionEssentiaJar(), BlockJarItem.class);
         registerBlock(forgeRegistry, new BlockCreativeEssentiaJar(), BlockJarItem.class);
         registerBlock(forgeRegistry, new BlockInspirationEngine());
@@ -57,12 +60,10 @@ public class InitBlocks {
         registerBlock(forgeRegistry, new BlockAlkahestVat());
         registerBlock(forgeRegistry, new BlockCoalescenceMatrix());
         registerBlock(forgeRegistry, new BlockTW(Material.IRON, "coalescence_matrix_precursor"));
+        registerBlock(forgeRegistry, new BlockArcanePillar());
 
         registerBlock(forgeRegistry, new BlockTWPlaceholder("placeholder_arcane_stone"));
         registerBlock(forgeRegistry, new BlockTWPlaceholder("placeholder_obsidian"));
-
-        //TODO: Move this
-        registerBlock(forgeRegistry, new BlockInfusionClaw());
 
         FluidRegistry.registerFluid(FluidQuicksilver.INSTANCE);
         FluidRegistry.addBucketForFluid(FluidQuicksilver.INSTANCE);
@@ -99,6 +100,7 @@ public class InitBlocks {
 
     public static void initTileEntities() {
         GameRegistry.registerTileEntity(TileAlkahestVat.class, new ResourceLocation(ThaumicWonders.MODID, "TileAlkahestVat"));
+        GameRegistry.registerTileEntity(TileArcanePillar.class, new ResourceLocation(ThaumicWonders.MODID, "TileArcanePillar"));
         GameRegistry.registerTileEntity(TileCatalyzationChamber.class, new ResourceLocation(ThaumicWonders.MODID, "TileCatalyzationChamber"));
         GameRegistry.registerTileEntity(TileCoalescenceMatrix.class, new ResourceLocation(ThaumicWonders.MODID, "TileCoalescenceMatrix"));
         GameRegistry.registerTileEntity(TileCreativeEssentiaJar.class, new ResourceLocation(ThaumicWonders.MODID, "TileCreativeEssentiaJar"));

@@ -9,6 +9,7 @@ public class BlocksTW {
     public static final Block FLUID_QUICKSILVER = null;
 
     public static final Block ALKAHEST_VAT = null;
+    public static final Block ARCANE_PILLAR = null;
     public static final Block CATALYZATION_CHAMBER = null;
     public static final Block CINDERPEARL_CROP = null;
     public static final Block COALESCENCE_MATRIX = null;

@@ -1,0 +1,31 @@
+{
+  "forge_marker": 1,
+  "defaults": {
+    "model": "builtin/generated",
+    "textures": {
+      "particle": "thaumicwonders:blocks/arcane_pillar"
+    },
+    "transform": "forge:default-block",
+    "uvlock": true
+  },
+  "variants": {
+    "direction": {
+      "north":      { "model": "thaumicwonders:arcane_pillar.obj", "y": 90 },
+      "south":      { "model": "thaumicwonders:arcane_pillar.obj", "y": 270 },
+      "west":       { "model": "thaumicwonders:arcane_pillar.obj" },
+      "east":       { "model": "thaumicwonders:arcane_pillar.obj", "y": 180 },
+      "north_east": { "model": "thaumicwonders:arcane_pillar_diag.obj", "y": 180 },
+      "north_west": { "model": "thaumicwonders:arcane_pillar_diag.obj", "y": 90 },
+      "south_east": { "model": "thaumicwonders:arcane_pillar_diag.obj", "y": 270 },
+      "south_west": { "model": "thaumicwonders:arcane_pillar_diag.obj" }
+    },
+    "top": {
+      "true": {},
+      "false": {}
+    },
+    "inventory": {
+      "model": "thaumicwonders:arcane_pillar.obj",
+      "transform": "forge:default-block"
+    }
+  }
+}
