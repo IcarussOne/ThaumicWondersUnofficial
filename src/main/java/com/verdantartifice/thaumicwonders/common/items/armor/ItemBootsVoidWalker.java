@@ -73,7 +73,7 @@ public class ItemBootsVoidWalker extends ItemArmor implements IWarpingGear, IRec
 
     @Override
     public void getSubItems(CreativeTabs tab, NonNullList<ItemStack> items) {
-        if (tab == this.getCreativeTab()) {
+        if (this.isInCreativeTab(tab)) {
             ItemStack stack = new ItemStack(this);
             items.add(stack);
             ItemStack charged = stack.copy();
