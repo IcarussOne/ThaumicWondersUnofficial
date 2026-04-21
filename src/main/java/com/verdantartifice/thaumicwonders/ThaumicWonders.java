@@ -75,9 +75,6 @@ public class ThaumicWonders {
     //      Corrupted Portal Linker - generates a greater crimson portal
     //  Look into adding a replacement for the original Void Beacon that generates items from raw essentia
     //  Modified ore diviner that infuses essentia into stone and transforms it into ores
-    //  Enchanter Multiblock
-    //      Mutltiblock enchanter, use crafttweaker for additional enchants
-    //      Offshoot of Disjunction Cloth
     //  Bosses:
     //      crimson_cult_models - cult golem
     //          See about getting permission to use one of these hammers https://github.com/TheCodex6824/ThaumicAugmentation/issues/170#issuecomment-875600063

@@ -8,6 +8,7 @@ attribute.name.thaumicwonders:healing_reduction=Reduced Healing Received
 
 # Chat
 chat.thaumicwonders:bind_player=This device is now bound to %s.
+chat.thaumicwonders:essentia_enchanter.invalid=The enchanter structure is incorrect.
 chat.thaumicwonders:portal_linker.bound=Bound to %s position x%d, y%d, z%d
 chat.thaumicwonders:sharing_tome.burn=You feel your knowledge expanding as the tome crumbles to ash.
 chat.thaumicwonders:sharing_tome.erase=The writing in the book melts away to nothing.
@@ -22,6 +23,10 @@ chat.thaumicwonders:void_portal.no_self=The portal anchor cannot be linked to it
 chat.thaumicwonders:void_portal.no_world=This portal's linked dimension does not exist.
 chat.thaumicwonders:warp_ring.warp=§5§oYou remove the ring from your finger, but the unpleasant feeling remains...
 chat.thaumicwonders:warp_ring.warp_event=The ring tightens as it soothes a pressure behind your eyes.
+
+# Gui
+gui.thaumicwonders:essentia_enchanter.disabled=Can't Enchant
+gui.thaumicwonders:essentia_enchanter.enabled=Enchant
 
 # Config
 key.categories.thaumicwonders=Thaumic Wonders
@@ -64,6 +69,7 @@ tile.thaumicwonders:coalescence_matrix.name=Coalescence Matrix
 tile.thaumicwonders:coalescence_matrix_precursor.name=Coalescence Matrix
 tile.thaumicwonders:creative_essentia_jar.name=Creative Essentia Jar
 tile.thaumicwonders:dimensional_ripper.name=Dimensional Ripper
+tile.thaumicwonders:essentia_enchanter.name=Osmotic Enchanter
 tile.thaumicwonders:everburning_urn.name=Everburning Urn
 tile.thaumicwonders:flux_capacitor.name=Flux Capacitor
 tile.thaumicwonders:flux_distiller.name=Flux Distiller
@@ -305,6 +311,11 @@ thaumicwonders.research.erythurgy.text.stage.2=Erythurgy, as I have dubbed this 
 thaumicwonders.research.avaric_deconstruction.title=Avaric Refining
 thaumicwonders.research.avaric_deconstruction.text.stage.1=My work with ordered and entropic erthurgy has left me very close to fully understanding the process necessary to perfectly recovering material from imperfect sources. Some of what occurs in the process is eerily similar to the refining technique found when creating metal clusters.<BR>This bears further investigation...
 thaumicwonders.research.avaric_deconstruction.text.stage.2=This new process, henceforth referred to as avaric refining, is capable of stripping impure materials away from pure  with frightening efficiency.<BR>Gem laden ores in particular benefit greatly from averic refining, resulting in a near-perfect yield as the surrounding stone is stripped away, leaving the precious gemstones intact.
+
+thaumicwonders.research.essentia_enchanter.title=Osmotic Enchanter
+thaumicwonders.research.essentia_enchanter.text.stage.1=My recent successes with infusion enchantments makes me wonder if I might be able to synthesize enchanting table effects by forcibly infusing an item with essentia.
+thaumicwonders.research.essentia_enchanter.text.stage.2=This new device, henceforth referred to as the Osmotic Enchanter, is capable of applying most mundane enchantments to any valid tool.<BR>Whereas infusion enchants infuse items into a tool to achieve the desired effect, the osmotic enchanter creates a high-pressure, essentia rich environment surrounding the tool.<BR>Using a small amount of vis as a catalyst, the essentia binds to the tool, mimicking the enchantments obtained from an enchanting table.
+thaumicwonders.research.essentia_enchanter.text.addenda.1=I once attempted to remove a tool from the altar during the enchanting process. I don't have any recollection of what occurred, but I awoke several hours later near a crater where my original altar once stood.<BR>It appears that the massive amount of essentia involved in the process almost guarantees catastrophic failure if the enchanting is interrupted.<BR>To prevent a similar accident, I have added a failsafe to the device, binding the tool to the altar until the process is complete.
 
 thaumicwonders.research.everburning_urn.title=Everburning Urn
 thaumicwonders.research.everburning_urn.text.stage.1=The Everfull Urn is an incredibly useful device, but I'm convinced that I can do better.  Something similar, but for other types of fluids.  Fluids like, say... lava?

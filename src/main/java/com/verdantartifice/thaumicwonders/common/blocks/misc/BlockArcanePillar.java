@@ -1,5 +1,6 @@
 package com.verdantartifice.thaumicwonders.common.blocks.misc;
 
+import com.verdantartifice.thaumicwonders.common.blocks.BlocksTW;
 import com.verdantartifice.thaumicwonders.common.blocks.base.BlockTileTW;
 import com.verdantartifice.thaumicwonders.common.tiles.misc.TileArcanePillar;
 import net.minecraft.block.Block;
@@ -11,12 +12,15 @@ import net.minecraft.block.state.BlockFaceShape;
 import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.item.EnumDyeColor;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.*;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
+import net.minecraftforge.common.util.Constants;
 import thaumcraft.api.blocks.BlocksTC;
 
 public class BlockArcanePillar extends BlockTileTW<TileArcanePillar> {
@@ -34,6 +38,30 @@ public class BlockArcanePillar extends BlockTileTW<TileArcanePillar> {
         this.setDefaultState(this.blockState.getBaseState().withProperty(TOP, false).withProperty(DIRECTION, EnumDirection.NORTH));
     }
 
+    @SuppressWarnings("ConstantConditions")
+    public static void revertPillar(World world, BlockPos bottomPos) {
+        if(!world.isRemote) {
+            BlockPos nitorPos = bottomPos.up(2);
+            BlockPos topPos = bottomPos.up();
+
+            if (world.getBlockState(nitorPos).getBlock().isReplaceable(world, nitorPos)) {
+                world.setBlockState(nitorPos, BlocksTC.nitor.get(EnumDyeColor.YELLOW).getDefaultState());
+            }
+            if (world.getBlockState(topPos).getBlock() == BlocksTW.ARCANE_PILLAR) {
+                world.setBlockState(topPos, BlocksTC.stoneArcane.getDefaultState());
+                world.playEvent(Constants.WorldEvents.BREAK_BLOCK_EFFECTS, topPos, Block.getStateId(BlocksTC.stoneArcane.getDefaultState()));
+            }
+            if (world.getBlockState(bottomPos).getBlock() == BlocksTW.ARCANE_PILLAR) {
+                world.setBlockState(bottomPos, BlocksTC.stoneArcane.getDefaultState());
+                world.playEvent(Constants.WorldEvents.BREAK_BLOCK_EFFECTS, topPos, Block.getStateId(BlocksTC.stoneArcane.getDefaultState()));
+            }
+        }
+    }
+
+    public static int getStackMeta(boolean isTop, EnumDirection direction) {
+        return (isTop ? 8 : 0) + direction.ordinal();
+    }
+
     @SuppressWarnings("deprecation")
     @Override
     public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess source, BlockPos pos) {
@@ -43,39 +71,26 @@ public class BlockArcanePillar extends BlockTileTW<TileArcanePillar> {
     @Override
     public void getDrops(NonNullList<ItemStack> drops, IBlockAccess world, BlockPos pos, IBlockState state, int fortune) {
         drops.add(new ItemStack(BlocksTC.stoneArcane));
-        drops.add(new ItemStack(BlocksTC.stoneArcane));
     }
 
     @Override
     public void breakBlock(World worldIn, BlockPos pos, IBlockState state) {
-        if (state.getValue(TOP)) {
-            IBlockState down = worldIn.getBlockState(pos.down());
-            if (down.getBlock() != this || down.getValue(TOP)) {
-                worldIn.setBlockToAir(pos);
-            }
-        } else if (!state.getValue(TOP)) {
-            IBlockState up = worldIn.getBlockState(pos.up());
-            if (up.getBlock() != this || !up.getValue(TOP)) {
-                worldIn.setBlockToAir(pos);
+        if(!worldIn.isRemote) {
+            if (state.getValue(TOP)) {
+                IBlockState down = worldIn.getBlockState(pos.down());
+                if(down.getBlock() == this) {
+                    worldIn.setBlockState(pos.down(), BlocksTC.stoneArcane.getDefaultState());
+                    worldIn.setBlockState(pos.up(), BlocksTC.nitor.get(EnumDyeColor.YELLOW).getDefaultState());
+                }
+            } else {
+                IBlockState up = worldIn.getBlockState(pos.up());
+                if(up.getBlock() == this) {
+                    worldIn.setBlockState(pos.up(), BlocksTC.stoneArcane.getDefaultState());
+                    worldIn.setBlockState(pos.up(2), BlocksTC.nitor.get(EnumDyeColor.YELLOW).getDefaultState());
+                }
             }
         }
         super.breakBlock(worldIn, pos, state);
-    }
-
-    @SuppressWarnings("deprecation")
-    @Override
-    public void neighborChanged(IBlockState state, World worldIn, BlockPos pos, Block blockIn, BlockPos fromPos) {
-        if (state.getValue(TOP)) {
-            IBlockState down = worldIn.getBlockState(pos.down());
-            if (down.getBlock() != this || down.getValue(TOP)) {
-                worldIn.setBlockToAir(pos);
-            }
-        } else if (!state.getValue(TOP)) {
-            IBlockState up = worldIn.getBlockState(pos.up());
-            if (up.getBlock() != this || !up.getValue(TOP)) {
-                worldIn.setBlockToAir(pos);
-            }
-        }
     }
 
     @Override
@@ -153,35 +168,44 @@ public class BlockArcanePillar extends BlockTileTW<TileArcanePillar> {
         return new BlockStateContainer(this, TOP, DIRECTION);
     }
 
-    public enum EnumDirection implements IStringSerializable{
+    public enum EnumDirection implements IStringSerializable {
         NORTH(new BlockPos(0, 0, -1)),
-        SOUTH(new BlockPos(0, 0, 1)),
-        WEST(new BlockPos(-1, 0, 0)),
-        EAST(new BlockPos(1, 0, 0)),
-        NORTH_WEST(new BlockPos(-1, 0, -1)),
-        SOUTH_WEST(new BlockPos(-1, 0, 1)),
         NORTH_EAST(new BlockPos(1, 0, -1)),
-        SOUTH_EAST(new BlockPos(1, 0, 1));
+        EAST(new BlockPos(1, 0, 0)),
+        SOUTH_EAST(new BlockPos(1, 0, 1)),
+        SOUTH(new BlockPos(0, 0, 1)),
+        SOUTH_WEST(new BlockPos(-1, 0, 1)),
+        WEST(new BlockPos(-1, 0, 0)),
+        NORTH_WEST(new BlockPos(-1, 0, -1));
 
-        private final float xOffsetNitor;
-        private final float zOffsetNitor;
+        public static final EnumDirection[] VALUES;
+        private final Vec3d nitorOffset;
 
         EnumDirection(BlockPos nitorOffset) {
-            this.xOffsetNitor = (float) nitorOffset.getX() * 0.3f;
-            this.zOffsetNitor = (float) nitorOffset.getZ() * 0.3f;
+            this.nitorOffset = new Vec3d(0.5f + (float) nitorOffset.getX() * 0.3f, 2.15f, 0.5f + (float) nitorOffset.getZ() * 0.3f);
         }
 
-        public float getNitorOffsetX() {
-            return this.xOffsetNitor;
+        public Vec3d getNitorOffset() {
+            return this.nitorOffset;
         }
 
-        public float getNitorOffsetZ() {
-            return this.zOffsetNitor;
+        public Vec3d getNitorOffset(BlockPos pos) {
+            return new Vec3d(pos.getX() + this.nitorOffset.x, pos.getY() + this.nitorOffset.y, pos.getZ() + this.nitorOffset.z);
+        }
+
+        public EnumDirection next() {
+            return EnumDirection.values()[(this.ordinal() + 1) % EnumDirection.values().length];
         }
 
         @Override
         public String getName() {
             return this.toString().toLowerCase();
+        }
+
+        static {
+            EnumDirection[] directions = EnumDirection.values();
+            VALUES = new EnumDirection[directions.length];
+            System.arraycopy(directions, 0, VALUES, 0, directions.length);
         }
     }
 }

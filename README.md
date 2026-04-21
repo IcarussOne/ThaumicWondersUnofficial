@@ -20,8 +20,11 @@ This support includes new configuration options, added Crafttweaker and GroovySc
 - **Control Seal: Research Assistant** - a new golem seal that restocks Research Table paper, refills Scribing Tools, and retrieves missing research items from nearby chests
 - **Control Seal: Shearing** - a new golem seal that can shear nearby animals and harvest vines, leaves or tall grass
 - **Focus Effect: Teleport Home** - a focus effect that teleports the player to their bed location
+- **Focus Effect: Blink** - Teleport yourself in the direction you are facing or force an entity to teleport randomly
+- **Infusion Claw** - Automate infusion recipes with a new Infusion Matrix addon
 - **Initiate's Band of Cleansing** - a ring that cleanses negative effects and negates some Warp events, for a price...
 - **Oblivion Essentia Jar** - a new essentia jar that voids essentia instantly
+- **Osmotic Enchanter** - a multiblock structure used to enchant items using essentia
 - **Primordial Siphon** - a Void Siphon that uses rift power to create Primordial Grains
 - **Tome of Sharing** - (Includes config disable) a Tome of Sharing with a lot of options. Check out the configuration to see what it can do!
 - **Vis Capacitor** - a new high-capacity Vis storage block similar to Thaumcraft's Vis Battery
@@ -47,5 +50,6 @@ This support includes new configuration options, added Crafttweaker and GroovySc
 - [ACGaming](https://www.curseforge.com/members/acgaming/projects) - code contributions
 
 ## Additional Credits
-The following textures originate from [Thaumic Exploration](https://www.curseforge.com/minecraft/mc-mods/thaumic-exploration) and are licensed as CC BY-NC-SA 4.0:
-- Oblivion Essentia Jar
+The following textures originate from external sources.
+- Oblivion Essentia Jar - [Thaumic Exploration](https://www.curseforge.com/minecraft/mc-mods/thaumic-exploration) licensed CC BY-NC-SA 4.0
+- Infusion Pillar - [Thaumic Tinkerer](https://www.curseforge.com/minecraft/mc-mods/thaumic-tinkerer) - licensed Creative Commons Attribution ShareAlike 3.0 Unported License 

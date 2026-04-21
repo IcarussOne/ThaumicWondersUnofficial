@@ -9,6 +9,7 @@ import org.jetbrains.annotations.Nullable;
 
 public enum ModIds {
     crafttweaker(ConstIds.crafttweaker),
+    enchantment_descriptions(ConstIds.enchantment_descriptions),
     expanded_arcanum(ConstIds.expanded_arcanum),
     jeresources(ConstIds.jeresources),
     new_crimson_revelations(ConstIds.new_crimson_revelations, "1.0.0"),
@@ -74,6 +75,7 @@ public enum ModIds {
 
     public static class ConstIds {
         public static final String crafttweaker = "crafttweaker";
+        public static final String enchantment_descriptions = "enchdesc";
         public static final String expanded_arcanum = "ea";
         public static final String jeresources = "jeresources";
         public static final String new_crimson_revelations = "crimsonrevelations";

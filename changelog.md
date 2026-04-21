@@ -1,4 +1,25 @@
 # Changelog
+## v2.3.0
+------
+### Added
+- Added Arcane Pillar, used for Thaumic Wonders multiblocks
+- Added Infusion Claw, used to automate infusion recipes
+- Added Osmotic Enchanter, a multiblock structure that uses essentia to enchant items
+- Added Spell Effect: Blink, used to teleport short distances
+
+### Changed
+- Catalyzation Chamber catalyst now correctly use container items
+- Moved Focus Effect: Teleport Home to later in the research tree, Spell Effect: Blink is now researched first
+- Initiate's Band of Cleansing now fully prevents warp events
+- Initiate's Band of Cleansing requires more removals to level up (this is offset by the new ability to cancel warp events)
+
+### Fixed
+- Fixed incorrect ingredient handling in Catalyzation Chamber catalyst slot
+- Fixed Focus Effect: Teleport Home using incorrect spell complexity
+- Fixed Panacea and capacitor model definitions (courtesy of [kaduvill](https://github.com/kaduvill))
+- Initiate's Band of Cleansing now correctly updates after removing effectst=
+- Fixed Void Walker's Boots not showing up in Creative Tab searches
+
 ## v2.2.4
 ------
 ### Changed
