@@ -42,7 +42,7 @@ public class GuiEssentiaEnchanter extends GuiContainer {
     private static final int BUTTON_CURRENT_ENCH;
     private static final int[] BUTTON_VALID_ENCHANTS = new int[12];
 
-    private final Map<EssentiaEnchanterRecipe, Integer> selectedRecipes = new HashMap<>();
+    private final Map<EssentiaEnchanterRecipe, Integer> selectedRecipes = new LinkedHashMap<>();
     private final GuiButtonEnchantRecipe[] recipeButtons = new GuiButtonEnchantRecipe[BUTTON_VALID_ENCHANTS.length];
     private GuiButtonEnchantRecipe currentRecipeButton;
     public List<GuiEnchanterTooltip> aspectTooltips = new ArrayList<>();
@@ -113,7 +113,7 @@ public class GuiEssentiaEnchanter extends GuiContainer {
         drawTexturedModalRect(xStart + 28, yStart + 71, 0, 204, 108, 36);
         //Rendering aspects
         AspectList aspectList = this.getRequiredAspects();
-        Aspect[] aspects = aspectList.getAspectsSortedByAmount();
+        Aspect[] aspects = aspectList.getAspects();
         this.aspectTooltips.clear();
         for(int i = 0; i < 12; i++) {
             int actualIndex = i + this.getAspectRow() * 6;
@@ -138,7 +138,7 @@ public class GuiEssentiaEnchanter extends GuiContainer {
         int start = 0;
         if(totalVis > 0) {
             AspectList aspectList = this.getContainer().getEnchanter().getAspectsToRender();
-            Aspect[] aspects = aspectList.getAspectsSortedByAmount();
+            Aspect[] aspects = aspectList.getAspects();
             for(Aspect aspect : aspects) {
                 int amount = aspectList.getAmount(aspect);
                 if(amount > 0) {

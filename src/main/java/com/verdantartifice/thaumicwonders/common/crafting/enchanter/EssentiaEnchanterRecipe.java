@@ -34,7 +34,7 @@ public class EssentiaEnchanterRecipe {
         this.enchantment = enchantment;
         this.aspectList = aspectList;
         this.setTextureLocation(FALLBACK_ICON, 32);
-        this.setColor(0x0);
+        this.setColor(Color.WHITE.getRGB());
     }
 
     public ResourceLocation getTextureLocation() {
