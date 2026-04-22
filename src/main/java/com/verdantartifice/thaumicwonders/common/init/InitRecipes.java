@@ -1,11 +1,16 @@
 package com.verdantartifice.thaumicwonders.common.init;
 
+import akka.japi.pf.FI;
 import com.verdantartifice.thaumicwonders.ThaumicWonders;
 import com.verdantartifice.thaumicwonders.common.blocks.BlocksTW;
+import com.verdantartifice.thaumicwonders.common.blocks.misc.BlockArcanePillar;
+import com.verdantartifice.thaumicwonders.common.blocks.misc.BlockArcanePillar.EnumDirection;
 import com.verdantartifice.thaumicwonders.common.compat.CompatHelper;
 import com.verdantartifice.thaumicwonders.common.compat.ModPlugins;
 import com.verdantartifice.thaumicwonders.common.config.ConfigHandlerTW;
 import com.verdantartifice.thaumicwonders.common.crafting.catalyzationchamber.CatalyzationChamberRecipeRegistry;
+import com.verdantartifice.thaumicwonders.common.crafting.enchanter.EssentiaEnchanterRecipe;
+import com.verdantartifice.thaumicwonders.common.crafting.enchanter.EssentiaEnchanterRecipeRegistry;
 import com.verdantartifice.thaumicwonders.common.crafting.meatyorb.MeatyOrbEntryRegistry;
 import com.verdantartifice.thaumicwonders.common.crafting.recipes.RecipeDisjunctionClothUse;
 import com.verdantartifice.thaumicwonders.common.crafting.recipes.RecipeFlyingCarpetDyes;
@@ -14,13 +19,15 @@ import com.verdantartifice.thaumicwonders.common.items.ItemsTW;
 import com.verdantartifice.thaumicwonders.common.items.consumables.ItemPrimalArrow.PrimalArrowVariant;
 import com.verdantartifice.thaumicwonders.common.registry.InfusionEnchantmentsTW;
 import net.minecraft.init.Blocks;
+import net.minecraft.init.Enchantments;
 import net.minecraft.init.Items;
 import net.minecraft.init.PotionTypes;
+import net.minecraft.item.EnumDyeColor;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.IRecipe;
 import net.minecraft.item.crafting.Ingredient;
 import net.minecraft.potion.PotionUtils;
-import net.minecraft.util.EnumFacing;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.common.crafting.CraftingHelper;
 import net.minecraftforge.fluids.FluidStack;
@@ -39,7 +46,7 @@ import thaumcraft.api.blocks.BlocksTC;
 import thaumcraft.api.crafting.*;
 import thaumcraft.api.golems.GolemHelper;
 import thaumcraft.api.items.ItemsTC;
-import thaumcraft.common.blocks.basic.BlockPillar;
+import thaumcraft.common.blocks.misc.BlockNitor;
 import thaumcraft.common.items.consumables.ItemPhial;
 import thaumcraft.common.lib.crafting.DustTriggerMultiblock;
 import thaumcraft.common.lib.crafting.InfusionEnchantmentRecipe;
@@ -56,6 +63,7 @@ public class InitRecipes {
         initNormalRecipes(forgeRegistry);
         initArcaneRecipes();
         initCrucibleRecipes();
+        initEssentiaEnchanterRecipes();
         initInfusionRecipes();
         initInfusionEnchantmentRecipes();
         initMultiblockRecipes();
@@ -72,6 +80,7 @@ public class InitRecipes {
     private static void initMultiblockRecipes() {
         initCatalyzationChamber();
         initCoalescencePlatform();
+        initEssentiaEnchanter();
     }
 
     private static void initCatalyzationChamber() {
@@ -107,38 +116,54 @@ public class InitRecipes {
     }
 
     private static void initCoalescencePlatform() {
+        //TODO: This needs a real recipe and a fake recipe. Fake recipe uses a nitor placeholder, real recipe uses actual nitor.
         Part VMET = new Part(BlocksTC.metalBlockVoid, null);
         Part ASTI = new Part(BlocksTC.stoneArcane, null);
         Part ASBR = new Part(BlocksTC.stoneArcaneBrick, null);
-        Part SNTP = new Part(BlocksTC.stoneArcane, "AIR");
-        Part SNB1 = new Part(BlocksTC.stoneArcane, new ItemStack(BlocksTC.pillarArcane, 1, BlockPillar.calcMeta(EnumFacing.EAST)));
-        Part SNB2 = new Part(BlocksTC.stoneArcane, new ItemStack(BlocksTC.pillarArcane, 1, BlockPillar.calcMeta(EnumFacing.NORTH)));
-        Part SNB3 = new Part(BlocksTC.stoneArcane, new ItemStack(BlocksTC.pillarArcane, 1, BlockPillar.calcMeta(EnumFacing.SOUTH)));
-        Part SNB4 = new Part(BlocksTC.stoneArcane, new ItemStack(BlocksTC.pillarArcane, 1, BlockPillar.calcMeta(EnumFacing.WEST)));
+        Part PBNN = new Part(BlocksTC.stoneArcane, new ItemStack(BlocksTW.ARCANE_PILLAR, 1, 0));
+        Part PBSS = new Part(BlocksTC.stoneArcane, new ItemStack(BlocksTW.ARCANE_PILLAR, 1, 1));
+        Part PBWW = new Part(BlocksTC.stoneArcane, new ItemStack(BlocksTW.ARCANE_PILLAR, 1, 2));
+        Part PBEE = new Part(BlocksTC.stoneArcane, new ItemStack(BlocksTW.ARCANE_PILLAR, 1, 3));
+        Part PTNN = new Part(BlocksTC.stoneArcane, new ItemStack(BlocksTW.ARCANE_PILLAR, 1, 8));
+        Part PTSS = new Part(BlocksTC.stoneArcane, new ItemStack(BlocksTW.ARCANE_PILLAR, 1, 9));
+        Part PTWW = new Part(BlocksTC.stoneArcane, new ItemStack(BlocksTW.ARCANE_PILLAR, 1, 10));
+        Part PTEE = new Part(BlocksTC.stoneArcane, new ItemStack(BlocksTW.ARCANE_PILLAR, 1, 11));
+        Part NITR = new Part(BlockNitor.class, "AIR");
         Part CMAT = new Part(BlocksTW.COALESCENCE_MATRIX_PRECURSOR, new ItemStack(BlocksTW.COALESCENCE_MATRIX));
         Part[][][] coalescencePlatformBlueprint = {
                 {
-                        {null, null, SNTP, null, null, null, SNTP, null, null},
+                        {null, null, NITR, null, null, null, NITR, null, null},
                         {null, null, null, null, null, null, null, null, null},
-                        {SNTP, null, null, null, null, null, null, null, SNTP},
+                        {NITR, null, null, null, null, null, null, null, NITR},
                         {null, null, null, null, null, null, null, null, null},
                         {null, null, null, null, null, null, null, null, null},
                         {null, null, null, null, null, null, null, null, null},
-                        {SNTP, null, null, null, null, null, null, null, SNTP},
+                        {NITR, null, null, null, null, null, null, null, NITR},
                         {null, null, null, null, null, null, null, null, null},
-                        {null, null, SNTP, null, null, null, SNTP, null, null},
+                        {null, null, NITR, null, null, null, NITR, null, null},
+                },
+                {
+                        {null, null, PTSS, null, null, null, PTSS, null, null},
+                        {null, null, null, null, null, null, null, null, null},
+                        {PTWW, null, null, null, null, null, null, null, PTEE},
+                        {null, null, null, null, null, null, null, null, null},
+                        {null, null, null, null, null, null, null, null, null},
+                        {null, null, null, null, null, null, null, null, null},
+                        {PTWW, null, null, null, null, null, null, null, PTEE},
+                        {null, null, null, null, null, null, null, null, null},
+                        {null, null, PTNN, null, null, null, PTNN, null, null},
                         },
                 {
-                        {null, null, SNB1, null, null, null, SNB2, null, null},
+                        {null, null, PBSS, null, null, null, PBSS, null, null},
                         {null, null, null, null, null, null, null, null, null},
-                        {SNB1, null, null, null, null, null, null, null, SNB2},
+                        {PBWW, null, null, null, null, null, null, null, PBEE},
                         {null, null, null, null, null, null, null, null, null},
                         {null, null, null, null, CMAT, null, null, null, null},
                         {null, null, null, null, null, null, null, null, null},
-                        {SNB3, null, null, null, null, null, null, null, SNB4},
+                        {PBWW, null, null, null, null, null, null, null, PBEE},
                         {null, null, null, null, null, null, null, null, null},
-                        {null, null, SNB3, null, null, null, SNB4, null, null},
-                        },
+                        {null, null, PBNN, null, null, null, PBNN, null, null},
+                },
                 {
                         {null, null, ASBR, ASBR, ASBR, ASBR, ASBR, null, null},
                         {null, ASBR, VMET, VMET, ASTI, VMET, VMET, ASBR, null},
@@ -149,7 +174,7 @@ public class InitRecipes {
                         {ASBR, VMET, VMET, ASTI, ASTI, ASTI, VMET, VMET, ASBR},
                         {null, ASBR, VMET, VMET, ASTI, VMET, VMET, ASBR, null},
                         {null, null, ASBR, ASBR, ASBR, ASBR, ASBR, null, null},
-                        }
+                }
         };
         IDustTrigger.registerDustTrigger(new DustTriggerMultiblock("TWOND_COALESCENCE_MATRIX", coalescencePlatformBlueprint));
         ThaumcraftApi.addMultiblockRecipeToCatalog(new ResourceLocation(ThaumicWonders.MODID, "coalescence_platform"), new ThaumcraftApi.BluePrint(
@@ -158,7 +183,80 @@ public class InitRecipes {
                 new ItemStack(BlocksTC.metalBlockVoid, 24),
                 new ItemStack(BlocksTC.stoneArcaneBrick, 24),
                 new ItemStack(BlocksTC.stoneArcane, 37),
-                new ItemStack(BlocksTW.COALESCENCE_MATRIX_PRECURSOR)));
+                new ItemStack(BlocksTC.nitor.get(EnumDyeColor.YELLOW), 8),
+                new ItemStack(BlocksTW.COALESCENCE_MATRIX_PRECURSOR))
+        );
+    }
+
+    private static void initEssentiaEnchanter() {
+        //TODO: This needs a real recipe and a fake recipe. Fake recipe uses a nitor placeholder, real recipe uses actual nitor.
+        Part OBSI = new Part(Blocks.OBSIDIAN, null);
+        Part ASBR = new Part(BlocksTC.stoneArcaneBrick, null);
+        Part ENCH = new Part(BlocksTW.ESSENTIA_ENCHANTER, null);
+        Part PBNN = new Part(BlocksTC.stoneArcane, new ItemStack(BlocksTW.ARCANE_PILLAR, 1, BlockArcanePillar.getStackMeta(false, EnumDirection.NORTH)));
+        Part PBSS = new Part(BlocksTC.stoneArcane, new ItemStack(BlocksTW.ARCANE_PILLAR, 1, BlockArcanePillar.getStackMeta(false, EnumDirection.SOUTH)));
+        Part PBWW = new Part(BlocksTC.stoneArcane, new ItemStack(BlocksTW.ARCANE_PILLAR, 1, BlockArcanePillar.getStackMeta(false, EnumDirection.WEST)));
+        Part PBEE = new Part(BlocksTC.stoneArcane, new ItemStack(BlocksTW.ARCANE_PILLAR, 1, BlockArcanePillar.getStackMeta(false, EnumDirection.EAST)));
+        Part PBNW = new Part(BlocksTC.stoneArcane, new ItemStack(BlocksTW.ARCANE_PILLAR, 1, BlockArcanePillar.getStackMeta(false, EnumDirection.NORTH_WEST)));
+        Part PBSW = new Part(BlocksTC.stoneArcane, new ItemStack(BlocksTW.ARCANE_PILLAR, 1, BlockArcanePillar.getStackMeta(false, EnumDirection.SOUTH_WEST)));
+        Part PBNE = new Part(BlocksTC.stoneArcane, new ItemStack(BlocksTW.ARCANE_PILLAR, 1, BlockArcanePillar.getStackMeta(false, EnumDirection.NORTH_EAST)));
+        Part PBSE = new Part(BlocksTC.stoneArcane, new ItemStack(BlocksTW.ARCANE_PILLAR, 1, BlockArcanePillar.getStackMeta(false, EnumDirection.SOUTH_EAST)));
+        Part PTNN = new Part(BlocksTC.stoneArcane, new ItemStack(BlocksTW.ARCANE_PILLAR, 1, BlockArcanePillar.getStackMeta(true, EnumDirection.NORTH)));
+        Part PTSS = new Part(BlocksTC.stoneArcane, new ItemStack(BlocksTW.ARCANE_PILLAR, 1, BlockArcanePillar.getStackMeta(true, EnumDirection.SOUTH)));
+        Part PTWW = new Part(BlocksTC.stoneArcane, new ItemStack(BlocksTW.ARCANE_PILLAR, 1, BlockArcanePillar.getStackMeta(true, EnumDirection.WEST)));
+        Part PTEE = new Part(BlocksTC.stoneArcane, new ItemStack(BlocksTW.ARCANE_PILLAR, 1, BlockArcanePillar.getStackMeta(true, EnumDirection.EAST)));
+        Part PTNW = new Part(BlocksTC.stoneArcane, new ItemStack(BlocksTW.ARCANE_PILLAR, 1, BlockArcanePillar.getStackMeta(true, EnumDirection.NORTH_WEST)));
+        Part PTSW = new Part(BlocksTC.stoneArcane, new ItemStack(BlocksTW.ARCANE_PILLAR, 1, BlockArcanePillar.getStackMeta(true, EnumDirection.SOUTH_WEST)));
+        Part PTNE = new Part(BlocksTC.stoneArcane, new ItemStack(BlocksTW.ARCANE_PILLAR, 1, BlockArcanePillar.getStackMeta(true, EnumDirection.NORTH_EAST)));
+        Part PTSE = new Part(BlocksTC.stoneArcane, new ItemStack(BlocksTW.ARCANE_PILLAR, 1, BlockArcanePillar.getStackMeta(true, EnumDirection.SOUTH_EAST)));
+        Part NITR = new Part(BlockNitor.class, "AIR");
+        Part[][][] platform = {
+                {
+                        {null, null, null, NITR, null, null, null},
+                        {null, NITR, null, null, null, NITR, null},
+                        {null, null, null, null, null, null, null},
+                        {NITR, null, null, null, null, null, NITR},
+                        {null, null, null, null, null, null, null},
+                        {null, NITR, null, null, null, NITR, null},
+                        {null, null, null, NITR, null, null, null}
+                },
+                {
+                        {null, null, null, PTSS, null, null, null},
+                        {null, PTSW, null, null, null, PTSE, null},
+                        {null, null, null, null, null, null, null},
+                        {PTWW, null, null, null, null, null, PTEE},
+                        {null, null, null, null, null, null, null},
+                        {null, PTNW, null, null, null, PTNE, null},
+                        {null, null, null, PTNN, null, null, null}
+                },
+                {
+                        {null, null, null, PBSS, null, null, null},
+                        {null, PBSW, null, null, null, PBSE, null},
+                        {null, null, null, null, null, null, null},
+                        {PBWW, null, null, ENCH, null, null, PBEE},
+                        {null, null, null, null, null, null, null},
+                        {null, PBNW, null, null, null, PBNE, null},
+                        {null, null, null, PBNN, null, null, null}
+                },
+                {
+                        {null, null, ASBR, ASBR, ASBR, null, null},
+                        {null, ASBR, ASBR, OBSI, ASBR, ASBR, null},
+                        {ASBR, ASBR, OBSI, OBSI, OBSI, ASBR, ASBR},
+                        {ASBR, OBSI, OBSI, OBSI, OBSI, OBSI, ASBR},
+                        {ASBR, ASBR, OBSI, OBSI, OBSI, ASBR, ASBR},
+                        {null, ASBR, ASBR, OBSI, ASBR, ASBR, null},
+                        {null, null, ASBR, ASBR, ASBR, null, null}
+                }
+        };
+        IDustTrigger.registerDustTrigger(new DustTriggerMultiblock("TWOND_ESSENTIA_ENCHANTER", platform));
+        ThaumcraftApi.addMultiblockRecipeToCatalog(new ResourceLocation(ThaumicWonders.MODID, "essentia_enchanter_altar"), new ThaumcraftApi.BluePrint(
+                "TWOND_ESSENTIA_ENCHANTER",
+                platform,
+                new ItemStack(BlocksTC.stoneArcaneBrick, 24),
+                new ItemStack(BlocksTC.stoneArcane, 16),
+                new ItemStack(Blocks.OBSIDIAN, 15),
+                new ItemStack(BlocksTC.nitor.get(EnumDyeColor.YELLOW), 8),
+                new ItemStack(Blocks.ENCHANTING_TABLE)));
     }
 
     private static void initNormalRecipes(IForgeRegistry<IRecipe> forgeRegistry) {
@@ -558,6 +656,109 @@ public class InitRecipes {
         ));
     }
 
+    public static void initEssentiaEnchanterRecipes() {
+        //Weapon Enchants
+        EssentiaEnchanterRecipeRegistry.addRecipe(new EssentiaEnchanterRecipe(
+                Enchantments.SHARPNESS, new AspectList().add(Aspect.AVERSION, 60))
+                .setTextureLocation(new ResourceLocation(ThaumicWonders.MODID, "textures/enchants/sharpness.png"), 32)
+        );
+        EssentiaEnchanterRecipeRegistry.addRecipe(new EssentiaEnchanterRecipe(
+                Enchantments.SMITE, new AspectList().add(Aspect.AVERSION, 30).add(Aspect.DEATH, 30))
+                .setTextureLocation(new ResourceLocation(ThaumicWonders.MODID, "textures/enchants/smite.png"), 32)
+        );
+        EssentiaEnchanterRecipeRegistry.addRecipe(new EssentiaEnchanterRecipe(
+                Enchantments.BANE_OF_ARTHROPODS, new AspectList().add(Aspect.AVERSION, 30).add(Aspect.BEAST, 30))
+                .setTextureLocation(new ResourceLocation(ThaumicWonders.MODID, "textures/enchants/bane_of_arthopods.png"), 32)
+        );
+        EssentiaEnchanterRecipeRegistry.addRecipe(new EssentiaEnchanterRecipe(
+                Enchantments.KNOCKBACK, new AspectList().add(Aspect.EXCHANGE, 30).add(Aspect.MOTION, 30))
+                .setTextureLocation(new ResourceLocation(ThaumicWonders.MODID, "textures/enchants/knockback.png"), 32)
+        );
+        EssentiaEnchanterRecipeRegistry.addRecipe(new EssentiaEnchanterRecipe(
+                Enchantments.FIRE_ASPECT, new AspectList().add(Aspect.AVERSION, 20).add(Aspect.FIRE, 40))
+                .setTextureLocation(new ResourceLocation(ThaumicWonders.MODID, "textures/enchants/fire_aspect.png"), 32)
+        );
+        EssentiaEnchanterRecipeRegistry.addRecipe(new EssentiaEnchanterRecipe(
+                Enchantments.LOOTING, new AspectList().add(Aspect.AVERSION, 40).add(Aspect.DESIRE, 40))
+                .setTextureLocation(new ResourceLocation(ThaumicWonders.MODID, "textures/enchants/looting.png"), 32));
+        EssentiaEnchanterRecipeRegistry.addRecipe(new EssentiaEnchanterRecipe(
+                Enchantments.SWEEPING, new AspectList().add(Aspect.AVERSION, 40).add(Aspect.ENERGY, 20).add(Aspect.BEAST, 20))
+                .setTextureLocation(new ResourceLocation(ThaumicWonders.MODID, "textures/enchants/sweeping_edge.png"), 32));
+
+        //Armor Enchants
+        EssentiaEnchanterRecipeRegistry.addRecipe(new EssentiaEnchanterRecipe(
+                Enchantments.PROTECTION, new AspectList().add(Aspect.PROTECT, 60).add(Aspect.MAGIC, 20))
+                .setTextureLocation(new ResourceLocation(ThaumicWonders.MODID, "textures/enchants/protection.png"), 32));
+        EssentiaEnchanterRecipeRegistry.addRecipe(new EssentiaEnchanterRecipe(
+                Enchantments.FIRE_PROTECTION, new AspectList().add(Aspect.PROTECT, 40).add(Aspect.FIRE, 20))
+                .setTextureLocation(new ResourceLocation(ThaumicWonders.MODID, "textures/enchants/fire_protection.png"), 32));
+        EssentiaEnchanterRecipeRegistry.addRecipe(new EssentiaEnchanterRecipe(
+                Enchantments.BLAST_PROTECTION, new AspectList().add(Aspect.PROTECT, 40).add(Aspect.ENTROPY, 20))
+                .setTextureLocation(new ResourceLocation(ThaumicWonders.MODID, "textures/enchants/blast_protection.png"), 32));
+        EssentiaEnchanterRecipeRegistry.addRecipe(new EssentiaEnchanterRecipe
+                (Enchantments.PROJECTILE_PROTECTION, new AspectList().add(Aspect.PROTECT, 40).add(Aspect.AVERSION, 20))
+                .setTextureLocation(new ResourceLocation(ThaumicWonders.MODID, "textures/enchants/projectile_protection.png"), 32));
+        EssentiaEnchanterRecipeRegistry.addRecipe(new EssentiaEnchanterRecipe(
+                Enchantments.FEATHER_FALLING, new AspectList().add(Aspect.FLIGHT, 40).add(Aspect.PROTECT, 20).add(Aspect.MOTION, 20))
+                .setTextureLocation(new ResourceLocation(ThaumicWonders.MODID, "textures/enchants/feather_falling.png"), 32));
+        EssentiaEnchanterRecipeRegistry.addRecipe(new EssentiaEnchanterRecipe(
+                Enchantments.RESPIRATION, new AspectList().add(Aspect.WATER, 40).add(Aspect.EXCHANGE, 20))
+                .setTextureLocation(new ResourceLocation(ThaumicWonders.MODID, "textures/enchants/respiration.png"), 32));
+        EssentiaEnchanterRecipeRegistry.addRecipe(new EssentiaEnchanterRecipe(
+                Enchantments.AQUA_AFFINITY, new AspectList().add(Aspect.WATER, 40).add(Aspect.TOOL, 20))
+                .setTextureLocation(new ResourceLocation(ThaumicWonders.MODID, "textures/enchants/aqua_affinity.png"), 32));
+        EssentiaEnchanterRecipeRegistry.addRecipe(new EssentiaEnchanterRecipe(
+                Enchantments.THORNS, new AspectList().add(Aspect.EXCHANGE, 40).add(Aspect.PLANT, 20).add(Aspect.TRAP, 20))
+                .setTextureLocation(new ResourceLocation(ThaumicWonders.MODID, "textures/enchants/thorns.png"), 32));
+        EssentiaEnchanterRecipeRegistry.addRecipe(new EssentiaEnchanterRecipe(
+                Enchantments.DEPTH_STRIDER, new AspectList().add(Aspect.WATER, 40).add(Aspect.DARKNESS, 20))
+                .setTextureLocation(new ResourceLocation(ThaumicWonders.MODID, "textures/enchants/depth_strider.png"), 32));
+        EssentiaEnchanterRecipeRegistry.addRecipe(new EssentiaEnchanterRecipe(
+                Enchantments.FROST_WALKER, new AspectList().add(Aspect.COLD, 40).add(Aspect.ORDER, 40))
+                .setTextureLocation(new ResourceLocation(ThaumicWonders.MODID, "textures/enchants/frost_walker.png"), 32));
+
+        //Tool Enchants
+        EssentiaEnchanterRecipeRegistry.addRecipe(new EssentiaEnchanterRecipe(
+                Enchantments.EFFICIENCY, new AspectList().add(Aspect.TOOL, 30).add(Aspect.EXCHANGE, 20).add(Aspect.MOTION, 20))
+                .setTextureLocation(new ResourceLocation(ThaumicWonders.MODID, "textures/enchants/efficiency.png"), 32));
+        EssentiaEnchanterRecipeRegistry.addRecipe(new EssentiaEnchanterRecipe(
+                Enchantments.SILK_TOUCH, new AspectList().add(Aspect.TOOL, 40).add(Aspect.CRYSTAL, 40).add(Aspect.ORDER, 20))
+                .setTextureLocation(new ResourceLocation(ThaumicWonders.MODID, "textures/enchants/silk_touch.png"), 32));
+        EssentiaEnchanterRecipeRegistry.addRecipe(new EssentiaEnchanterRecipe(
+                Enchantments.FORTUNE, new AspectList().add(Aspect.TOOL, 40).add(Aspect.DESIRE, 40).add(Aspect.ENTROPY, 20))
+                .setTextureLocation(new ResourceLocation(ThaumicWonders.MODID, "textures/enchants/fortune.png"), 32));
+
+        //Misc Enchants
+        EssentiaEnchanterRecipeRegistry.addRecipe(new EssentiaEnchanterRecipe(
+                Enchantments.UNBREAKING, new AspectList().add(Aspect.METAL, 40).add(Aspect.EARTH, 20).add(Aspect.ORDER, 20))
+                .setTextureLocation(new ResourceLocation(ThaumicWonders.MODID, "textures/enchants/unbreaking.png"), 32));
+        EssentiaEnchanterRecipeRegistry.addRecipe(new EssentiaEnchanterRecipe(
+                Enchantments.MENDING, new AspectList().add(Aspect.MAGIC, 100).add(Aspect.CRAFT, 75).add(Aspect.EXCHANGE, 75))
+                .setTextureLocation(new ResourceLocation(ThaumicWonders.MODID, "textures/enchants/mending.png"), 32));
+
+        //Bow Enchants
+        EssentiaEnchanterRecipeRegistry.addRecipe(new EssentiaEnchanterRecipe(
+                Enchantments.POWER, new AspectList().add(Aspect.AVERSION, 20).add(Aspect.FLIGHT, 20).add(Aspect.ENERGY, 20))
+                .setTextureLocation(new ResourceLocation(ThaumicWonders.MODID, "textures/enchants/power.png"), 32));
+        EssentiaEnchanterRecipeRegistry.addRecipe(new EssentiaEnchanterRecipe(
+                Enchantments.PUNCH, new AspectList().add(Aspect.AVERSION, 20).add(Aspect.FLIGHT, 20).add(Aspect.MOTION, 20))
+                .setTextureLocation(new ResourceLocation(ThaumicWonders.MODID, "textures/enchants/punch.png"), 32));
+        EssentiaEnchanterRecipeRegistry.addRecipe(new EssentiaEnchanterRecipe(
+                Enchantments.FLAME, new AspectList().add(Aspect.AVERSION, 20).add(Aspect.FLIGHT, 20).add(Aspect.FIRE, 20))
+                .setTextureLocation(new ResourceLocation(ThaumicWonders.MODID, "textures/enchants/flame.png"), 32));
+        EssentiaEnchanterRecipeRegistry.addRecipe(new EssentiaEnchanterRecipe(
+                Enchantments.INFINITY, new AspectList().add(Aspect.EXCHANGE, 40).add(Aspect.CRAFT, 40).add(Aspect.VOID, 40))
+                .setTextureLocation(new ResourceLocation(ThaumicWonders.MODID, "textures/enchants/infinity.png"), 32));
+
+        //Fishing Rod Enchants
+        EssentiaEnchanterRecipeRegistry.addRecipe(new EssentiaEnchanterRecipe(
+                Enchantments.LUCK_OF_THE_SEA, new AspectList().add(Aspect.TOOL, 20).add(Aspect.WATER, 20).add(Aspect.DESIRE, 20))
+                .setTextureLocation(new ResourceLocation(ThaumicWonders.MODID, "textures/enchants/luck_of_the_sea.png"), 32));
+        EssentiaEnchanterRecipeRegistry.addRecipe(new EssentiaEnchanterRecipe(
+                Enchantments.LURE, new AspectList().add(Aspect.TOOL, 30).add(Aspect.WATER, 20).add(Aspect.CRYSTAL, 20))
+                .setTextureLocation(new ResourceLocation(ThaumicWonders.MODID, "textures/enchants/lure.png"), 32));
+    }
+
     private static void initInfusionRecipes() {
         ThaumcraftApi.addInfusionCraftingRecipe(new ResourceLocation(ThaumicWonders.MODID, "alienist_stone"), new InfusionRecipe(
                 "TWOND_ALIENIST_STONE",
@@ -618,6 +819,22 @@ public class InitRecipes {
                 new ItemStack(ItemsTC.voidSeed),
                 new ItemStack(BlocksTC.inlay),
                 new ItemStack(BlocksTC.inlay)
+        ));
+
+        ThaumcraftApi.addInfusionCraftingRecipe(new ResourceLocation(ThaumicWonders.MODID, "essentia_enchanter"), new InfusionRecipe(
+                "TWOND_ESSENTIA_ENCHANTER",
+                new ItemStack(BlocksTW.ESSENTIA_ENCHANTER),
+                10,
+                new AspectList().add(Aspect.MAGIC, 225).add(Aspect.ENERGY, 150).add(Aspect.MIND, 75).add(Aspect.DESIRE, 75).add(Aspect.CRYSTAL, 75),
+                Ingredient.fromItem(Item.getItemFromBlock(Blocks.ENCHANTING_TABLE)),
+                Ingredient.fromItem(ItemsTC.mechanismComplex),
+                new OreIngredient("ingotThaumium"),
+                Ingredient.fromItem(ItemsTC.morphicResonator),
+                Ingredient.fromItem(ItemsTW.DISJUNCTION_CLOTH),
+                Ingredient.fromItem(ItemsTC.mechanismComplex),
+                new OreIngredient("ingotThaumium"),
+                Ingredient.fromItem(ItemsTC.morphicResonator),
+                Ingredient.fromItem(ItemsTC.visResonator)
         ));
 
         ThaumcraftApi.addInfusionCraftingRecipe(new ResourceLocation(ThaumicWonders.MODID, "everburning_urn"), new InfusionRecipe(
