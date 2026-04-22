@@ -495,3 +495,12 @@ groovyscript.wiki.thaumicwonders.meaty_orb.add=Adds a new Meaty Orb recipe in th
 groovyscript.wiki.thaumicwonders.meaty_orb.meatStack.value=The item that will spawn
 groovyscript.wiki.thaumicwonders.meaty_orb.weight.value=The spawn weight, or chance, of this item will be chosen
 groovyscript.wiki.thaumicwonders.meaty_orb.remove=Removes all entries with the given output
+
+groovyscript.wiki.thaumicwonders.osmotic_enchanter.title=Osmotic Enchanter
+groovyscript.wiki.thaumicwonders.osmotic_enchanter.description=Uses essentia to add vanilla enchantments to items
+groovyscript.wiki.thaumicwonders.osmotic_enchanter.addRecipe=Adds a new Osmotic Enchanter recipe in the format `enchantment`, `texture`, `aspectStacks`
+groovyscript.wiki.thaumicwonders.osmotic_enchanter.removeRecipe=Removes an Osmotic Enchanter recipe
+groovyscript.wiki.thaumicwonders.osmotic_enchanter.aspectList.value=The recipe aspects
+groovyscript.wiki.thaumicwonders.osmotic_enchanter.color.value=The texture color, used for OpenGl coloring
+groovyscript.wiki.thaumicwonders.osmotic_enchanter.enchantment.value=The recipe enchantment
+groovyscript.wiki.thaumicwonders.osmotic_enchanter.texture.value=The recipe texture ResourceLocation

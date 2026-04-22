@@ -32,7 +32,7 @@ public class CatalyzationChamber extends VirtualizedRegistry<CatalyzationChamber
             type = MethodDescription.Type.ADDITION,
             example = {
                     @Example("item('minecraft:iron_ore'), item('thaumicwonders:alchemist_stone'), item('thaumcraft:cluster:0'), 50, aspect('ordo')"),
-                    @Example("ore('oreIron'), item('thaumicwonders:alchemist_stone'), item('thaumcraft:cluster:0', 50), aspect('ordo')")
+                    @Example("ore('oreIron'), item('thaumicwonders:alchemist_stone'), item('thaumcraft:cluster:0'), 50, aspect('ordo')")
             },
             description = "groovyscript.wiki.thaumicwonders.catalyzation_chamber.addRecipe1"
     )
@@ -50,7 +50,7 @@ public class CatalyzationChamber extends VirtualizedRegistry<CatalyzationChamber
             type = MethodDescription.Type.ADDITION,
             example = {
                     @Example("item('minecraft:iron_ore'), item('thaumicwonders:alchemist_stone'), item('thaumcraft:cluster:0'), 50"),
-                    @Example("ore('oreIron'), item('thaumicwonders:alchemist_stone'), item('thaumcraft:cluster:0', 50)")
+                    @Example("ore('oreIron'), item('thaumicwonders:alchemist_stone'), item('thaumcraft:cluster:0'), 50")
             },
             description = "groovyscript.wiki.thaumicwonders.catalyzation_chamber.addRecipe2",
             priority = 1001
