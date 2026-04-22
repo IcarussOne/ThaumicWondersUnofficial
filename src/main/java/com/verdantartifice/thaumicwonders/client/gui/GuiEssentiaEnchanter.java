@@ -289,7 +289,13 @@ public class GuiEssentiaEnchanter extends GuiContainer {
             return this.getContainer().getEnchanter().getAspects();
         } else {
             AspectList aspectList = new AspectList();
-            getSelectedRecipes().forEach((recipe, level) -> aspectList.add(recipe.getEnchantAspects(level)));
+            ItemStack stack = this.getContainer().getEnchanter().getItemToEnchant();
+            if(stack.isEmpty()) {
+                this.getSelectedRecipes().clear();
+            } else {
+                this.getSelectedRecipes().keySet().removeIf(recipe -> !recipe.canApplyTo(stack));
+            }
+            this.getSelectedRecipes().forEach((recipe, level) -> aspectList.add(recipe.getEnchantAspects(level)));
             return aspectList;
         }
     }

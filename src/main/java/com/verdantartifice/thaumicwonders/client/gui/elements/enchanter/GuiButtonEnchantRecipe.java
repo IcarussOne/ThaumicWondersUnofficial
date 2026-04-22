@@ -11,6 +11,7 @@ import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.enchantment.Enchantment;
+import net.minecraft.item.ItemStack;
 import net.minecraft.util.math.MathHelper;
 import net.minecraftforge.fml.client.config.GuiUtils;
 import net.minecraftforge.fml.relauncher.Side;
@@ -36,6 +37,10 @@ public class GuiButtonEnchantRecipe extends AbstractButtonEnchanter {
 
     @Override
     public void updateEnabled() {
+        ItemStack stack = this.guiEnchanter.getContainer().getEnchanter().getItemToEnchant();
+        if(stack.isEmpty() || (this.buttonRecipe != null && !this.buttonRecipe.canApplyTo(stack))) {
+            this.buttonRecipe = null;
+        }
         this.enabled = this.buttonRecipe != null;
         this.visible = this.buttonRecipe != null;
     }

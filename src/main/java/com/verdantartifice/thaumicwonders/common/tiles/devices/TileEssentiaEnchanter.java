@@ -32,7 +32,7 @@ import thaumcraft.common.lib.events.EssentiaHandler;
 
 import java.util.Map;
 
-public class TileEssentiaEnchanter extends TileTW implements ITickable, IInteractWithCaster, IAspectContainer {
+public class TileEssentiaEnchanter extends TileTW implements ITickable, IAspectContainer {
     public static final BlockPos[] OFFSET_OBSIDIAN;
     public static final BlockPos[] OFFSET_BRICKS;
     public static final ImmutableMap<EnumDirection, BlockPos> OFFSET_PILLARS;
@@ -42,7 +42,7 @@ public class TileEssentiaEnchanter extends TileTW implements ITickable, IInterac
     public final ItemStackHandler stackHandler = new ItemStackHandler() {
         @Override
         public @NotNull ItemStack insertItem(int slot, @NotNull ItemStack stack, boolean simulate) {
-            return /*isEnchanterActive() &&*/ this.isItemValid(slot, stack) ? super.insertItem(slot, stack, simulate) : stack;
+            return isEnchanterActive() && this.isItemValid(slot, stack) ? super.insertItem(slot, stack, simulate) : stack;
         }
 
         @Override
@@ -301,16 +301,6 @@ public class TileEssentiaEnchanter extends TileTW implements ITickable, IInterac
             return CapabilityItemHandler.ITEM_HANDLER_CAPABILITY.cast(this.stackHandler);
         }
         return super.getCapability(capability, facing);
-    }
-
-    @Override
-    public boolean onCasterRightClick(World world, ItemStack itemStack, EntityPlayer entityPlayer, BlockPos blockPos, EnumFacing enumFacing, EnumHand enumHand) {
-        if(!this.world.isRemote) {
-            this.handleProgressTick();
-            this.syncTile(false);
-            this.markDirty();
-        }
-        return true;
     }
 
     //##########################################################
