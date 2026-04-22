@@ -54,8 +54,7 @@ public class FocusEffectBlink extends FocusEffect {
 
     @Override
     public String getResearch() {
-        //TODO: New research for this
-        return "TWOND_FOCUS_TELEPORT_HOME";
+        return "TWOND_FOCUS_BLINK";
     }
 
     @Override

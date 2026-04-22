@@ -265,7 +265,6 @@ public class TesrInfusionClaw extends TileEntitySpecialRenderer<TileInfusionClaw
     }
 
     private void createZap(TileInfusionClaw tile, float startX, float startY, float startZ, float endX, float endY, float endZ) {
-        //TODO: figure out why arcBolt isn't working and swap to that instead.
         FXDispatcher.INSTANCE.arcLightning(
                 tile.getPos().getX() + startX,
                 tile.getPos().getY() + startY,
