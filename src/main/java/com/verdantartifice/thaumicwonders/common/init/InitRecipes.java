@@ -21,7 +21,6 @@ import net.minecraft.init.Blocks;
 import net.minecraft.init.Enchantments;
 import net.minecraft.init.Items;
 import net.minecraft.init.PotionTypes;
-import net.minecraft.item.EnumDyeColor;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.IRecipe;
@@ -45,7 +44,6 @@ import thaumcraft.api.blocks.BlocksTC;
 import thaumcraft.api.crafting.*;
 import thaumcraft.api.golems.GolemHelper;
 import thaumcraft.api.items.ItemsTC;
-import thaumcraft.common.blocks.misc.BlockNitor;
 import thaumcraft.common.items.consumables.ItemPhial;
 import thaumcraft.common.lib.crafting.DustTriggerMultiblock;
 import thaumcraft.common.lib.crafting.InfusionEnchantmentRecipe;
@@ -115,7 +113,6 @@ public class InitRecipes {
     }
 
     private static void initCoalescencePlatform() {
-        //TODO: This needs a real recipe and a fake recipe. Fake recipe uses a nitor placeholder, real recipe uses actual nitor.
         Part VMET = new Part(BlocksTC.metalBlockVoid, null);
         Part ASTI = new Part(BlocksTC.stoneArcane, null);
         Part ASBR = new Part(BlocksTC.stoneArcaneBrick, null);
@@ -127,20 +124,8 @@ public class InitRecipes {
         Part PTSS = new Part(BlocksTC.stoneArcane, new ItemStack(BlocksTW.ARCANE_PILLAR, 1, 9));
         Part PTWW = new Part(BlocksTC.stoneArcane, new ItemStack(BlocksTW.ARCANE_PILLAR, 1, 10));
         Part PTEE = new Part(BlocksTC.stoneArcane, new ItemStack(BlocksTW.ARCANE_PILLAR, 1, 11));
-        Part NITR = new Part(BlockNitor.class, "AIR");
         Part CMAT = new Part(BlocksTW.COALESCENCE_MATRIX_PRECURSOR, new ItemStack(BlocksTW.COALESCENCE_MATRIX));
         Part[][][] coalescencePlatformBlueprint = {
-                {
-                        {null, null, NITR, null, null, null, NITR, null, null},
-                        {null, null, null, null, null, null, null, null, null},
-                        {NITR, null, null, null, null, null, null, null, NITR},
-                        {null, null, null, null, null, null, null, null, null},
-                        {null, null, null, null, null, null, null, null, null},
-                        {null, null, null, null, null, null, null, null, null},
-                        {NITR, null, null, null, null, null, null, null, NITR},
-                        {null, null, null, null, null, null, null, null, null},
-                        {null, null, NITR, null, null, null, NITR, null, null},
-                },
                 {
                         {null, null, PTSS, null, null, null, PTSS, null, null},
                         {null, null, null, null, null, null, null, null, null},
@@ -182,13 +167,11 @@ public class InitRecipes {
                 new ItemStack(BlocksTC.metalBlockVoid, 24),
                 new ItemStack(BlocksTC.stoneArcaneBrick, 24),
                 new ItemStack(BlocksTC.stoneArcane, 37),
-                new ItemStack(BlocksTC.nitor.get(EnumDyeColor.YELLOW), 8),
                 new ItemStack(BlocksTW.COALESCENCE_MATRIX_PRECURSOR))
         );
     }
 
     private static void initEssentiaEnchanter() {
-        //TODO: This needs a real recipe and a fake recipe. Fake recipe uses a nitor placeholder, real recipe uses actual nitor.
         Part OBSI = new Part(Blocks.OBSIDIAN, null);
         Part ASBR = new Part(BlocksTC.stoneArcaneBrick, null);
         Part ENCH = new Part(BlocksTW.ESSENTIA_ENCHANTER, null);
@@ -208,17 +191,7 @@ public class InitRecipes {
         Part PTSW = new Part(BlocksTC.stoneArcane, new ItemStack(BlocksTW.ARCANE_PILLAR, 1, BlockArcanePillar.getStackMeta(true, EnumDirection.SOUTH_WEST)));
         Part PTNE = new Part(BlocksTC.stoneArcane, new ItemStack(BlocksTW.ARCANE_PILLAR, 1, BlockArcanePillar.getStackMeta(true, EnumDirection.NORTH_EAST)));
         Part PTSE = new Part(BlocksTC.stoneArcane, new ItemStack(BlocksTW.ARCANE_PILLAR, 1, BlockArcanePillar.getStackMeta(true, EnumDirection.SOUTH_EAST)));
-        Part NITR = new Part(BlockNitor.class, "AIR");
         Part[][][] platform = {
-                {
-                        {null, null, null, NITR, null, null, null},
-                        {null, NITR, null, null, null, NITR, null},
-                        {null, null, null, null, null, null, null},
-                        {NITR, null, null, null, null, null, NITR},
-                        {null, null, null, null, null, null, null},
-                        {null, NITR, null, null, null, NITR, null},
-                        {null, null, null, NITR, null, null, null}
-                },
                 {
                         {null, null, null, PTSS, null, null, null},
                         {null, PTSW, null, null, null, PTSE, null},
@@ -254,7 +227,6 @@ public class InitRecipes {
                 new ItemStack(BlocksTC.stoneArcaneBrick, 24),
                 new ItemStack(BlocksTC.stoneArcane, 16),
                 new ItemStack(Blocks.OBSIDIAN, 15),
-                new ItemStack(BlocksTC.nitor.get(EnumDyeColor.YELLOW), 8),
                 new ItemStack(Blocks.ENCHANTING_TABLE)));
     }
 

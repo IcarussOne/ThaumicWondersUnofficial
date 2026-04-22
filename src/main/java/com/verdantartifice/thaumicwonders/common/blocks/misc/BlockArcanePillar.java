@@ -41,12 +41,8 @@ public class BlockArcanePillar extends BlockTileTW<TileArcanePillar> {
     @SuppressWarnings("ConstantConditions")
     public static void revertPillar(World world, BlockPos bottomPos) {
         if(!world.isRemote) {
-            BlockPos nitorPos = bottomPos.up(2);
             BlockPos topPos = bottomPos.up();
 
-            if (world.getBlockState(nitorPos).getBlock().isReplaceable(world, nitorPos)) {
-                world.setBlockState(nitorPos, BlocksTC.nitor.get(EnumDyeColor.YELLOW).getDefaultState());
-            }
             if (world.getBlockState(topPos).getBlock() == BlocksTW.ARCANE_PILLAR) {
                 world.setBlockState(topPos, BlocksTC.stoneArcane.getDefaultState());
                 world.playEvent(Constants.WorldEvents.BREAK_BLOCK_EFFECTS, topPos, Block.getStateId(BlocksTC.stoneArcane.getDefaultState()));
