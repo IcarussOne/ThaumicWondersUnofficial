@@ -116,14 +116,14 @@ public class InitRecipes {
         Part VMET = new Part(BlocksTC.metalBlockVoid, null);
         Part ASTI = new Part(BlocksTC.stoneArcane, null);
         Part ASBR = new Part(BlocksTC.stoneArcaneBrick, null);
-        Part PBNN = new Part(BlocksTC.stoneArcane, new ItemStack(BlocksTW.ARCANE_PILLAR, 1, 0));
-        Part PBSS = new Part(BlocksTC.stoneArcane, new ItemStack(BlocksTW.ARCANE_PILLAR, 1, 1));
-        Part PBWW = new Part(BlocksTC.stoneArcane, new ItemStack(BlocksTW.ARCANE_PILLAR, 1, 2));
-        Part PBEE = new Part(BlocksTC.stoneArcane, new ItemStack(BlocksTW.ARCANE_PILLAR, 1, 3));
-        Part PTNN = new Part(BlocksTC.stoneArcane, new ItemStack(BlocksTW.ARCANE_PILLAR, 1, 8));
-        Part PTSS = new Part(BlocksTC.stoneArcane, new ItemStack(BlocksTW.ARCANE_PILLAR, 1, 9));
-        Part PTWW = new Part(BlocksTC.stoneArcane, new ItemStack(BlocksTW.ARCANE_PILLAR, 1, 10));
-        Part PTEE = new Part(BlocksTC.stoneArcane, new ItemStack(BlocksTW.ARCANE_PILLAR, 1, 11));
+        Part PBNN = new Part(BlocksTC.stoneArcane, new ItemStack(BlocksTW.ARCANE_PILLAR, 1, BlockArcanePillar.getStackMeta(false, EnumDirection.NORTH)));
+        Part PBSS = new Part(BlocksTC.stoneArcane, new ItemStack(BlocksTW.ARCANE_PILLAR, 1, BlockArcanePillar.getStackMeta(false, EnumDirection.SOUTH)));
+        Part PBWW = new Part(BlocksTC.stoneArcane, new ItemStack(BlocksTW.ARCANE_PILLAR, 1, BlockArcanePillar.getStackMeta(false, EnumDirection.WEST)));
+        Part PBEE = new Part(BlocksTC.stoneArcane, new ItemStack(BlocksTW.ARCANE_PILLAR, 1, BlockArcanePillar.getStackMeta(false, EnumDirection.EAST)));
+        Part PTNN = new Part(BlocksTC.stoneArcane, new ItemStack(BlocksTW.ARCANE_PILLAR, 1, BlockArcanePillar.getStackMeta(true, EnumDirection.NORTH)));
+        Part PTSS = new Part(BlocksTC.stoneArcane, new ItemStack(BlocksTW.ARCANE_PILLAR, 1, BlockArcanePillar.getStackMeta(true, EnumDirection.SOUTH)));
+        Part PTWW = new Part(BlocksTC.stoneArcane, new ItemStack(BlocksTW.ARCANE_PILLAR, 1, BlockArcanePillar.getStackMeta(true, EnumDirection.WEST)));
+        Part PTEE = new Part(BlocksTC.stoneArcane, new ItemStack(BlocksTW.ARCANE_PILLAR, 1, BlockArcanePillar.getStackMeta(true, EnumDirection.EAST)));
         Part CMAT = new Part(BlocksTW.COALESCENCE_MATRIX_PRECURSOR, new ItemStack(BlocksTW.COALESCENCE_MATRIX));
         Part[][][] coalescencePlatformBlueprint = {
                 {
