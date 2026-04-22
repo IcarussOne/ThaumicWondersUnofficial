@@ -24,7 +24,6 @@ import thaumcraft.client.lib.UtilsFX;
 import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 
 @SideOnly(Side.CLIENT)
 public class GuiButtonEnchantRecipe extends AbstractButtonEnchanter {

@@ -1,6 +1,5 @@
 package com.verdantartifice.thaumicwonders.common.init;
 
-import akka.japi.pf.FI;
 import com.verdantartifice.thaumicwonders.ThaumicWonders;
 import com.verdantartifice.thaumicwonders.common.blocks.BlocksTW;
 import com.verdantartifice.thaumicwonders.common.blocks.misc.BlockArcanePillar;
