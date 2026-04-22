@@ -319,7 +319,7 @@ public class GuiEssentiaEnchanter extends GuiContainer {
 
     public void nextEnchantmentRow() {
         int maxRows = this.getMaxEnchantRows();
-        if(maxRows > 2 && this.getEnchantmentRow() < maxRows - 1) {
+        if(maxRows > 2 && this.getEnchantmentRow() < maxRows - 2) {
             this.enchantmentRow++;
         }
     }
@@ -340,7 +340,7 @@ public class GuiEssentiaEnchanter extends GuiContainer {
 
     public void nextAspectRow() {
         int maxRows = this.getMaxAspectRows();
-        if(maxRows > 2 && this.getAspectRow() < maxRows - 1) {
+        if(maxRows > 2 && this.getAspectRow() < maxRows - 2) {
             this.aspectRow++;
         }
     }
