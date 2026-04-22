@@ -18,6 +18,7 @@ import net.minecraft.util.NonNullList;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.TextComponentTranslation;
 import net.minecraft.world.World;
+import net.minecraftforge.fml.relauncher.FMLLaunchHandler;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import org.jetbrains.annotations.Nullable;
@@ -43,7 +44,7 @@ public class TileInfusionClaw extends TileTW implements ITickable, IInteractWith
     private int cooldown;
 
     @SideOnly(Side.CLIENT)
-    public float lastRenderTick = Minecraft.getMinecraft().player != null ? Minecraft.getMinecraft().player.ticksExisted : 0;
+    public float lastRenderTick;
     /**
      * 0-3: heightMov sides<br>
      * 4-7: widthMov sides<br>
@@ -53,7 +54,14 @@ public class TileInfusionClaw extends TileTW implements ITickable, IInteractWith
      * 11:  primal orb offset
      */
     @SideOnly(Side.CLIENT)
-    public float[] animationStates = new float[12];
+    public float[] animationStates;
+
+    public TileInfusionClaw() {
+        if(FMLLaunchHandler.side().isClient()) {
+            this.lastRenderTick = Minecraft.getMinecraft().player != null ? Minecraft.getMinecraft().player.ticksExisted : 0;
+            this.animationStates = new float[12];
+        }
+    }
 
     @Override
     protected void readFromTileNBT(NBTTagCompound compound) {
