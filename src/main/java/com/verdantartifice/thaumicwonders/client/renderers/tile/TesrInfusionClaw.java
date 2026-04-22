@@ -259,7 +259,7 @@ public class TesrInfusionClaw extends TileEntitySpecialRenderer<TileInfusionClaw
         for(EnumFacing facing : EnumFacing.HORIZONTALS) {
             this.createZap(tile,
                     0.5f + 0.5f * facing.getXOffset(), 0.6f, 0.5f + 0.5f * facing.getZOffset(),
-                    0.5f + 0.2f * facing.getXOffset(), 0.2f, 0.5f + 0.2f * facing.getZOffset());
+                    0.5f, 0, 0.5f);
         }
         this.playZapSound(tile);
     }
