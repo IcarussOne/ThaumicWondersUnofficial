@@ -12,7 +12,6 @@ import net.minecraft.block.state.BlockFaceShape;
 import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.EntityLivingBase;
-import net.minecraft.item.EnumDyeColor;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.*;
 import net.minecraft.util.math.AxisAlignedBB;
@@ -76,13 +75,11 @@ public class BlockArcanePillar extends BlockTileTW<TileArcanePillar> {
                 IBlockState down = worldIn.getBlockState(pos.down());
                 if(down.getBlock() == this) {
                     worldIn.setBlockState(pos.down(), BlocksTC.stoneArcane.getDefaultState());
-                    worldIn.setBlockState(pos.up(), BlocksTC.nitor.get(EnumDyeColor.YELLOW).getDefaultState());
                 }
             } else {
                 IBlockState up = worldIn.getBlockState(pos.up());
                 if(up.getBlock() == this) {
                     worldIn.setBlockState(pos.up(), BlocksTC.stoneArcane.getDefaultState());
-                    worldIn.setBlockState(pos.up(2), BlocksTC.nitor.get(EnumDyeColor.YELLOW).getDefaultState());
                 }
             }
         }
