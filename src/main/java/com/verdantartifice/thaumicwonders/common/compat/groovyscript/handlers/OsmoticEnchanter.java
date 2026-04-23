@@ -4,6 +4,7 @@ import com.cleanroommc.groovyscript.api.GroovyBlacklist;
 import com.cleanroommc.groovyscript.api.GroovyLog;
 import com.cleanroommc.groovyscript.api.documentation.annotations.*;
 import com.cleanroommc.groovyscript.compat.mods.thaumcraft.aspect.AspectStack;
+import com.cleanroommc.groovyscript.helper.SimpleObjectStream;
 import com.cleanroommc.groovyscript.helper.recipe.AbstractRecipeBuilder;
 import com.cleanroommc.groovyscript.registry.VirtualizedRegistry;
 import com.verdantartifice.thaumicwonders.ThaumicWonders;
@@ -36,6 +37,11 @@ public class OsmoticEnchanter extends VirtualizedRegistry<EssentiaEnchanterRecip
         this.recipeBuilder().enchantment(enchantment).aspect(aspectStacks).texture(texture).register();
     }
 
+    @MethodDescription(type = MethodDescription.Type.QUERY)
+    public SimpleObjectStream<EssentiaEnchanterRecipe> streamRecipes() {
+        return new SimpleObjectStream<>(EssentiaEnchanterRecipeRegistry.getRecipes());
+    }
+
     @MethodDescription(type = MethodDescription.Type.REMOVAL, example = @Example("enchantment('minecraft:smite')"))
     public void removeRecipe(Enchantment enchantment) {
         EssentiaEnchanterRecipeRegistry.removeRecipe(enchantment);
@@ -52,11 +58,11 @@ public class OsmoticEnchanter extends VirtualizedRegistry<EssentiaEnchanterRecip
     }
 
     public static class RecipeBuilder extends AbstractRecipeBuilder<EssentiaEnchanterRecipe> {
-        @Property
+        @Property(comp = @Comp(not = "null"))
         private Enchantment enchantment;
-        @Property(priority = 1001)
+        @Property(comp = @Comp(not = "null"), priority = 1001)
         private AspectList aspectList;
-        @Property(priority = 1002)
+        @Property(comp = @Comp(not = "null"), priority = 1002)
         private ResourceLocation texture;
         @Property(priority = 1003)
         private int color;
