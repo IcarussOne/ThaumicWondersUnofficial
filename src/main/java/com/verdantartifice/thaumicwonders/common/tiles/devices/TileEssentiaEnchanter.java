@@ -4,18 +4,17 @@ import com.google.common.collect.ImmutableMap;
 import com.verdantartifice.thaumicwonders.common.blocks.BlocksTW;
 import com.verdantartifice.thaumicwonders.common.blocks.misc.BlockArcanePillar;
 import com.verdantartifice.thaumicwonders.common.blocks.misc.BlockArcanePillar.EnumDirection;
+import com.verdantartifice.thaumicwonders.common.config.ConfigHandlerTW;
 import com.verdantartifice.thaumicwonders.common.tiles.base.TileTW;
 import net.minecraft.block.state.IBlockState;
-import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.item.EntityItem;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.EnumFacing;
-import net.minecraft.util.EnumHand;
 import net.minecraft.util.ITickable;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.World;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.items.CapabilityItemHandler;
 import net.minecraftforge.items.ItemStackHandler;
@@ -26,7 +25,6 @@ import thaumcraft.api.aspects.AspectList;
 import thaumcraft.api.aspects.IAspectContainer;
 import thaumcraft.api.aura.AuraHelper;
 import thaumcraft.api.blocks.BlocksTC;
-import thaumcraft.api.casters.IInteractWithCaster;
 import thaumcraft.common.lib.SoundsTC;
 import thaumcraft.common.lib.events.EssentiaHandler;
 
@@ -47,7 +45,7 @@ public class TileEssentiaEnchanter extends TileTW implements ITickable, IAspectC
 
         @Override
         public @NotNull ItemStack extractItem(int slot, int amount, boolean simulate) {
-            return !isCrafting() ? super.extractItem(slot, amount, simulate) : ItemStack.EMPTY;
+            return (!isCrafting() || !ConfigHandlerTW.essentia_enchanter.lockSlot) ? super.extractItem(slot, amount, simulate) : ItemStack.EMPTY;
         }
 
         @Override
@@ -115,6 +113,8 @@ public class TileEssentiaEnchanter extends TileTW implements ITickable, IAspectC
                         if(this.recipeEssentia.visSize() > 0 || this.progress > 0) {
                             this.world.playSound(null, this.pos, SoundsTC.craftfail, SoundCategory.BLOCKS, 0.5f, 1.0f);
                         }
+                        int flux = Math.min(20, this.getAspectsToRender().visSize() / 2);
+                        AuraHelper.polluteAura(this.world, this.pos, flux, true);
                         this.resetCrafting();
 
                         did = true;
@@ -251,6 +251,16 @@ public class TileEssentiaEnchanter extends TileTW implements ITickable, IAspectC
         this.resetCrafting();
         for(BlockPos offset : OFFSET_PILLARS.values()) {
             BlockArcanePillar.revertPillar(this.world, this.pos.add(offset));
+        }
+        if(!this.getItemToEnchant().isEmpty()) {
+            ItemStack stack = this.getItemToEnchant().copy();
+            this.stackHandler.setStackInSlot(0, ItemStack.EMPTY);
+            EntityItem entityItem = new EntityItem(this.world, this.pos.getX() + 0.5, this.pos.getY() + 1.0, this.pos.getZ() + 0.5, stack);
+            entityItem.motionX = 0;
+            entityItem.motionY = 0.15;
+            entityItem.motionZ = 0;
+            entityItem.velocityChanged = true;
+            this.world.spawnEntity(entityItem);
         }
     }
 

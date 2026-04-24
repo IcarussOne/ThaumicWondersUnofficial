@@ -29,6 +29,8 @@ public class ConfigHandlerTW {
     public static NightVisionGogglesCategory night_vision_goggles = new NightVisionGogglesCategory();
     @Config.Name("Ore Diviner")
     public static OreDivinerCategory ore_diviner = new OreDivinerCategory();
+    @Config.Name("Osmotic Enchanter")
+    public static EssentiaEnchanterCategory essentia_enchanter = new EssentiaEnchanterCategory();
     @Config.Name("Portal Network")
     public static PortalCategory portal_network = new PortalCategory();
     @Config.Name("Primal Destroyer")
@@ -158,6 +160,12 @@ public class ConfigHandlerTW {
         @Config.Name("Avaric Deconstruction Cost")
         @Config.Comment("The Desiderium cost of each avaric deconstruction crucible recipe. This amount is in addition to the perditio cost set in Entropic Deconstruction Cost.")
         public int desireCost = 10;
+    }
+
+    public static class EssentiaEnchanterCategory {
+        @Config.Name("Slot Lock")
+        @Config.Comment("Locks the enchanted item slot while the enchanter is crafting.")
+        public boolean lockSlot = true;
     }
 
     public static class EverburningUrnCategory {

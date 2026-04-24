@@ -108,6 +108,10 @@ public class GuiButtonEnchantRecipe extends AbstractButtonEnchanter {
     private void drawAspects(AspectList aspectList, int aspectStart, int mouseX, int mouseY) {
         if(aspectList != null && aspectList.size() > 0) {
             GlStateManager.pushMatrix();
+            GlStateManager.disableRescaleNormal();
+            GlStateManager.disableLighting();
+            GlStateManager.disableDepth();
+
             Aspect[] aspectsSortedByAmount = aspectList.getAspectsSortedByAmount();
             for (int i = 0; i < aspectsSortedByAmount.length; i++) {
                 Aspect aspect = aspectsSortedByAmount[i];
@@ -117,6 +121,10 @@ public class GuiButtonEnchantRecipe extends AbstractButtonEnchanter {
                     UtilsFX.drawTag(x, y, aspect, aspectList.getAmount(aspect), 0, zLevel);
                 }
             }
+
+            GlStateManager.enableLighting();
+            GlStateManager.enableDepth();
+            GlStateManager.enableRescaleNormal();
             GlStateManager.popMatrix();
         }
     }

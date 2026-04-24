@@ -631,24 +631,19 @@ public class InitRecipes {
         //Weapon Enchants
         EssentiaEnchanterRecipeRegistry.addRecipe(new EssentiaEnchanterRecipe(
                 Enchantments.SHARPNESS, new AspectList().add(Aspect.AVERSION, 60))
-                .setTextureLocation(new ResourceLocation(ThaumicWonders.MODID, "textures/enchants/sharpness.png"), 32)
-        );
+                .setTextureLocation(new ResourceLocation(ThaumicWonders.MODID, "textures/enchants/sharpness.png"), 32));
         EssentiaEnchanterRecipeRegistry.addRecipe(new EssentiaEnchanterRecipe(
                 Enchantments.SMITE, new AspectList().add(Aspect.AVERSION, 30).add(Aspect.DEATH, 30))
-                .setTextureLocation(new ResourceLocation(ThaumicWonders.MODID, "textures/enchants/smite.png"), 32)
-        );
+                .setTextureLocation(new ResourceLocation(ThaumicWonders.MODID, "textures/enchants/smite.png"), 32));
         EssentiaEnchanterRecipeRegistry.addRecipe(new EssentiaEnchanterRecipe(
-                Enchantments.BANE_OF_ARTHROPODS, new AspectList().add(Aspect.AVERSION, 30).add(Aspect.BEAST, 30))
-                .setTextureLocation(new ResourceLocation(ThaumicWonders.MODID, "textures/enchants/bane_of_arthopods.png"), 32)
-        );
+                Enchantments.BANE_OF_ARTHROPODS, new AspectList().add(Aspect.AVERSION, 30).add(Aspect.BEAST, 20))
+                .setTextureLocation(new ResourceLocation(ThaumicWonders.MODID, "textures/enchants/bane_of_arthopods.png"), 32));
         EssentiaEnchanterRecipeRegistry.addRecipe(new EssentiaEnchanterRecipe(
                 Enchantments.KNOCKBACK, new AspectList().add(Aspect.EXCHANGE, 30).add(Aspect.MOTION, 30))
-                .setTextureLocation(new ResourceLocation(ThaumicWonders.MODID, "textures/enchants/knockback.png"), 32)
-        );
+                .setTextureLocation(new ResourceLocation(ThaumicWonders.MODID, "textures/enchants/knockback.png"), 32));
         EssentiaEnchanterRecipeRegistry.addRecipe(new EssentiaEnchanterRecipe(
                 Enchantments.FIRE_ASPECT, new AspectList().add(Aspect.AVERSION, 20).add(Aspect.FIRE, 40))
-                .setTextureLocation(new ResourceLocation(ThaumicWonders.MODID, "textures/enchants/fire_aspect.png"), 32)
-        );
+                .setTextureLocation(new ResourceLocation(ThaumicWonders.MODID, "textures/enchants/fire_aspect.png"), 32));
         EssentiaEnchanterRecipeRegistry.addRecipe(new EssentiaEnchanterRecipe(
                 Enchantments.LOOTING, new AspectList().add(Aspect.AVERSION, 40).add(Aspect.DESIRE, 40))
                 .setTextureLocation(new ResourceLocation(ThaumicWonders.MODID, "textures/enchants/looting.png"), 32));
@@ -658,7 +653,7 @@ public class InitRecipes {
 
         //Armor Enchants
         EssentiaEnchanterRecipeRegistry.addRecipe(new EssentiaEnchanterRecipe(
-                Enchantments.PROTECTION, new AspectList().add(Aspect.PROTECT, 60).add(Aspect.MAGIC, 20))
+                Enchantments.PROTECTION, new AspectList().add(Aspect.PROTECT, 80).add(Aspect.MAGIC, 20))
                 .setTextureLocation(new ResourceLocation(ThaumicWonders.MODID, "textures/enchants/protection.png"), 32));
         EssentiaEnchanterRecipeRegistry.addRecipe(new EssentiaEnchanterRecipe(
                 Enchantments.FIRE_PROTECTION, new AspectList().add(Aspect.PROTECT, 40).add(Aspect.FIRE, 20))
@@ -679,13 +674,13 @@ public class InitRecipes {
                 Enchantments.AQUA_AFFINITY, new AspectList().add(Aspect.WATER, 40).add(Aspect.TOOL, 20))
                 .setTextureLocation(new ResourceLocation(ThaumicWonders.MODID, "textures/enchants/aqua_affinity.png"), 32));
         EssentiaEnchanterRecipeRegistry.addRecipe(new EssentiaEnchanterRecipe(
-                Enchantments.THORNS, new AspectList().add(Aspect.EXCHANGE, 40).add(Aspect.PLANT, 20).add(Aspect.TRAP, 20))
+                Enchantments.THORNS, new AspectList().add(Aspect.EXCHANGE, 40).add(Aspect.PLANT, 20).add(Aspect.TRAP, 20).add(Aspect.LIFE, 20))
                 .setTextureLocation(new ResourceLocation(ThaumicWonders.MODID, "textures/enchants/thorns.png"), 32));
         EssentiaEnchanterRecipeRegistry.addRecipe(new EssentiaEnchanterRecipe(
                 Enchantments.DEPTH_STRIDER, new AspectList().add(Aspect.WATER, 40).add(Aspect.DARKNESS, 20))
                 .setTextureLocation(new ResourceLocation(ThaumicWonders.MODID, "textures/enchants/depth_strider.png"), 32));
         EssentiaEnchanterRecipeRegistry.addRecipe(new EssentiaEnchanterRecipe(
-                Enchantments.FROST_WALKER, new AspectList().add(Aspect.COLD, 40).add(Aspect.ORDER, 40))
+                Enchantments.FROST_WALKER, new AspectList().add(Aspect.COLD, 40).add(Aspect.ORDER, 40).add(Aspect.EXCHANGE, 20))
                 .setTextureLocation(new ResourceLocation(ThaumicWonders.MODID, "textures/enchants/frost_walker.png"), 32));
 
         //Tool Enchants
@@ -693,7 +688,7 @@ public class InitRecipes {
                 Enchantments.EFFICIENCY, new AspectList().add(Aspect.TOOL, 30).add(Aspect.EXCHANGE, 20).add(Aspect.MOTION, 20))
                 .setTextureLocation(new ResourceLocation(ThaumicWonders.MODID, "textures/enchants/efficiency.png"), 32));
         EssentiaEnchanterRecipeRegistry.addRecipe(new EssentiaEnchanterRecipe(
-                Enchantments.SILK_TOUCH, new AspectList().add(Aspect.TOOL, 40).add(Aspect.CRYSTAL, 40).add(Aspect.ORDER, 20))
+                Enchantments.SILK_TOUCH, new AspectList().add(Aspect.TOOL, 60).add(Aspect.CRYSTAL, 40).add(Aspect.ORDER, 20))
                 .setTextureLocation(new ResourceLocation(ThaumicWonders.MODID, "textures/enchants/silk_touch.png"), 32));
         EssentiaEnchanterRecipeRegistry.addRecipe(new EssentiaEnchanterRecipe(
                 Enchantments.FORTUNE, new AspectList().add(Aspect.TOOL, 40).add(Aspect.DESIRE, 40).add(Aspect.ENTROPY, 20))
