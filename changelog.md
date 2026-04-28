@@ -17,8 +17,9 @@
 - Fixed incorrect ingredient handling in Catalyzation Chamber catalyst slot
 - Fixed Focus Effect: Teleport Home using incorrect spell complexity
 - Fixed Panacea and capacitor model definitions (courtesy of [kaduvill](https://github.com/kaduvill))
-- Initiate's Band of Cleansing now correctly updates after removing effectst=
+- Initiate's Band of Cleansing now correctly updates after removing effects
 - Fixed Void Walker's Boots not showing up in Creative Tab searches
+- Fixed Oblivion Jar Thaumic Energistics insertion bug
 
 ## v2.2.4
 ------

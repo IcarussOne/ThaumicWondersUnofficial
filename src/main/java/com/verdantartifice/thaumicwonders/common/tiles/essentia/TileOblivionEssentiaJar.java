@@ -8,7 +8,7 @@ import thaumcraft.common.tiles.essentia.TileJarFillable;
 public class TileOblivionEssentiaJar extends TileJarFillable {
     @Override
     public int addToContainer(Aspect aspect, int amount) {
-        return this.aspectFilter == null || this.aspectFilter == aspect ? amount : 0;
+        return 0;
     }
 
     @Override
