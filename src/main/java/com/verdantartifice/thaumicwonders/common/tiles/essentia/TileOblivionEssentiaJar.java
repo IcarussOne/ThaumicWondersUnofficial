@@ -23,7 +23,7 @@ public class TileOblivionEssentiaJar extends TileJarFillable {
 
     @Override
     public int getSuctionAmount(EnumFacing loc) {
-        return this.aspectFilter != null ? 48 : 32;
+        return this.aspectFilter != null ? 32 : 16;
     }
 
     @Override
@@ -48,6 +48,6 @@ public class TileOblivionEssentiaJar extends TileJarFillable {
 
     @Override
     public int getMinimumSuction() {
-        return this.aspectFilter != null ? 48 : 32;
+        return this.aspectFilter != null ? 32 : 16;
     }
 }

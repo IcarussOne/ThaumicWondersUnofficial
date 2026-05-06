@@ -12,6 +12,7 @@
 - Moved Focus Effect: Teleport Home to later in the research tree, Spell Effect: Blink is now researched first
 - Initiate's Band of Cleansing now fully prevents warp events
 - Initiate's Band of Cleansing requires more removals to level up (this is offset by the new ability to cancel warp events)
+- Reduced the suction of the Void Essentia Jar
 
 ### Fixed
 - Fixed incorrect ingredient handling in Catalyzation Chamber catalyst slot
