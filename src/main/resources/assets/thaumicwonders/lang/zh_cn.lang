@@ -7,6 +7,8 @@ attribute.name.thaumicwonders:void_damage=虚空伤害
 attribute.name.thaumicwonders:healing_reduction=所受治疗降低
 
 # Chat
+chat.thaumicwonders:bind_player=该设备现已绑定至%s。
+chat.thaumicwonders:essentia_enchanter.invalid=附魔台结构不正确。
 chat.thaumicwonders:portal_linker.bound=绑定至%s位置：x: %d, y: %d, z: %d
 chat.thaumicwonders:sharing_tome.burn=当这本书化为灰烬时，你感觉你的知识随之扩展。
 chat.thaumicwonders:sharing_tome.erase=书中的文字消失得无影无踪。
@@ -20,6 +22,11 @@ chat.thaumicwonders:void_portal.no_linker=传送门链接器缺失或包含无�
 chat.thaumicwonders:void_portal.no_self=传送锚无法与自己链接。
 chat.thaumicwonders:void_portal.no_world=此传送门链接的维度不存在。
 chat.thaumicwonders:warp_ring.warp=§5§o你将戒指从手上取下，但那种不快的感觉仍然存在……
+chat.thaumicwonders:warp_ring.warp_event=戒指收紧，同时缓解了你眼后的压迫。
+
+# Gui
+gui.thaumicwonders:essentia_enchanter.disabled=无法附魔
+gui.thaumicwonders:essentia_enchanter.enabled=附魔
 
 # Config
 key.categories.thaumicwonders=神秘奇境
@@ -49,20 +56,25 @@ entity.void_portal.name=虚空传送门
 fluid.fluid_quicksilver=水银
 
 # Focus Effects
+focus.thaumicwonders.blink.name=闪现
+focus.thaumicwonders.blink.text=随机传送你的目标，或将施法者传送到命中位置。
 focus.thaumicwonders.teleport_home.name=传送回家
 focus.thaumicwonders.teleport_home.text=将玩家传送到他们床的位置。
 
 # Device Tiles
 tile.thaumicwonders:alkahest_vat.name=万能溶剂之锅
+tile.thaumicwonders:arcane_pillar.name=奥术之柱
 tile.thaumicwonders:catalyzation_chamber.name=催化室
 tile.thaumicwonders:coalescence_matrix.name=聚合矩阵
 tile.thaumicwonders:coalescence_matrix_precursor.name=聚合矩阵
 tile.thaumicwonders:creative_essentia_jar.name=创造模式源质罐子
 tile.thaumicwonders:dimensional_ripper.name=维度撕裂器
+tile.thaumicwonders:essentia_enchanter.name=渗透附魔台
 tile.thaumicwonders:everburning_urn.name=永燃之瓮
 tile.thaumicwonders:flux_capacitor.name=咒波收容器
 tile.thaumicwonders:flux_distiller.name=咒波蒸馏器
 tile.thaumicwonders:hexamite.name=乌洛魔品
+tile.thaumicwonders:infusion_claw.name=注魔爪
 tile.thaumicwonders:inspiration_engine.name=灵感引擎
 tile.thaumicwonders:madness_engine.name=疯狂引擎
 tile.thaumicwonders:meaty_orb.name=肉质之球
@@ -169,7 +181,11 @@ tooltip.thaumicwonders:portal_linker.info2=对空气Shift右击以移除链接�
 tooltip.thaumicwonders:portal_linker.linked=链接至：
 tooltip.thaumicwonders:portal_linker.not_linked=未连接
 tooltip.thaumicwonders:sharing_tome.blank=未绑定
+tooltip.thaumicwonders:sharing_tome.blank.info=右击以记录知识。
 tooltip.thaumicwonders:sharing_tome.player=绑定至%s的研究
+tooltip.thaumicwonders:sharing_tome.player.info1=右击以习得包含的知识。
+tooltip.thaumicwonders:sharing_tome.player.info2=潜行右击以擦除包含的知识。
+tooltip.thaumicwonders:sharing_tome.xp=使用需要%d级经验
 tooltip.thaumicwonders:vis_capacitor.vis=储存的魔力：%d
 
 # GUI
@@ -247,6 +263,11 @@ thaumicwonders.research.alienist_stone.title=邪术金属倍增
 thaumicwonders.research.alienist_stone.text.stage.1=掌握了邪术的奥秘后，我确信能够从催化室中获取更多产出。唯一的问题是具体该如何实现？<BR>或许将精炼矿簇组合使用能在此处发挥作用……
 thaumicwonders.research.alienist_stone.text.stage.2=通过向炼金师之石注魔稀土和某些原矿物簇，我可以增强其效力。<BR>由此制成的催化石能产出我称之为“邪术矿簇”的东西，烧炼时可得三块锭，而非两块。<PAGE>我难以将此过程称为“纯化”，特别是考虑到每次操作都有很大概率产生咒波，但最终成效确实毋庸置疑。<BR>或许这块催化石还能强化其他物质，不过就金属处理而言，当前工艺已足够胜任。
 
+thaumicwonders.research.blink.title=核心效果：闪现
+thaumicwonders.research.blink.text.stage.1=虽然传送门系统是真正的发明奇迹，但传送锚无法在没有附近生成器的情况下生成传送门，这使得建立网络有点繁琐。<BR>据我所见，末影人并不需要如此笨重的机制来实现传送，或许我能找到复制它们能力的方法。
+thaumicwonders.research.blink.text.stage.2=我成功制造出了一种与末影人能力类似的效果。<BR>与媒介绑定时，该法术会将我传送到法术击中的位置，从而实现短距离传送。<BR>如果有生物与该法术接触，它们会被随机传送到一小段距离之外，类似于末影人被弹射物击中时发生的情况。
+thaumicwonders.research.blink.text.addenda.1=该效果有一个值得关注的差异：它能够让我穿过相对较薄的表面。<BR>如果我瞄准上方方块的底部或正下方方块的顶部，只要空间足够，该法术便能将我传送到障碍物的另一侧。<BR>不过，无论我如何紧贴表面，它似乎都无法让我水平穿过墙壁。
+
 thaumicwonders.research.bone_bow.title=充能骨弓
 thaumicwonders.research.bone_bow.text.stage.1=一段记忆在我脑海中恍惚涌现，某件早已被遗忘的事物……那是一件强大的武器，但我却无法完全忆起细节。或许深入研究会唤醒我的记忆。
 thaumicwonders.research.bone_bow.text.stage.2=啊，是的，我现在想起来了。充能骨弓。<BR>当注入魔力时，这把弓拉弓迅捷，几乎不费吹灰之力。此外，在拉满弓时，箭矢将自动射出，并且能飞得更远，效果十分显著。<BR>每射出一箭，弓会消耗一点魔力。当充能耗尽时，它就和普通弓差不多。
@@ -291,6 +312,11 @@ thaumicwonders.research.avaric_deconstruction.title=贪婪精炼
 thaumicwonders.research.avaric_deconstruction.text.stage.1=通过研究有序与熵变绛术学，我几乎完全掌握了从非纯净原料中完美提取物质的关键工序。其中某些过程与制备金属簇时采用的精炼技术惊人地相似。<BR>这值得深入探究……
 thaumicwonders.research.avaric_deconstruction.text.stage.2=这种被命名为“贪婪精炼”的新工艺，能够以惊人的效率剥离杂质并提纯物质。<BR>该技术对富含宝石矿脉的提纯效果尤为显著，当周围岩层被尽数剥离时，宝石几乎能保持完好无损，呈现近乎完美的产出。
 
+thaumicwonders.research.essentia_enchanter.title=渗透附魔台
+thaumicwonders.research.essentia_enchanter.text.stage.1=近期在注魔附魔方面的成功给了我灵感，也许可以通过强行用源质灌注物品来达成附魔台的效果。
+thaumicwonders.research.essentia_enchanter.text.stage.2=这台新装置——此后称为渗透附魔台——能够将大多数世俗魔咒施加到任何合适的工具上。<BR>注魔附魔通过将物品注入工具来实现附魔过程，而渗透附魔台则是在工具周围创造一个高压、富含源质的环境。<BR>使用少量魔力作为催化剂，源质会与工具结合，从而模拟出从附魔台上获得的魔咒。
+thaumicwonders.research.essentia_enchanter.text.addenda.1=我曾尝试在附魔过程中从祭坛上取下一件工具。我完全不记得当时发生了什么，但几小时后我醒来时，发现自己躺在原本祭坛所在位置的一个大坑附近。<BR>看来，如果附魔被中途打断的话，该过程中涉及的大量源质几乎注定会导致灾难性后果。<BR>为了防止类似事故，我在这台装置上加装了一个故障保护机制，将工具与祭坛绑定，直到附魔过程完成为止。
+
 thaumicwonders.research.everburning_urn.title=永燃之瓮
 thaumicwonders.research.everburning_urn.text.stage.1=虽然无尽之瓮极其便利，但我确信还能更进一步。制造一种类似的、但适用于其他类型流体的装置。比如说……熔岩？
 thaumicwonders.research.everburning_urn.text.stage.2=通过向无尽之瓮中注入一系列通往地狱的微型传送门，我能够汲取到我所需的全部熔岩。然而，这个过程并非完美无缺。<BR>首先，速度很慢。它水版本的兄弟顷刻间就能填满，但这个被我称为“永燃之瓮”的装置，需要大约一分钟才能生成一桶熔岩。<BR>同时，这个过程对灵气场的消耗也大得多。据我计算，维持传送门网络大约会消耗灵气场中25点魔力。<BR>最后，为了安全起见，我禁用了这个瓮自动填充附近容器的功能。可不能让滚烫的熔岩四处飞溅。
@@ -310,6 +336,11 @@ thaumicwonders.research.flying_carpet.text.stage.2=虽然还无法在不借助�
 thaumicwonders.research.hexamite.title=乌洛魔品
 thaumicwonders.research.hexamite.text.stage.1=尽管我尽力与其他神秘使合作，但他们中的一些人更倾向参与冲突。使用世俗科技的非神秘使们也面临这类困境。<BR>然而，正如魔导手册本身和我个人经验所见，此类情况可能永无止境，学识精湛的神秘使也会被这种缠斗浪费时间，而这些时间本可用于研究现实的奥秘。此外，这还会导致我所需要的资源遭受不幸损失。<BR>我决定使用那些更为世俗科技熟知的方式来纠正这种冒犯。<BR>爆炸物。<BR>普通的TNT无法达到预期效果，而使用普通的世俗科技又非我的风格，因此这种情况需要一些……特别的东西……
 thaumicwonders.research.hexamite.text.stage.2=这样就行了。我采用了TNT的基本配方，保留少量火药作为引信，其余部分则填满了不稳定的铝。为了确保效果，我还掺入了一些Vitium碎片作为破片，并添加了一点“RDX”，或者说黑索金。<BR>最终的装置不仅威力比TNT强50%且具有燃烧性，其爆炸还会撕裂并紊乱当地的灵气场，将其完全耗尽。所有这些都不会使用咒波，没有产生裂隙和传播腐化的威胁。被爆炸波及的生物——假设他们能幸存下来——会发现其魔法能力暂时受阻。<BR>虽然我确信我的同僚们会发现这件物品更有用，甚至可能找到更多利用它的方法，但对我来说，它只是一把双刃剑；我也将遭受缺乏魔力所带来的影响，因此我必须携带更多常规武器并准备储存魔力的手段。它或许无法一劳永逸地解决问题，但至少能在应对其他敌对神秘学使用者时提供更多选择。
+
+thaumicwonders.research.infusion_claw.title=注魔自动化
+thaumicwonders.research.infusion_claw.text.stage.1=进阶研究把我积攒的材料和机构库存一扫而空。我不得不花费大量时间来生产大批量的注魔物品，而我更希望能把这段时间用在研究上。<BR>最近在傀儡学方面的研究让我离解决方案仅有一步之遥，但我仍需设法克服激活注魔矩阵时需要有知性存在参与的问题。
+thaumicwonders.research.infusion_claw.text.stage.2=我设计了一种新的装置，可以实现注魔祭坛的完全自动化。<BR>我称这种装置为“注魔爪”，将之直接放置在注魔矩阵上方即可。当检测到有效配方时，注魔爪会开始积蓄能量，随后激活祭坛，开始制作过程。<BR>向注魔爪提供红石信号可禁用所有自动化功能。<BR>
+thaumicwonders.research.infusion_claw.text.addenda.1=用注魔爪激活的配方似乎比手动激活时要不稳定得多。只要额外注意稳定祭坛，并在每次注魔之间留够休整时间，我相信这不会是什么大问题。
 
 thaumicwonders.research.inspiration_engine.title=灵感引擎
 thaumicwonders.research.inspiration_engine.text.stage.1=构建神秘学理论是一个漫长且费力的过程，同时会消耗资源。我知道某些物品可以辅助我的研究，但感觉它们的作用范围……很有限。也许我可以用魔法创造出更优越的研究辅助工具。
@@ -400,8 +431,8 @@ thaumicwonders.research.structure_diviner.text.stage.2=令人惊讶的是，这�
 thaumicwonders.research.structure_diviner.text.addenda.1=根据位置的不同，构成“神庙”的方块似乎也各异。<BR>虽然它可以指向沙漠和丛林中的远古遗迹，但也会将我引向寒冷地区的冰屋和沼泽中的不祥小屋。<BR>靠近这些生物群系能增加探测器将我引向所寻求特定神庙的机会。
 
 thaumicwonders.research.teleport_home.title=核心效果：传送回家
-thaumicwonders.research.teleport_home.text.stage.1=虽然传送门系统是真正的发明奇迹，但传送锚无法在没有附近生成器的情况下生成传送门，这使得建立网络有点繁琐。<BR>我之前见到的末影人不需要如此笨重的机制来实现传送，所以也许我可以找到一种方法来复制它们的能力。
-thaumicwonders.research.teleport_home.text.stage.2=虽然不完全是我最初的目标，但我成功创造出了一种能够长距离，甚至跨维度传送的核心效果。<BR>然而，无论我如何尝试，该效果似乎总是将我传送到我上次睡觉的床的位置。<BR>我想我应该为取得如此成就感到自豪，并在需要定向传送时继续使用传送门网络。
+thaumicwonders.research.teleport_home.text.stage.1=复制末影人的传送能力固然是一项壮举，但这并非我真正期望达成的目标。<BR>最大传送范围似乎被限制在我所使用的法术媒介的范围内，而且一旦接触到生物，传送位置就会变得完全随机。<BR>需要进行更深入的研究。
+thaumicwonders.research.teleport_home.text.stage.2=尽管不完全是我最初的目标，但我还是成功创造出了一种能够长距离，甚至跨维度传送的核心效果。<BR>然而，无论我如何尝试，该效果似乎总是将我传送到我上次睡觉的床的位置。<BR>我想我应该为取得如此成就感到自豪，并在需要定向传送时继续使用传送门网络。
 thaumicwonders.research.teleport_home.text.addenda.1=有趣的是，我发现如果通过任何类型的箭矢或抛射核心媒介发射这个法术，击中其他玩家后，会将其送回他们自己的床。<BR>如果想将盟友从危险情况中救出……或者如果有人惹恼了我，我得记住这一点。
 
 thaumicwonders.research.timewinder.title=扭时之钟
@@ -464,3 +495,12 @@ groovyscript.wiki.thaumicwonders.meaty_orb.add=以`掉落物`, `权重`的格式
 groovyscript.wiki.thaumicwonders.meaty_orb.meatStack.value=此物品将生成
 groovyscript.wiki.thaumicwonders.meaty_orb.weight.value=将决定此物品的生成权重，或者说概率
 groovyscript.wiki.thaumicwonders.meaty_orb.remove=移除具有给定输出的所有条目
+
+groovyscript.wiki.thaumicwonders.osmotic_enchanter.title=渗透附魔台
+groovyscript.wiki.thaumicwonders.osmotic_enchanter.description=使用源质为物品添加原版魔咒
+groovyscript.wiki.thaumicwonders.osmotic_enchanter.addRecipe=以`魔咒`, `纹理`, `要素`的格式添加新的渗透附魔台配方
+groovyscript.wiki.thaumicwonders.osmotic_enchanter.removeRecipe=移除一个渗透附魔台配方
+groovyscript.wiki.thaumicwonders.osmotic_enchanter.aspectList.value=配方的要素
+groovyscript.wiki.thaumicwonders.osmotic_enchanter.color.value=纹理颜色，用于OpenGl着色
+groovyscript.wiki.thaumicwonders.osmotic_enchanter.enchantment.value=配方的魔咒
+groovyscript.wiki.thaumicwonders.osmotic_enchanter.texture.value=配方的纹理资源位置
