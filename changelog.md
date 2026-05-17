@@ -13,6 +13,7 @@
 - Initiate's Band of Cleansing now fully prevents warp events
 - Initiate's Band of Cleansing requires more removals to level up (this is offset by the new ability to cancel warp events)
 - Reduced the suction of the Void Essentia Jar
+- Updated `zh_cn.lang` courtesy of ZHAY10086
 
 ### Fixed
 - Fixed incorrect ingredient handling in Catalyzation Chamber catalyst slot
