@@ -46,7 +46,7 @@ dependencies {
     implementation rfg.deobf("curse.maven:modtweaker-220954:3840577")
     implementation rfg.deobf("curse.maven:mtlib-253211:3308160")
     implementation("com.cleanroommc:groovyscript:1.2.2") { transitive = false }
-    implementation rfg.deobf(files('libs/thaumicapi-1.0.0.jar'))
+    implementation rfg.deobf("curse.maven:thaumicapi-1533287:8066628")
     implementation rfg.deobf('curse.maven:the-one-probe-245211:2667280')
 
     implementation rfg.deobf('curse.maven:thaumcraft-223628:2629023')
