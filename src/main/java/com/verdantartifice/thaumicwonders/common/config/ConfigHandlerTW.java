@@ -29,6 +29,8 @@ public class ConfigHandlerTW {
     public static NightVisionGogglesCategory night_vision_goggles = new NightVisionGogglesCategory();
     @Config.Name("Ore Diviner")
     public static OreDivinerCategory ore_diviner = new OreDivinerCategory();
+    @Config.Name("Osmotic Enchanter")
+    public static EssentiaEnchanterCategory essentia_enchanter = new EssentiaEnchanterCategory();
     @Config.Name("Portal Network")
     public static PortalCategory portal_network = new PortalCategory();
     @Config.Name("Primal Destroyer")
@@ -60,6 +62,7 @@ public class ConfigHandlerTW {
             @Config.Comment("The number of uses before the catalyst stone is consumed")
             public int durability = 64;
 
+            @Config.RequiresMcRestart
             @Config.Name("Enable Stone Enchants")
             @Config.Comment("Allows the Catalyst Stone to be enchanted with Unbreaking and Mending")
             public boolean enchantable = true;
@@ -157,6 +160,12 @@ public class ConfigHandlerTW {
         @Config.Name("Avaric Deconstruction Cost")
         @Config.Comment("The Desiderium cost of each avaric deconstruction crucible recipe. This amount is in addition to the perditio cost set in Entropic Deconstruction Cost.")
         public int desireCost = 10;
+    }
+
+    public static class EssentiaEnchanterCategory {
+        @Config.Name("Slot Lock")
+        @Config.Comment("Locks the enchanted item slot while the enchanter is crafting.")
+        public boolean lockSlot = true;
     }
 
     public static class EverburningUrnCategory {
@@ -458,13 +467,13 @@ public class ConfigHandlerTW {
     public static class WarpRingCategory {
         @Config.RequiresMcRestart
         @Config.Name("Enable Initiate's Ring of Cleansing")
-        @Config.Comment("Enables the Initiate's Ring of Cleansing")
+        @Config.Comment("Enables the Initiate's Band of Cleansing")
         public boolean enableRing = true;
 
         @Config.Name("Removal Values")
         @Config.Comment
                 ({
-                        "Potions the Initiate's Ring of Cleansing can remove. Potions can be restricted to only be removed",
+                        "Potions the Initiate's Band of Cleansing can remove. Potions can be restricted to only be removed",
                         "once the ring reaches a certain warp level.",
                         " Format: potion=warplevel",
                         "  potion - the potion registry name",
@@ -490,6 +499,39 @@ public class ConfigHandlerTW {
 
                 "thaumcraft:deathgaze=4",
                 "thaumcraft:fluxtaint=4"
+        };
+
+        @Config.Name("Warp Events")
+        @Config.Comment({
+                "A list of warp events the Initiate's Band of Cleansing can prevent. Events can be restricted so they are",
+                "only cancelled once the ring reaches a certain warp level.",
+                " Format: warp_event=warplevel",
+                "  warp_event - the warp event registry name",
+                "  warplevel - the required warp level to remove this effect (must be between 0 and 5)",
+        })
+        public String[] warpEventRanks = new String[] {
+                "thaumcraft:creeper_primed=0",
+                "thaumcraft:explosion_sound=0",
+
+                "thaumcraft:blindness=1",
+                "thaumcraft:unnatural_hunger=1",
+                "thaumcraft:unnatural_hunger_greater=1",
+
+                "thaumcraft:mining_fatigue=2",
+                "thaumcraft:spiders_fake=2",
+                "thaumcraft:thaumarhia=2",
+                "thaumcraft:vis_exhaust=2",
+                "thaumcraft:vis_exhaust_infectious=2",
+
+                "thaumcraft:blurred_vision=3",
+                "thaumcraft:sun_scorned=3",
+
+                "thaumcraft:crimson_portal=4",
+                "thaumcraft:death_gaze=4",
+                "thaumcraft:spawn_mist=4",
+                "thaumcraft:spawn_mist_greater=4",
+                "thaumcraft:spawn_mist_max=4",
+                "thaumcraft:spiders_real=4"
         };
     }
 

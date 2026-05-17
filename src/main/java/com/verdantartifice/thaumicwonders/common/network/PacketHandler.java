@@ -26,5 +26,6 @@ public class PacketHandler {
         INSTANCE.registerMessage(PacketMeatyOrbAction.Handler.class, PacketMeatyOrbAction.class, nextId(), Side.SERVER);
         INSTANCE.registerMessage(PacketStructureDivinerAction.Handler.class, PacketStructureDivinerAction.class, nextId(), Side.SERVER);
         INSTANCE.registerMessage(PacketAvatarZapFx.Handler.class, PacketAvatarZapFx.class, nextId(), Side.CLIENT);
+        INSTANCE.registerMessage(PacketStartEnchanting.Handler.class, PacketStartEnchanting.class, nextId(), Side.SERVER);
     }
 }

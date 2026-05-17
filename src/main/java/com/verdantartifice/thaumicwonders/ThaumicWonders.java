@@ -22,7 +22,9 @@ public class ThaumicWonders {
     public static final String MODID = Tags.MOD_ID;
     public static final String NAME = Tags.MOD_NAME;
     public static final String VERSION = Tags.VERSION;
-    public static final String DEPENDENCIES = "required-after:thaumcraft";
+    public static final String DEPENDENCIES = "required-after:thaumcraft" +
+            ";required-after:mixinbooter" +
+            ";required-after:thaumicapi";
 
     public static final CreativeTabs CREATIVE_TAB = new CreativeTabTW(CreativeTabs.getNextID(), ThaumicWonders.MODID);
 
@@ -56,14 +58,10 @@ public class ThaumicWonders {
 
 
     //TODO: Future Release
-    //  Thauma Llama
     //  Check how much rift power the void beacon is draining
     //  Check why the Void Beacon is causing rifts to detonate while they are still large
     //  Fishing golem seal
-    //  Eldritch cluster harvest infusion enchantment (or just a single pickaxe that does it
-    //  Register for eldritch cluster harvesting
     //  Heximite explosion converts blocks into tainted variants (add CrT/GS integration for additional conversions)
-    //  Research Brews + Crucible addon - create brews that randomly grant research after being consumed.
     //  New Dimensional Ripper model
     //  Improved Madness Engine model
     //  Improved Inspiration Engine model
@@ -77,9 +75,6 @@ public class ThaumicWonders {
     //      Corrupted Portal Linker - generates a greater crimson portal
     //  Look into adding a replacement for the original Void Beacon that generates items from raw essentia
     //  Modified ore diviner that infuses essentia into stone and transforms it into ores
-    //  Enchanter Multiblock
-    //      Mutltiblock enchanter, use crafttweaker for additional enchants
-    //      Offshoot of Disjunction Cloth
     //  Bosses:
     //      crimson_cult_models - cult golem
     //          See about getting permission to use one of these hammers https://github.com/TheCodex6824/ThaumicAugmentation/issues/170#issuecomment-875600063

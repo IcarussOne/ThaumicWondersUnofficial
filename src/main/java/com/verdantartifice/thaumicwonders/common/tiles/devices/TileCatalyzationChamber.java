@@ -116,16 +116,9 @@ public class TileCatalyzationChamber extends TileTW implements ITickable {
 
                             //Consuming Catalyst
                             catalyst = this.getEquippedStone(true);
-                            if (catalyst.getItem().isDamageable()) {
-                                //Damage and set catalyst
-                                if (catalyst.attemptDamageItem(1, this.world.rand, null)) {
-                                    catalyst.shrink(1);
-                                }
-                                this.setEquippedStone(catalyst);
-                            } else if (catalyst.getItem().hasContainerItem(catalyst)) {
+                            if (catalyst.getItem().hasContainerItem(catalyst)) {
                                 //Consume contained item and eject container
                                 ItemStack container = catalyst.getItem().getContainerItem(catalyst);
-                                catalyst.shrink(1);
                                 if(catalyst.isEmpty() && CatalyzationChamberRecipeRegistry.isValidCatalyst(container)) {
                                     this.setEquippedStone(container);
                                 } else {

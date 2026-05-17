@@ -9,7 +9,6 @@
   },
   "variants": {
     "normal": [{}],
-    "inventory": [{"model": "thuamicwonders:item/vis_capacitor"}],
     "charge=0": { "model": "cube_all", "textures": {"all": "thaumicwonders:blocks/vis_capacitor_0"}},
     "charge=1": { "model": "cube_all", "textures": {"all": "thaumicwonders:blocks/vis_capacitor_1"}},
     "charge=2": { "model": "cube_all", "textures": {"all": "thaumicwonders:blocks/vis_capacitor_1"}},

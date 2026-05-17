@@ -9,16 +9,19 @@ public class BlocksTW {
     public static final Block FLUID_QUICKSILVER = null;
 
     public static final Block ALKAHEST_VAT = null;
+    public static final Block ARCANE_PILLAR = null;
     public static final Block CATALYZATION_CHAMBER = null;
     public static final Block CINDERPEARL_CROP = null;
     public static final Block COALESCENCE_MATRIX = null;
     public static final Block COALESCENCE_MATRIX_PRECURSOR = null;
     public static final Block CREATIVE_ESSENTIA_JAR = null;
     public static final Block DIMENSIONAL_RIPPER = null;
+    public static final Block ESSENTIA_ENCHANTER = null;
     public static final Block EVERBURNING_URN = null;
     public static final Block FLUX_CAPACITOR = null;
     public static final Block FLUX_DISTILLER = null;
     public static final Block HEXAMITE = null;
+    public static final Block INFUSION_CLAW = null;
     public static final Block INSPIRATION_ENGINE = null;
     public static final Block MADNESS_ENGINE = null;
     public static final Block MEATY_ORB = null;

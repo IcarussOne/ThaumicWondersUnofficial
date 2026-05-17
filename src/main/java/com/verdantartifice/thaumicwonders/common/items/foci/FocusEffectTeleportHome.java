@@ -45,7 +45,7 @@ public class FocusEffectTeleportHome extends FocusEffect {
 
     @Override
     public int getComplexity() {
-        return this.getSettingValue("knockback") * 3;
+        return 15;
     }
 
     @Override

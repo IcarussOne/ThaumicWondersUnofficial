@@ -1,0 +1,13 @@
+{
+  "forge_marker": 1,
+  "defaults": {
+
+  },
+  "variants": {
+    "inventory":    { "model": "thaumicwonders:essentia_enchanter", "transform": "forge:default-block" },
+    "facing=north": { "model": "thaumicwonders:essentia_enchanter" },
+    "facing=south": { "model": "thaumicwonders:essentia_enchanter", "y": 180 },
+    "facing=east":  { "model": "thaumicwonders:essentia_enchanter", "y": 90 },
+    "facing=west":  { "model": "thaumicwonders:essentia_enchanter", "y": 270 }
+  }
+}

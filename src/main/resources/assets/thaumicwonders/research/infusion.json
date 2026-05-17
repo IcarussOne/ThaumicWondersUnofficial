@@ -1,27 +1,67 @@
 {
     "entries": [
         {
+            "key": "TWOND_CLEANSING_CHARM",
+            "name": "thaumicwonders.research.cleansing_charm.title",
+            "icons": ["thaumicwonders:cleansing_charm"],
+            "category": "THAUMIC_WONDERS",
+            "parents": ["TWOND_FLYING_CARPET", "~SANESOAP", "~PRIMPEARL", "~WARP"],
+            "meta": ["HIDDEN"],
+            "location": [0, -4],
+            "stages": [
+                {
+                    "text": "thaumicwonders.research.cleansing_charm.text.stage.1",
+                    "required_knowledge":["THEORY;INFUSION;1","THEORY;AUROMANCY;1","OBSERVATION;ELDRITCH;1"],
+                    "required_item": ["thaumcraft:sanity_soap"]
+                },
+                {
+                    "text": "thaumicwonders.research.cleansing_charm.text.stage.2",
+                    "recipes": ["thaumicwonders:cleansing_charm"]
+                }
+            ]
+        },
+        {
+            "key": "TWOND_ESSENTIA_ENCHANTER",
+            "name": "thaumicwonders.research.essentia_enchanter.title",
+            "icons": ["thaumicwonders:essentia_enchanter"],
+            "category": "THAUMIC_WONDERS",
+            "parents": ["TWOND_DISJUNCTION_CLOTH", "~INFUSIONENCHANTMENT"],
+            "meta": ["HIDDEN"],
+            "location": [4, -2],
+            "stages": [
+                {
+                    "text": "thaumicwonders.research.essentia_enchanter.text.stage.1",
+                    "required_knowledge": ["OBSERVATION;AUROMANCY;1", "THEORY;ALCHEMY;2","THEORY;INFUSION;2"]
+                },
+                {
+                    "text": "thaumicwonders.research.essentia_enchanter.text.stage.2",
+                    "recipes": ["thaumicwonders:essentia_enchanter", "thaumicwonders:essentia_enchanter_altar"]
+                }
+            ],
+            "addenda": [
+                {
+                    "text": "thaumicwonders.research.essentia_enchanter.text.addenda.1",
+                    "required_research": ["TWOND_ESSENTIA_ENCHANTER@2"]
+                }
+            ]
+        },
+        {
             "key": "TWOND_EVERBURNING_URN",
             "name": "thaumicwonders.research.everburning_urn.title",
             "icons": ["thaumicwonders:everburning_urn"],
             "category": "THAUMIC_WONDERS",
             "parents": ["TWOND_NETHER_HEDGE", "~EVERFULLURN", "~INFUSION"],
-            "siblings": [],
-            "meta": [],
             "location": [0, 4],
-            "reward_item": [],
-            "reward_knowledge": [],
             "stages": [
                 {
                     "text": "thaumicwonders.research.everburning_urn.text.stage.1",
                     "required_knowledge":["THEORY;ALCHEMY;1","OBSERVATION;INFUSION;1"]
                 },
                 {
-                    "text": "thaumicwonders.research.everburning_urn.text.stage.2", 
+                    "text": "thaumicwonders.research.everburning_urn.text.stage.2",
                     "recipes": ["thaumicwonders:everburning_urn"]
                 }
-            ],
-            "addenda": []
+            ]
         },
         {
             "key": "TWOND_FLYING_CARPET",
@@ -29,45 +69,17 @@
             "icons": ["thaumicwonders:flying_carpet"],
             "category": "THAUMIC_WONDERS",
             "parents": ["TWOND_BASE", "~LEVITATOR", "~RECHARGEPEDESTAL"],
-            "siblings": [],
-            "meta": [],
             "location": [0, -2],
-            "reward_item": [],
-            "reward_knowledge": [],
             "stages": [
                 {
                     "text": "thaumicwonders.research.flying_carpet.text.stage.1",
                     "required_knowledge":["THEORY;INFUSION;1","OBSERVATION;GOLEMANCY;1"]
                 },
                 {
-                    "text": "thaumicwonders.research.flying_carpet.text.stage.2", 
+                    "text": "thaumicwonders.research.flying_carpet.text.stage.2",
                     "recipes": ["thaumicwonders:flying_carpet"]
                 }
-            ],
-            "addenda": []
-        },
-        {
-            "key": "TWOND_TIMEWINDER",
-            "name": "thaumicwonders.research.timewinder.title",
-            "icons": ["thaumicwonders:timewinder"],
-            "category": "THAUMIC_WONDERS",
-            "parents": ["TWOND_END_HEDGE", "~CELESTIALSCANNING", "~RECHARGEPEDESTAL"],
-            "siblings": [],
-            "meta": [],
-            "location": [2, 4],
-            "reward_item": [],
-            "reward_knowledge": [],
-            "stages": [
-                {
-                    "text": "thaumicwonders.research.timewinder.text.stage.1",
-                    "required_knowledge":["THEORY;INFUSION;1","THEORY;AUROMANCY;1","OBSERVATION;ELDRITCH;1"]
-                },
-                {
-                    "text": "thaumicwonders.research.timewinder.text.stage.2", 
-                    "recipes": ["thaumicwonders:timewinder"]
-                }
-            ],
-            "addenda": []
+            ]
         },
         {
             "key": "TWOND_METEORB",
@@ -75,11 +87,7 @@
             "icons": ["thaumicwonders:meteorb"],
             "category": "THAUMIC_WONDERS",
             "parents": ["TWOND_TIMEWINDER"],
-            "siblings": [],
-            "meta": [],
             "location": [2, 6],
-            "reward_item": [],
-            "reward_knowledge": [],
             "stages": [
                 {
                     "text": "thaumicwonders.research.meteorb.text.stage.1",
@@ -89,8 +97,54 @@
                     "text": "thaumicwonders.research.meteorb.text.stage.2", 
                     "recipes": ["thaumicwonders:meteorb"]
                 }
-            ],
-            "addenda": []
+            ]
+        },
+        {
+            "key": "TWOND_MYSTIC_GARDENING",
+            "name": "thaumicwonders.research.mystic_gardening.title",
+            "icons": ["thaumicwonders:shimmerleaf_seed", "thaumicwonders:cinderpearl_seed", "thaumicwonders:vishroom_spore"],
+            "category": "THAUMIC_WONDERS",
+            "parents": ["TWOND_BASE", "~INFUSION", "~!PLANTCINDERPEARL", "~!PLANTSHIMMERLEAF", "~!PLANTVISHROOM"],
+            "meta": ["HIDDEN"],
+            "location": [2, -2],
+            "stages": [
+                {
+                    "text": "thaumicwonders.research.mystic_gardening.text.stage.1",
+                    "required_knowledge":["THEORY;INFUSION;1","OBSERVATION;BASICS;1"],
+                    "required_item": [
+                        "thaumcraft:shimmerleaf",
+                        "thaumcraft:cinderpearl",
+                        "thaumcraft:vishroom"
+                    ]
+                },
+                {
+                    "text": "thaumicwonders.research.mystic_gardening.text.stage.2",
+                    "recipes": [
+                        "thaumicwonders:shimmerleaf_seed",
+                        "thaumicwonders:cinderpearl_seed",
+                        "thaumicwonders:vishroom_spore"
+                    ]
+                }
+            ]
+        },
+        {
+            "key": "TWOND_NV_GOGGLES",
+            "name": "thaumicwonders.research.night_vision_goggles.title",
+            "icons": ["thaumicwonders:night_vision_goggles"],
+            "category": "THAUMIC_WONDERS",
+            "parents": ["TWOND_FLYING_CARPET"],
+            "location": [-1, -3],
+            "stages": [
+                {
+                    "text": "thaumicwonders.research.night_vision_goggles.text.stage.1",
+                    "required_knowledge":["THEORY;INFUSION;1","OBSERVATION;ARTIFICE;1"],
+                    "required_research": ["!sensus"]
+                },
+                {
+                    "text": "thaumicwonders.research.night_vision_goggles.text.stage.2",
+                    "recipes": ["thaumicwonders:night_vision_goggles"]
+                }
+            ]
         },
         {
             "key": "TWOND_ORE_DIVINER",
@@ -98,11 +152,7 @@
             "icons": ["thaumicwonders:ore_diviner"],
             "category": "THAUMIC_WONDERS",
             "parents": ["TWOND_INSPIRATION_ENGINE", "~ELEMENTALTOOLS"],
-            "siblings": [],
-            "meta": [],
             "location": [4, 0],
-            "reward_item": [],
-            "reward_knowledge": [],
             "stages": [
                 {
                     "text": "thaumicwonders.research.ore_diviner.text.stage.1",
@@ -113,8 +163,7 @@
                     "text": "thaumicwonders.research.ore_diviner.text.stage.2", 
                     "recipes": ["thaumicwonders:ore_diviner"]
                 }
-            ],
-            "addenda": []
+            ]
         },
         {
             "key": "TWOND_STRUCTURE_DIVINER",
@@ -122,11 +171,7 @@
             "icons": ["thaumicwonders:structure_diviner"],
             "category": "THAUMIC_WONDERS",
             "parents": ["TWOND_ORE_DIVINER"],
-            "siblings": [],
-            "meta": [],
             "location": [6, 0],
-            "reward_item": [],
-            "reward_knowledge": [],
             "stages": [
                 {
                     "text": "thaumicwonders.research.structure_diviner.text.stage.1",
@@ -145,84 +190,22 @@
             ]
         },
         {
-            "key": "TWOND_NV_GOGGLES",
-            "name": "thaumicwonders.research.night_vision_goggles.title",
-            "icons": ["thaumicwonders:night_vision_goggles"],
+            "key": "TWOND_TIMEWINDER",
+            "name": "thaumicwonders.research.timewinder.title",
+            "icons": ["thaumicwonders:timewinder"],
             "category": "THAUMIC_WONDERS",
-            "parents": ["TWOND_FLYING_CARPET"],
-            "siblings": [],
-            "meta": [],
-            "location": [-1, -3],
-            "reward_item": [],
-            "reward_knowledge": [],
+            "parents": ["TWOND_END_HEDGE", "~CELESTIALSCANNING", "~RECHARGEPEDESTAL"],
+            "location": [2, 4],
             "stages": [
                 {
-                    "text": "thaumicwonders.research.night_vision_goggles.text.stage.1",
-                    "required_knowledge":["THEORY;INFUSION;1","OBSERVATION;ARTIFICE;1"],
-                    "required_research": ["!sensus"]
+                    "text": "thaumicwonders.research.timewinder.text.stage.1",
+                    "required_knowledge":["THEORY;INFUSION;1","THEORY;AUROMANCY;1","OBSERVATION;ELDRITCH;1"]
                 },
                 {
-                    "text": "thaumicwonders.research.night_vision_goggles.text.stage.2", 
-                    "recipes": ["thaumicwonders:night_vision_goggles"]
+                    "text": "thaumicwonders.research.timewinder.text.stage.2",
+                    "recipes": ["thaumicwonders:timewinder"]
                 }
-            ],
-            "addenda": []
-        },
-        {
-            "key": "TWOND_CLEANSING_CHARM",
-            "name": "thaumicwonders.research.cleansing_charm.title",
-            "icons": ["thaumicwonders:cleansing_charm"],
-            "category": "THAUMIC_WONDERS",
-            "parents": ["TWOND_FLYING_CARPET", "~SANESOAP", "~PRIMPEARL", "~WARP"],
-            "siblings": [],
-            "meta": ["HIDDEN"],
-            "location": [0, -4],
-            "reward_item": [],
-            "reward_knowledge": [],
-            "stages": [
-                {
-                    "text": "thaumicwonders.research.cleansing_charm.text.stage.1",
-                    "required_knowledge":["THEORY;INFUSION;1","THEORY;AUROMANCY;1","OBSERVATION;ELDRITCH;1"],
-                    "required_item": ["thaumcraft:sanity_soap"]
-                },
-                {
-                    "text": "thaumicwonders.research.cleansing_charm.text.stage.2", 
-                    "recipes": ["thaumicwonders:cleansing_charm"]
-                }
-            ],
-            "addenda": []
-        },
-        {
-            "key": "TWOND_MYSTIC_GARDENING",
-            "name": "thaumicwonders.research.mystic_gardening.title",
-            "icons": ["thaumicwonders:shimmerleaf_seed", "thaumicwonders:cinderpearl_seed", "thaumicwonders:vishroom_spore"],
-            "category": "THAUMIC_WONDERS",
-            "parents": ["TWOND_BASE", "~INFUSION", "~!PLANTCINDERPEARL", "~!PLANTSHIMMERLEAF", "~!PLANTVISHROOM"],
-            "siblings": [],
-            "meta": ["HIDDEN"],
-            "location": [2, -2],
-            "reward_item": [],
-            "reward_knowledge": [],
-            "stages": [
-                {
-                    "text": "thaumicwonders.research.mystic_gardening.text.stage.1",
-                    "required_knowledge":["THEORY;INFUSION;1","OBSERVATION;BASICS;1"],
-                    "required_item": [
-                        "thaumcraft:shimmerleaf",
-                        "thaumcraft:cinderpearl",
-                        "thaumcraft:vishroom"
-                    ]
-                },
-                {
-                    "text": "thaumicwonders.research.mystic_gardening.text.stage.2", 
-                    "recipes": [
-                        "thaumicwonders:shimmerleaf_seed", 
-                        "thaumicwonders:cinderpearl_seed", 
-                        "thaumicwonders:vishroom_spore"
-                    ]
-                }
-            ],
-            "addenda": []
+            ]
         }
     ]
 }

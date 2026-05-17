@@ -6,6 +6,7 @@ import com.verdantartifice.thaumicwonders.common.blocks.devices.*;
 import com.verdantartifice.thaumicwonders.common.blocks.essentia.BlockCreativeEssentiaJar;
 import com.verdantartifice.thaumicwonders.common.blocks.essentia.BlockOblivionEssentiaJar;
 import com.verdantartifice.thaumicwonders.common.blocks.fluids.BlockFluidQuicksilver;
+import com.verdantartifice.thaumicwonders.common.blocks.misc.BlockArcanePillar;
 import com.verdantartifice.thaumicwonders.common.blocks.misc.BlockHexamite;
 import com.verdantartifice.thaumicwonders.common.blocks.misc.BlockTWPlaceholder;
 import com.verdantartifice.thaumicwonders.common.blocks.plants.BlockCinderpearlCrop;
@@ -15,6 +16,7 @@ import com.verdantartifice.thaumicwonders.common.fluids.FluidQuicksilver;
 import com.verdantartifice.thaumicwonders.common.tiles.devices.*;
 import com.verdantartifice.thaumicwonders.common.tiles.essentia.TileCreativeEssentiaJar;
 import com.verdantartifice.thaumicwonders.common.tiles.essentia.TileOblivionEssentiaJar;
+import com.verdantartifice.thaumicwonders.common.tiles.misc.TileArcanePillar;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.item.Item;
@@ -36,6 +38,8 @@ public class InitBlocks {
         registerBlock(forgeRegistry, new BlockEverburningUrn());
         registerBlock(forgeRegistry, new BlockDimensionalRipper());
         registerBlock(forgeRegistry, new BlockPrimordialSiphon());
+        registerBlock(forgeRegistry, new BlockInfusionClaw());
+        registerBlock(forgeRegistry, new BlockEssentiaEnchanter());
         registerBlock(forgeRegistry, new BlockOblivionEssentiaJar(), BlockJarItem.class);
         registerBlock(forgeRegistry, new BlockCreativeEssentiaJar(), BlockJarItem.class);
         registerBlock(forgeRegistry, new BlockInspirationEngine());
@@ -57,6 +61,7 @@ public class InitBlocks {
         registerBlock(forgeRegistry, new BlockAlkahestVat());
         registerBlock(forgeRegistry, new BlockCoalescenceMatrix());
         registerBlock(forgeRegistry, new BlockTW(Material.IRON, "coalescence_matrix_precursor"));
+        registerBlock(forgeRegistry, new BlockArcanePillar());
 
         registerBlock(forgeRegistry, new BlockTWPlaceholder("placeholder_arcane_stone"));
         registerBlock(forgeRegistry, new BlockTWPlaceholder("placeholder_obsidian"));
@@ -95,23 +100,26 @@ public class InitBlocks {
     }
 
     public static void initTileEntities() {
-        GameRegistry.registerTileEntity(TileEverburningUrn.class, new ResourceLocation(ThaumicWonders.MODID, "TileEverburningUrn"));
-        GameRegistry.registerTileEntity(TileDimensionalRipper.class, new ResourceLocation(ThaumicWonders.MODID, "TileDimensionalRipper"));
+        GameRegistry.registerTileEntity(TileAlkahestVat.class, new ResourceLocation(ThaumicWonders.MODID, "TileAlkahestVat"));
+        GameRegistry.registerTileEntity(TileArcanePillar.class, new ResourceLocation(ThaumicWonders.MODID, "TileArcanePillar"));
+        GameRegistry.registerTileEntity(TileCatalyzationChamber.class, new ResourceLocation(ThaumicWonders.MODID, "TileCatalyzationChamber"));
+        GameRegistry.registerTileEntity(TileCoalescenceMatrix.class, new ResourceLocation(ThaumicWonders.MODID, "TileCoalescenceMatrix"));
         GameRegistry.registerTileEntity(TileCreativeEssentiaJar.class, new ResourceLocation(ThaumicWonders.MODID, "TileCreativeEssentiaJar"));
-        GameRegistry.registerTileEntity(TileOblivionEssentiaJar.class, new ResourceLocation(ThaumicWonders.MODID, "TileOblivionEssentiaJar"));
+        GameRegistry.registerTileEntity(TileDimensionalRipper.class, new ResourceLocation(ThaumicWonders.MODID, "TileDimensionalRipper"));
+        GameRegistry.registerTileEntity(TileEssentiaEnchanter.class, new ResourceLocation(ThaumicWonders.MODID, "TileEssentiaEnchanter"));
+        GameRegistry.registerTileEntity(TileEverburningUrn.class, new ResourceLocation(ThaumicWonders.MODID, "TileEverburningUrn"));
+        GameRegistry.registerTileEntity(TileFluxDistiller.class, new ResourceLocation(ThaumicWonders.MODID, "TileFluxDistiller"));
+        GameRegistry.registerTileEntity(TileInfusionClaw.class, new ResourceLocation(ThaumicWonders.MODID,"TileInfusionClaw"));
         GameRegistry.registerTileEntity(TileInspirationEngine.class, new ResourceLocation(ThaumicWonders.MODID, "TileInspirationEngine"));
         GameRegistry.registerTileEntity(TileMadnessEngine.class, new ResourceLocation(ThaumicWonders.MODID, "TileMadnessEngine"));
+        GameRegistry.registerTileEntity(TileMeatyOrb.class, new ResourceLocation(ThaumicWonders.MODID, "TileMeatyOrb"));
+        GameRegistry.registerTileEntity(TileMeteorb.class, new ResourceLocation(ThaumicWonders.MODID, "TileMeteorb"));
+        GameRegistry.registerTileEntity(TileOblivionEssentiaJar.class, new ResourceLocation(ThaumicWonders.MODID, "TileOblivionEssentiaJar"));
+        GameRegistry.registerTileEntity(TileOreDiviner.class, new ResourceLocation(ThaumicWonders.MODID, "TileOreDiviner"));
         GameRegistry.registerTileEntity(TilePortalAnchor.class, new ResourceLocation(ThaumicWonders.MODID, "TilePortalAnchor"));
         GameRegistry.registerTileEntity(TilePortalGenerator.class, new ResourceLocation(ThaumicWonders.MODID, "TilePortalGenerator"));
         GameRegistry.registerTileEntity(TilePrimordialSiphon.class, new ResourceLocation(ThaumicWonders.MODID, "TilePrimordialSiphon"));
-        GameRegistry.registerTileEntity(TileCatalyzationChamber.class, new ResourceLocation(ThaumicWonders.MODID, "TileCatalyzationChamber"));
-        GameRegistry.registerTileEntity(TileMeteorb.class, new ResourceLocation(ThaumicWonders.MODID, "TileMeteorb"));
-        GameRegistry.registerTileEntity(TileOreDiviner.class, new ResourceLocation(ThaumicWonders.MODID, "TileOreDiviner"));
-        GameRegistry.registerTileEntity(TileMeatyOrb.class, new ResourceLocation(ThaumicWonders.MODID, "TileMeatyOrb"));
-        GameRegistry.registerTileEntity(TileVoidBeacon.class, new ResourceLocation(ThaumicWonders.MODID, "TileVoidBeacon"));
-        GameRegistry.registerTileEntity(TileFluxDistiller.class, new ResourceLocation(ThaumicWonders.MODID, "TileFluxDistiller"));
-        GameRegistry.registerTileEntity(TileAlkahestVat.class, new ResourceLocation(ThaumicWonders.MODID, "TileAlkahestVat"));
-        GameRegistry.registerTileEntity(TileCoalescenceMatrix.class, new ResourceLocation(ThaumicWonders.MODID, "TileCoalescenceMatrix"));
         GameRegistry.registerTileEntity(TileVisCapacitor.class, new ResourceLocation(ThaumicWonders.MODID, "TileVisCapacitor"));
+        GameRegistry.registerTileEntity(TileVoidBeacon.class, new ResourceLocation(ThaumicWonders.MODID, "TileVoidBeacon"));
     }
 }

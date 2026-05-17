@@ -8,7 +8,7 @@ import thaumcraft.common.tiles.essentia.TileJarFillable;
 public class TileOblivionEssentiaJar extends TileJarFillable {
     @Override
     public int addToContainer(Aspect aspect, int amount) {
-        return this.aspectFilter == null || this.aspectFilter == aspect ? amount : 0;
+        return 0;
     }
 
     @Override
@@ -23,7 +23,7 @@ public class TileOblivionEssentiaJar extends TileJarFillable {
 
     @Override
     public int getSuctionAmount(EnumFacing loc) {
-        return this.aspectFilter != null ? 48 : 32;
+        return this.aspectFilter != null ? 32 : 16;
     }
 
     @Override
@@ -48,6 +48,6 @@ public class TileOblivionEssentiaJar extends TileJarFillable {
 
     @Override
     public int getMinimumSuction() {
-        return this.aspectFilter != null ? 48 : 32;
+        return this.aspectFilter != null ? 32 : 16;
     }
 }

@@ -21,6 +21,56 @@
           "recipes": ["thaumicwonders:vis_capacitor"]
         }
       ]
+    },
+    {
+      "key": "TWOND_FOCUS_BLINK",
+      "name": "thaumicwonders.research.blink.title",
+      "icons": ["focus.thaumicwonders.blink"],
+      "category": "THAUMIC_WONDERS",
+      "parents": ["TWOND_VOID_PORTAL", "~BASEAUROMANCY"],
+      "meta": ["HIDDEN"],
+      "location": [-7, -3],
+      "stages": [
+        {
+          "text": "thaumicwonders.research.blink.text.stage.1",
+          "required_knowledge": ["THEORY;ELDRITCH;1", "THEORY;AUROMANCY;1"],
+          "required_research":["!alienis"]
+        },
+        {
+          "text": "thaumicwonders.research.blink.text.stage.2"
+        }
+      ],
+      "addenda": [
+        {
+          "text": "thaumicwonders.research.blink.text.addenda.1",
+          "required_research": ["TWOND_FOCUS_BLINK@2"]
+        }
+      ]
+    },
+    {
+      "key": "TWOND_FOCUS_TELEPORT_HOME",
+      "name": "thaumicwonders.research.teleport_home.title",
+      "icons": ["focus.thaumicwonders.teleport_home"],
+      "category": "THAUMIC_WONDERS",
+      "parents": ["TWOND_FOCUS_BLINK"],
+      "meta": ["HIDDEN"],
+      "location": [-9, -3],
+      "stages": [
+        {
+          "text": "thaumicwonders.research.teleport_home.text.stage.1",
+          "required_knowledge": ["OBSERVATION;ELDRITCH;1", "THEORY;AUROMANCY;1"],
+          "required_research":["!motus"]
+        },
+        {
+          "text": "thaumicwonders.research.teleport_home.text.stage.2"
+        }
+      ],
+      "addenda": [
+        {
+          "text": "thaumicwonders.research.teleport_home.text.addenda.1",
+          "required_research": ["TWOND_FOCUS_TELEPORT_HOME@2"]
+        }
+      ]
     }
   ]
 }

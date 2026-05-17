@@ -1,0 +1,9 @@
+{
+  "parent": "block/enchanting_table_base",
+  "textures": {
+    "particle": "thaumicwonders:blocks/essentia_enchanter_bottom",
+    "bottom": "thaumicwonders:blocks/essentia_enchanter_bottom",
+    "top": "thaumicwonders:blocks/essentia_enchanter_top",
+    "side": "thaumicwonders:blocks/essentia_enchanter_side"
+  }
+}
