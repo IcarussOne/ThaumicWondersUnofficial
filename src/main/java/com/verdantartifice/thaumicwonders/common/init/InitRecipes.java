@@ -54,7 +54,7 @@ import javax.annotation.Nullable;
 
 @SuppressWarnings("ConstantConditions")
 public class InitRecipes {
-    private static ResourceLocation defaultGroup = new ResourceLocation("");
+    private static final ResourceLocation defaultGroup = new ResourceLocation("");
 
     public static void initRecipes(IForgeRegistry<IRecipe> forgeRegistry) {
         initNormalRecipes(forgeRegistry);
@@ -226,8 +226,8 @@ public class InitRecipes {
                 platform,
                 new ItemStack(BlocksTC.stoneArcaneBrick, 24),
                 new ItemStack(BlocksTC.stoneArcane, 16),
-                new ItemStack(Blocks.OBSIDIAN, 15),
-                new ItemStack(Blocks.ENCHANTING_TABLE)));
+                new ItemStack(Blocks.OBSIDIAN, 13),
+                new ItemStack(BlocksTW.ESSENTIA_ENCHANTER)));
     }
 
     private static void initNormalRecipes(IForgeRegistry<IRecipe> forgeRegistry) {

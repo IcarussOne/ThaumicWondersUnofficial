@@ -1,4 +1,9 @@
 # Changelog
+## v2.3.1
+------
+### Fixed
+- Fixed incorrect material costs in Ostmotic Enchanter Thaumonomicon entry
+
 ## v2.3.0
 ------
 ### Added
