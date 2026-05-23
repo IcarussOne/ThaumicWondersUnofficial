@@ -6,6 +6,7 @@ import com.verdantartifice.thaumicwonders.common.blocks.misc.BlockArcanePillar;
 import com.verdantartifice.thaumicwonders.common.blocks.misc.BlockArcanePillar.EnumDirection;
 import com.verdantartifice.thaumicwonders.common.config.ConfigHandlerTW;
 import com.verdantartifice.thaumicwonders.common.registry.SoundsTW;
+import com.verdantartifice.thaumicwonders.common.sounds.EnchanterSoundLoop;
 import com.verdantartifice.thaumicwonders.common.sounds.EssentiaSoundLoop;
 import com.verdantartifice.thaumicwonders.common.tiles.base.TileTW;
 import net.minecraft.block.state.IBlockState;
@@ -127,6 +128,7 @@ public class TileEssentiaEnchanter extends TileTW implements ITickable, IAspectC
                         did |= this.handleProgressTick();
                         if(this.getProgress() == PROGRESS_MAX) {
                             this.world.playSound(null, this.pos, SoundsTW.ENCHANT_START, SoundCategory.BLOCKS, 2.0f, 1.0f);
+                            Minecraft.getMinecraft().getSoundHandler().playSound(new EnchanterSoundLoop(SoundsTW.ENCHANT_LOOP, this, 0.5f));
                         }
                         if(this.getProgress() <= 0) {
                             this.completeEnchantment();
@@ -235,7 +237,7 @@ public class TileEssentiaEnchanter extends TileTW implements ITickable, IAspectC
         this.progress = 0;
         this.cooldown = 0;
         this.world.playSound(null, this.pos, SoundsTC.craftstart, SoundCategory.BLOCKS, 0.5f, 1.0f);
-        Minecraft.getMinecraft().getSoundHandler().playSound(new EssentiaSoundLoop(SoundsTW.ESSENTIA_LOOP, this, 1.0F));
+        Minecraft.getMinecraft().getSoundHandler().playSound(new EssentiaSoundLoop(SoundsTW.ESSENTIA_LOOP, this, 0.8f));
         this.syncTile(false);
         this.markDirty();
     }
